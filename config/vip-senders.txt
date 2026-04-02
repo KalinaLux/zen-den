@@ -1,0 +1,14 @@
+# VIP Senders — messages from these people always escalate to "action-needed" minimum
+# One Slack username per line (without @). Lines starting with # are comments.
+#
+# Suggested VIPs for an AD of Paid Search:
+# - Your direct manager / Director
+# - Client contacts who message you directly
+# - Account managers who relay urgent client requests
+#
+# Examples:
+# jsmith
+# sarah.director
+# client-contact-nike
+#
+# Add your VIPs below:

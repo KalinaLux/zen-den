@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zen Den</title>
+<base target="_self">
+<style>
+/* ═══════════════════════════════════════════
+   Zen Den — Calming Color System
+   Based on color psychology research:
+   - Lavender/periwinkle: reduces anxiety
+   - Sage green: natural calm + accomplishment
+   - Warm navy: depth without heaviness
+   - Soft coral: gentle attention
+   - Peach/cream: warmth and comfort
+   ═══════════════════════════════════════════ */
+
+:root,[data-theme="dark"]{
+  --bg:#111827;
+  --bg2:#1a2236;
+  --bg-card:rgba(30,41,66,.65);
+  --bg-card-hover:rgba(35,48,76,.75);
+  --bg-glass:rgba(30,41,66,.45);
+  --bg-input:rgba(25,35,58,.7);
+  --bg-sidebar:rgba(15,22,40,.85);
+  --text:#e8eaf0;
+  --text-dim:#9ca3c0;
+  --text-muted:#6b7394;
+  --accent:#a78bfa;
+  --accent2:#c4b5fd;
+  --accent-bg:rgba(167,139,250,.12);
+  --green:#86efac;
+  --green2:#4ade80;
+  --green-bg:rgba(134,239,172,.1);
+  --sage:#a7c4a0;
+  --sage-bg:rgba(167,196,160,.1);
+  --yellow:#fcd34d;
+  --yellow-bg:rgba(252,211,77,.1);
+  --coral:#fca5a5;
+  --coral-bg:rgba(252,165,165,.1);
+  --peach:#fdba74;
+  --blue:#93c5fd;
+  --blue-bg:rgba(147,197,253,.1);
+  --border:rgba(148,163,210,.12);
+  --border2:rgba(148,163,210,.08);
+  --glow:rgba(167,139,250,.15);
+  --radius:16px;
+  --radius-sm:10px;
+  --shadow:0 8px 32px rgba(0,0,0,.25);
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  --gradient:linear-gradient(135deg,#1a1f3a 0%,#111827 50%,#1a2236 100%);
+  --card-blur:blur(20px);
+}
+[data-theme="light"]{
+  --bg:#f5f0eb;
+  --bg2:#ede7e0;
+  --bg-card:rgba(255,255,255,.7);
+  --bg-card-hover:rgba(255,255,255,.85);
+  --bg-glass:rgba(255,255,255,.5);
+  --bg-input:rgba(255,255,255,.8);
+  --bg-sidebar:rgba(248,243,238,.9);
+  --text:#2d3047;
+  --text-dim:#5c5f7a;
+  --text-muted:#8b8ea8;
+  --accent:#7c5cfc;
+  --accent2:#9b7fff;
+  --accent-bg:rgba(124,92,252,.08);
+  --green:#22c55e;
+  --green2:#16a34a;
+  --green-bg:rgba(34,197,94,.08);
+  --sage:#5a8a50;
+  --sage-bg:rgba(90,138,80,.08);
+  --yellow:#d97706;
+  --yellow-bg:rgba(217,119,6,.08);
+  --coral:#ef4444;
+  --coral-bg:rgba(239,68,68,.08);
+  --peach:#ea580c;
+  --blue:#3b82f6;
+  --blue-bg:rgba(59,130,246,.08);
+  --border:rgba(0,0,0,.08);
+  --border2:rgba(0,0,0,.05);
+  --glow:rgba(124,92,252,.1);
+  --shadow:0 8px 32px rgba(0,0,0,.08);
+  --gradient:linear-gradient(135deg,#f5f0eb 0%,#ede7e0 50%,#f0ebe4 100%);
+  --card-blur:blur(16px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font);background:var(--gradient);color:var(--text);height:100vh;display:flex;overflow:hidden;transition:background .5s,color .3s}
+
+/* ── Sidebar ── */
+.sidebar{width:250px;background:var(--bg-sidebar);backdrop-filter:var(--card-blur);-webkit-backdrop-filter:var(--card-blur);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;transition:background .3s}
+.sb-brand{padding:24px 20px;border-bottom:1px solid var(--border)}
+.sb-brand .logo{font-size:28px;margin-bottom:8px}
+.sb-brand h1{font-size:18px;font-weight:800;letter-spacing:-.3px;background:linear-gradient(135deg,var(--accent),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sb-brand .tagline{font-size:11.5px;color:var(--text-muted);margin-top:4px;line-height:1.5;font-style:italic}
+.sb-nav{padding:14px 10px;flex:1;display:flex;flex-direction:column;gap:3px}
+.ni{padding:11px 14px;border-radius:var(--radius-sm);cursor:pointer;font-size:13.5px;font-weight:500;display:flex;align-items:center;gap:11px;color:var(--text-dim);transition:all .2s;user-select:none}
+.ni:hover{background:var(--bg-card);color:var(--text)}
+.ni.active{background:var(--accent-bg);color:var(--accent2);box-shadow:inset 0 0 0 1px rgba(167,139,250,.15)}
+.ni .ic{font-size:18px;width:24px;text-align:center}
+.ni .badge{margin-left:auto;font-size:10.5px;background:linear-gradient(135deg,var(--accent),#c084fc);color:#fff;padding:2px 8px;border-radius:10px;font-weight:700}
+.sb-footer{padding:14px 20px;border-top:1px solid var(--border)}
+.theme-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;font-size:12px;color:var(--text-muted);padding:8px 10px;border-radius:var(--radius-sm);transition:all .2s;border:none;background:none;width:100%}
+.theme-toggle:hover{background:var(--bg-card);color:var(--text)}
+.theme-toggle .ticon{font-size:16px}
+.sb-zen{padding:12px 20px;font-size:11px;color:var(--text-muted);line-height:1.5;border-top:1px solid var(--border)}
+
+/* ── Main ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
+.page{display:none;flex:1;overflow-y:auto;flex-direction:column}
+.page.active{display:flex}
+.ph{padding:24px 32px 16px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.ph div h2{font-size:20px;font-weight:700;letter-spacing:-.3px}
+.ph div p{font-size:13px;color:var(--text-dim);margin-top:3px}
+.pb{padding:24px 32px;flex:1;overflow-y:auto}
+
+/* ── Glass Cards ── */
+.glass{background:var(--bg-card);backdrop-filter:var(--card-blur);-webkit-backdrop-filter:var(--card-blur);border:1px solid var(--border);border-radius:var(--radius);transition:background .3s,border .3s}
+.glass:hover{background:var(--bg-card-hover)}
+
+/* ── Stats ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
+.st{padding:22px;border-radius:var(--radius);position:relative;overflow:hidden}
+.st::before{content:'';position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;opacity:.08}
+.st.v-accent::before{background:var(--accent)}.st.v-green::before{background:var(--green)}.st.v-yellow::before{background:var(--yellow)}.st.v-coral::before{background:var(--coral)}
+.st .sl{font-size:11.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.6px;font-weight:600}
+.st .sv{font-size:34px;font-weight:800;margin-top:6px;letter-spacing:-1.5px}
+.st .ss{font-size:12px;color:var(--text-muted);margin-top:3px}
+.st.v-accent .sv{color:var(--accent2)}.st.v-green .sv{color:var(--green)}.st.v-yellow .sv{color:var(--yellow)}.st.v-coral .sv{color:var(--coral)}
+
+/* ── Tables ── */
+.tbl{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;margin-bottom:8px}
+.tbl th{text-align:left;padding:10px 16px;font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-muted);font-weight:600;background:var(--bg-glass);border-bottom:1px solid var(--border)}
+.tbl td{padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border2);transition:background .15s}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--bg-card-hover)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:20px;font-size:11.5px;font-weight:600}
+.pill.enabled{background:var(--green-bg);color:var(--green)}.pill.paused{background:var(--yellow-bg);color:var(--yellow)}.pill.removed{background:var(--coral-bg);color:var(--coral)}
+.pill .dot{width:7px;height:7px;border-radius:50%;box-shadow:0 0 6px currentColor}
+.pill.enabled .dot{background:var(--green)}.pill.paused .dot{background:var(--yellow)}.pill.removed .dot{background:var(--coral)}
+.ptag{display:inline-flex;align-items:center;gap:5px;font-size:11px;padding:3px 9px;border-radius:8px;margin-top:4px}
+.ptag.serving{background:var(--green-bg);color:var(--green)}.ptag.not-serving{background:var(--yellow-bg);color:var(--yellow)}.ptag.disapproved{background:var(--coral-bg);color:var(--coral)}
+
+/* ── Chat ── */
+.chat-msgs{flex:1;overflow-y:auto;padding:24px 32px;display:flex;flex-direction:column;gap:18px}
+.cm{max-width:82%;display:flex;flex-direction:column;gap:6px;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.cm.user{align-self:flex-end}.cm.bot{align-self:flex-start}
+.cm .ms{font-size:11px;font-weight:600;color:var(--text-dim);padding:0 6px}
+.cm.user .ms{text-align:right}
+.cm .mb{padding:16px 20px;border-radius:18px;font-size:13.5px;line-height:1.65}
+.cm.user .mb{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;border-bottom-right-radius:4px;box-shadow:0 4px 16px rgba(167,139,250,.2)}
+.cm.bot .mb{background:var(--bg-card);backdrop-filter:var(--card-blur);border:1px solid var(--border);border-bottom-left-radius:4px}
+.cm .mm{font-size:11px;color:var(--text-muted);padding:0 6px;display:flex;align-items:center;gap:8px}
+.cm .mm .sk{background:var(--accent-bg);color:var(--accent2);padding:2px 9px;border-radius:10px;font-size:10px;font-weight:700}
+.ci-area{padding:16px 32px 24px;border-top:1px solid var(--border);flex-shrink:0}
+.ci-wrap{display:flex;gap:10px;background:var(--bg-input);backdrop-filter:var(--card-blur);border:1px solid var(--border);border-radius:14px;padding:5px 5px 5px 20px;align-items:center;transition:border .2s,box-shadow .2s}
+.ci-wrap:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.ci-inp{flex:1;background:none;border:none;outline:none;color:var(--text);font-size:14px;font-family:var(--font);padding:10px 0}
+.ci-inp::placeholder{color:var(--text-muted)}
+.ci-send{background:linear-gradient(135deg,var(--accent),#8b5cf6);border:none;color:#fff;padding:11px 22px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
+.ci-send:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(167,139,250,.3)}
+.ci-send:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+.sugs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.sug{background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:7px 15px;font-size:12px;color:var(--text-dim);cursor:pointer;transition:all .2s}
+.sug:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-bg);transform:translateY(-1px)}
+.cc{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.ccc{background:var(--bg-glass);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:14px 16px}
+.ccc .cn{font-size:13px;font-weight:600;margin-bottom:6px}
+.ccc .cr{font-size:12px;color:var(--text-dim);display:flex;gap:16px;flex-wrap:wrap}
+.ds{margin-top:10px}.ds h4{font-size:12px;text-transform:uppercase;letter-spacing:.5px;font-weight:700;color:var(--text-dim);margin:16px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--border2)}.ds h4:first-child{margin-top:0}
+.di{font-size:12.5px;padding:5px 0;display:flex;gap:8px;align-items:flex-start}.di b{font-weight:600}.di .ch{color:var(--blue)}
+
+/* ── FAQ ── */
+.faq-grid{display:grid;gap:12px}
+.fi{padding:20px;display:flex;gap:16px;align-items:flex-start;transition:all .2s}
+.fi:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.fi .fb{flex:1}.fi .fq{font-size:14px;font-weight:600;margin-bottom:5px}.fi .fa{font-size:12.5px;color:var(--text-dim);line-height:1.55}
+.fi .fc{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:10px;background:var(--accent-bg);color:var(--accent2);margin-bottom:7px}
+.fi .fx{display:flex;gap:6px;flex-shrink:0}
+.fi .fb2{background:var(--bg-input);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:11px;color:var(--text-dim);cursor:pointer;transition:all .15s;font-family:var(--font)}
+.fi .fb2:hover{border-color:var(--accent);color:var(--accent2)}.fi .fb2.del:hover{border-color:var(--coral);color:var(--coral)}
+.ff-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.ff{padding:7px 15px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:none;color:var(--text-dim);transition:all .2s;font-family:var(--font)}
+.ff:hover,.ff.act{background:var(--accent-bg);border-color:var(--accent);color:var(--accent2)}
+
+/* ── Settings ── */
+.ss-card{padding:24px;margin-bottom:20px}
+.ss-card h3{font-size:15px;font-weight:700;margin-bottom:4px}
+.ss-card .sd{font-size:12.5px;color:var(--text-dim);margin-bottom:16px;line-height:1.5}
+.ss-card textarea,.ss-card input[type=text],.ss-card input[type=password]{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:'SF Mono','Fira Code',monospace;font-size:12.5px;padding:12px 14px;resize:vertical;outline:none;transition:border .2s}
+.ss-card textarea:focus,.ss-card input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.ss-card textarea{min-height:120px;line-height:1.6}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;font-family:var(--font)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;box-shadow:0 2px 8px rgba(167,139,250,.2)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(167,139,250,.3)}
+.btn-ghost{background:transparent;color:var(--text-dim);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--text-dim);color:var(--text)}
+.btn-sage{background:linear-gradient(135deg,var(--sage),#6ab05e);color:#fff}
+.btn-sm{padding:7px 14px;font-size:12px}
+.btn-row{display:flex;gap:10px;margin-top:14px}
+
+.cat-badge{display:inline-block;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:600}
+.cat-badge.campaign{background:var(--blue-bg);color:var(--blue)}.cat-badge.promo{background:var(--green-bg);color:var(--green)}.cat-badge.digest{background:var(--accent-bg);color:var(--accent2)}.cat-badge.faq{background:var(--sage-bg);color:var(--sage)}.cat-badge.general{background:var(--yellow-bg);color:var(--yellow)}
+
+/* ── Reports ── */
+.rpt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px}
+.rpt-card{padding:28px;display:flex;flex-direction:column;gap:14px;transition:all .25s}
+.rpt-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.rpt-card .rc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.rpt-card .rc-name{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.rpt-card .rc-lead{font-size:12px;color:var(--text-dim);margin-top:2px}
+.rpt-card .rc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rpt-card .rs{text-align:center;padding:10px 4px;background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2)}
+.rpt-card .rs .rv{font-size:18px;font-weight:800;letter-spacing:-.5px}
+.rpt-card .rs .rl{font-size:9.5px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.rpt-card .rs.v-accent .rv{color:var(--accent2)}.rpt-card .rs.v-green .rv{color:var(--green)}.rpt-card .rs.v-coral .rv{color:var(--coral)}
+.rpt-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:auto}
+.rpt-range{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 12px;font-family:var(--font);outline:none;cursor:pointer;transition:border .2s}
+.rpt-range:focus{border-color:var(--accent)}
+.btn-report{background:linear-gradient(135deg,var(--accent),#8b5cf6);border:none;color:#fff;padding:10px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font);display:inline-flex;align-items:center;gap:8px}
+.btn-report:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(167,139,250,.3)}
+.btn-report:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-report .spinner{display:none;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+.btn-report.loading .spinner{display:inline-block}
+.btn-report.loading .btn-text{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rpt-preview{font-size:11.5px;color:var(--text-muted);line-height:1.6;padding:12px;background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2)}
+.rpt-preview b{color:var(--text-dim)}
+
+/* ── Privacy ── */
+.priv-hero{padding:32px;text-align:center;margin-bottom:24px}
+.priv-hero-icon{font-size:48px;margin-bottom:12px}
+.priv-hero h3{font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:8px}
+.priv-hero p{font-size:14px;color:var(--text-dim);max-width:520px;margin:0 auto;line-height:1.65}
+.priv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:24px}
+.priv-card{padding:24px}
+.priv-icon{font-size:28px;margin-bottom:10px}
+.priv-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.priv-card p{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:10px}
+.priv-check{font-size:12px;color:var(--green);padding:3px 0;font-weight:500}
+.priv-policy{padding:24px;margin-bottom:20px}
+.priv-policy h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.priv-policy>p{font-size:12.5px;color:var(--text-dim);margin-bottom:14px}
+.priv-links{display:flex;gap:12px;flex-wrap:wrap}
+.priv-link{display:inline-block;padding:8px 16px;background:var(--bg-glass);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;color:var(--accent2);text-decoration:none;font-weight:600;transition:all .2s}
+.priv-link:hover{border-color:var(--accent);background:var(--accent-bg)}
+
+/* ── Google Ads Connect ── */
+.gads-status{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:var(--radius-sm);margin-bottom:16px;font-size:13px;font-weight:600}
+.gads-status.connected{background:var(--green-bg);color:var(--green)}
+.gads-status.disconnected{background:var(--yellow-bg);color:var(--yellow)}
+.gads-steps{counter-reset:gstep}
+.gads-step{counter-increment:gstep;padding:14px 14px 14px 44px;position:relative;font-size:12.5px;color:var(--text-dim);line-height:1.6;border-bottom:1px solid var(--border2)}
+.gads-step:last-child{border-bottom:none}
+.gads-step::before{content:counter(gstep);position:absolute;left:14px;top:14px;width:22px;height:22px;border-radius:50%;background:var(--accent-bg);color:var(--accent2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.gads-step a{color:var(--accent2)}
+.gads-step code{background:var(--bg-input);padding:2px 6px;border-radius:4px;font-size:11px}
+
+/* ── Schedule ── */
+.sched-pill{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:10px}
+.sched-pill.on{background:var(--green-bg);color:var(--green)}.sched-pill.off{background:var(--yellow-bg);color:var(--yellow)}
+.recip-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;min-height:28px}
+.recip-tag{display:inline-flex;align-items:center;gap:5px;background:var(--accent-bg);color:var(--accent2);padding:4px 10px;border-radius:16px;font-size:11.5px;font-weight:500}
+.recip-tag .rx{cursor:pointer;opacity:.6;font-size:14px;line-height:1}.recip-tag .rx:hover{opacity:1}
+.recip-add{display:flex;gap:6px;margin-bottom:14px}
+.recip-add input{flex:1;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 12px;outline:none;font-family:var(--font)}
+.recip-add input:focus{border-color:var(--accent)}
+.recip-add button{padding:8px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:none;color:var(--text-dim);font-size:12px;cursor:pointer;font-family:var(--font);white-space:nowrap}
+.recip-add button:hover{border-color:var(--accent);color:var(--accent2)}
+
+/* ── Modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:800;display:flex;align-items:center;justify-content:center}
+.modal-bg.hidden{display:none}
+.modal{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:28px;width:560px;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow)}
+.modal h3{font-size:17px;font-weight:700;margin-bottom:16px}
+.modal label{display:block;font-size:12px;font-weight:600;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.modal input,.modal textarea,.modal select{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;padding:10px 14px;outline:none;margin-bottom:14px;font-family:var(--font);transition:border .2s}
+.modal input:focus,.modal textarea:focus{border-color:var(--accent)}
+.modal textarea{min-height:80px;resize:vertical}
+
+/* ── Wizard ── */
+.wiz-bg{position:fixed;inset:0;background:var(--gradient);z-index:1000;display:flex;align-items:center;justify-content:center;overflow-y:auto;padding:40px}
+.wiz-bg.hidden{display:none}
+.wiz{width:600px}
+.wiz-top{text-align:center;margin-bottom:36px}
+.wiz-top .wlogo{font-size:64px;margin-bottom:12px;filter:drop-shadow(0 4px 12px rgba(167,139,250,.3))}
+.wiz-top h1{font-size:30px;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--accent2),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.wiz-top .wsub{color:var(--text-dim);font-size:14px;margin-top:10px;line-height:1.7}
+.wiz-dots{display:flex;gap:8px;justify-content:center;margin-bottom:28px}
+.wiz-dot{width:48px;height:5px;border-radius:3px;background:var(--border);transition:all .4s}
+.wiz-dot.done{background:var(--green)}.wiz-dot.now{background:var(--accent);box-shadow:0 0 8px var(--glow)}
+.wiz-card{background:var(--bg-card);backdrop-filter:var(--card-blur);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:20px}
+.wiz-card h3{font-size:16px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.wiz-card .wd{font-size:13px;color:var(--text-dim);margin-bottom:18px;line-height:1.65}
+.wiz-card label{display:block;font-size:11.5px;font-weight:600;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.wiz-card input[type=text],.wiz-card input[type=password]{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:'SF Mono','Fira Code',monospace;font-size:13px;padding:12px 14px;outline:none;transition:border .2s;margin-bottom:14px}
+.wiz-card input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.wiz-card .hint{font-size:11.5px;color:var(--text-muted);margin-top:-8px;margin-bottom:14px;line-height:1.45}
+.wiz-card .hint a{color:var(--accent2)}
+.wiz-btns{display:flex;gap:12px;justify-content:flex-end;margin-top:12px}
+.provider-pick{display:flex;gap:10px;margin-bottom:16px}
+.pp{padding:10px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:none;color:var(--text-dim);transition:all .2s;font-family:var(--font)}
+.pp.on{background:var(--accent-bg);border-color:var(--accent);color:var(--accent2)}
+
+/* ── Tour ── */
+.tour-tip{position:fixed;z-index:900;background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;padding:18px 22px;border-radius:var(--radius);max-width:340px;box-shadow:0 8px 32px rgba(167,139,250,.3);font-size:13px;line-height:1.6}
+.tour-tip.hidden{display:none}
+.tour-tip h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.tour-tip .tb{display:flex;gap:8px;margin-top:14px}
+.tour-tip .tn{padding:7px 18px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:#fff;color:var(--accent);font-family:var(--font)}
+.tour-tip .ts{padding:7px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:rgba(255,255,255,.15);color:#fff;font-family:var(--font)}
+.tour-hl{box-shadow:0 0 0 3px var(--accent),0 0 0 7px var(--glow)!important;border-radius:var(--radius-sm);transition:box-shadow .3s}
+
+.toast{position:fixed;bottom:30px;right:30px;background:linear-gradient(135deg,var(--green),var(--green2));color:#000;padding:12px 22px;border-radius:var(--radius-sm);font-size:13px;font-weight:700;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;z-index:999}
+.toast.show{opacity:1;transform:translateY(0)}
+/* ── Time Saved Banner ── */
+.time-banner{display:flex;align-items:center;gap:20px;padding:20px 24px;margin-bottom:20px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(134,239,172,.08));border:1px solid rgba(167,139,250,.15)}
+.time-banner .tb-num{font-size:42px;font-weight:900;letter-spacing:-2px;background:linear-gradient(135deg,var(--accent2),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.time-banner .tb-label{font-size:12px;color:var(--text-dim);margin-top:2px}
+.time-banner .tb-detail{font-size:12px;color:var(--text-muted)}
+/* ── Pacing Bars ── */
+.pace-bar{height:8px;border-radius:4px;background:var(--bg-glass);overflow:hidden;margin-top:6px}
+.pace-fill{height:100%;border-radius:4px;transition:width .4s ease}
+.pace-fill.ok{background:var(--green)}.pace-fill.warn{background:var(--yellow)}.pace-fill.danger{background:var(--coral)}
+.pace-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.pace-card{padding:18px}
+.pace-card .pc-name{font-size:13px;font-weight:600;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pace-card .pc-row{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-dim);margin-top:4px}
+/* ── Alert Cards ── */
+.alert-list{display:flex;flex-direction:column;gap:8px}
+.alert-item{padding:14px 18px;display:flex;gap:14px;align-items:flex-start;font-size:13px;line-height:1.5}
+.alert-item.critical{border-left:3px solid var(--coral)}.alert-item.warning{border-left:3px solid var(--yellow)}.alert-item.info{border-left:3px solid var(--blue)}
+.alert-item .ai-icon{font-size:18px;flex-shrink:0}.alert-item .ai-body{flex:1}.alert-item .ai-title{font-weight:600;margin-bottom:2px}.alert-item .ai-rec{font-size:11.5px;color:var(--text-muted);margin-top:4px;font-style:italic}
+/* ── Meeting Prep ── */
+.prep-card{padding:24px;margin-bottom:16px}.prep-card h4{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.prep-card ul{list-style:none;padding:0}.prep-card li{padding:5px 0;font-size:13px;color:var(--text-dim);display:flex;gap:8px;align-items:flex-start}.prep-card li::before{content:'•';color:var(--accent);font-weight:bold;flex-shrink:0}
+.prep-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.prep-m{text-align:center;padding:12px 8px;background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2)}
+.prep-m .pv{font-size:20px;font-weight:800}.prep-m .pl{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.3px;margin-top:2px}
+/* ── Quick Reply Templates ── */
+.tpl-grid{display:grid;gap:10px}
+.tpl-item{padding:16px 20px;display:flex;gap:14px;align-items:flex-start;cursor:pointer;transition:all .15s}
+.tpl-item:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.tpl-item .ti-body{flex:1}.tpl-item .ti-title{font-size:13.5px;font-weight:600;margin-bottom:4px}.tpl-item .ti-text{font-size:12px;color:var(--text-dim);line-height:1.5;max-height:40px;overflow:hidden}
+.tpl-item .ti-meta{display:flex;gap:6px;margin-top:6px}.tpl-item .ti-tag{font-size:10px;padding:2px 8px;border-radius:8px;background:var(--accent-bg);color:var(--accent2);font-weight:600}
+.tpl-item .ti-copy{flex-shrink:0;padding:8px 16px;border-radius:var(--radius-sm);border:1px solid var(--border);background:none;color:var(--text-dim);font-size:12px;cursor:pointer;font-family:var(--font);transition:all .15s;white-space:nowrap}
+.tpl-item .ti-copy:hover{border-color:var(--accent);color:var(--accent2);background:var(--accent-bg)}
+/* ── Drafts ── */
+.draft-item{padding:18px;margin-bottom:10px}
+.draft-item .di-from{font-size:12px;color:var(--text-dim);margin-bottom:4px}.draft-item .di-subj{font-size:14px;font-weight:600;margin-bottom:8px}
+.draft-item .di-orig{font-size:12px;color:var(--text-muted);padding:10px 12px;background:var(--bg-glass);border-radius:var(--radius-sm);margin-bottom:10px;max-height:60px;overflow:hidden}
+.draft-item .di-reply{font-size:13px;line-height:1.6;color:var(--text-dim);padding:12px;background:var(--green-bg);border-radius:var(--radius-sm);border:1px solid rgba(134,239,172,.1);margin-bottom:10px;white-space:pre-wrap}
+/* ── Integrations status ── */
+.integ-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.integ-card{flex:1;min-width:200px;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.integ-card .ig-icon{font-size:28px}.integ-card .ig-info{flex:1}.integ-card .ig-name{font-size:13px;font-weight:700}.integ-card .ig-stat{font-size:11.5px;margin-top:2px}
+.integ-card .ig-stat.on{color:var(--green)}.integ-card .ig-stat.off{color:var(--text-muted)}
+.integ-card .ig-btn{padding:6px 14px;border-radius:var(--radius-sm);font-size:11px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:none;color:var(--text-dim);font-family:var(--font);transition:all .15s}
+.integ-card .ig-btn:hover{border-color:var(--accent);color:var(--accent2)}
+.integ-card .ig-btn.active{background:var(--green-bg);border-color:var(--green);color:var(--green)}
+.empty{text-align:center;padding:60px 20px;color:var(--text-muted)}.empty .ei{font-size:52px;margin-bottom:16px}
+.client-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px;margin-top:28px}.client-hdr:first-child{margin-top:0}.client-hdr h3{font-size:16px;font-weight:700}.client-hdr span{font-size:12px;color:var(--text-muted)}
+
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
+@media(max-width:900px){.sidebar{width:60px}.sb-brand h1,.sb-brand .tagline,.ni span:not(.ic),.sb-zen,.ni .badge{display:none}.sb-brand{padding:16px 12px}.sb-brand .logo{font-size:22px}.ni{justify-content:center;padding:12px}.stats{grid-template-columns:repeat(2,1fr)}.theme-toggle span:not(.ticon){display:none}}
+</style>
+</head>
+<body>
+
+<!-- ═══ WIZARD ═══ -->
+<div class="wiz-bg" id="wizard">
+<div class="wiz">
+  <div class="wiz-top">
+    <div class="wlogo">🧘</div>
+    <h1>Zen Den</h1>
+    <div class="wsub">Your campaigns are handled. Your inbox is managed.<br>Take a breath — you've earned it. ✨<br><br><span style="font-size:12.5px;opacity:.7">This tool grows with you. Anything you need, we can build it in.</span></div>
+  </div>
+  <div class="wiz-dots"><div class="wiz-dot now" data-s="0"></div><div class="wiz-dot" data-s="1"></div><div class="wiz-dot" data-s="2"></div><div class="wiz-dot" data-s="3"></div><div class="wiz-dot" data-s="4"></div><div class="wiz-dot" data-s="5"></div></div>
+  <div class="wiz-card wiz-pane" data-step="0">
+    <h3>🌿 Welcome to your Zen Den</h3>
+    <div class="wd">This is your personal AI assistant that handles all the campaign status questions, promo checks, budget questions, and repetitive Slack messages so you don't have to.<br><br>🧘 <b>48 pre-loaded answers</b> to every common question your team, clients, and bosses ask<br>⚡ <b>Live campaign data</b> — checks Google Ads in real-time<br>🤖 <b>Auto-responds</b> on Slack and drafts emails for you<br>🔒 <b>Private</b> — everything stays on your machine<br><br><i>You deserve to breathe. Let's set this up in 2 minutes.</i></div>
+    <div class="wiz-btns"><button class="btn btn-primary" onclick="wizNext()">Let's Do This →</button></div>
+  </div>
+  <div class="wiz-card wiz-pane" data-step="1" style="display:none">
+    <h3>🧠 Your AI Brain</h3>
+    <div class="wd">Pick your AI provider. Start with ChatGPT — you can switch to Claude anytime.</div>
+    <label>OpenAI (ChatGPT) API Key</label>
+    <input type="password" id="wiz-openai" placeholder="sk-..." autocomplete="off">
+    <div class="hint">Get one at <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></div>
+    <label>Anthropic (Claude) API Key <span style="font-weight:400;text-transform:none">(for when you're ready to upgrade)</span></label>
+    <input type="password" id="wiz-claude" placeholder="sk-ant-..." autocomplete="off">
+    <div class="hint">Get one at <a href="https://console.anthropic.com/" target="_blank">console.anthropic.com</a></div>
+    <label>Active Provider</label>
+    <div class="provider-pick"><button class="pp on" data-p="openai" onclick="pickP('openai')">🟢 ChatGPT</button><button class="pp" data-p="claude" onclick="pickP('claude')">🟣 Claude</button></div>
+    <div class="wiz-btns"><button class="btn btn-ghost" onclick="wizBack()">← Back</button><div style="flex:1"></div><button class="btn btn-ghost" onclick="wizNext()">Skip</button><button class="btn btn-primary" onclick="wizNext()">Next →</button></div>
+  </div>
+  <div class="wiz-card wiz-pane" data-step="2" style="display:none">
+    <h3>💬 Connect Slack</h3>
+    <div class="wd">So the Zen Den can read questions and respond for you. It only sees channels you invite it to.</div>
+    <label>Slack Bot Token</label>
+    <input type="password" id="wiz-slack" placeholder="xoxb-..." autocomplete="off">
+    <div class="hint">Create a Slack App at <a href="https://api.slack.com/apps" target="_blank">api.slack.com/apps</a> → add bot scopes → install → copy Bot Token</div>
+    <div class="wiz-btns"><button class="btn btn-ghost" onclick="wizBack()">← Back</button><div style="flex:1"></div><button class="btn btn-ghost" onclick="wizNext()">Skip</button><button class="btn btn-primary" onclick="wizNext()">Next →</button></div>
+  </div>
+  <div class="wiz-card wiz-pane" data-step="3" style="display:none">
+    <h3>✉️ Email (Optional)</h3>
+    <div class="wd">Let the Zen Den draft email replies for you. Requires Gmail API — you can set this up later in Settings. No pressure. 🧘</div>
+    <div style="color:var(--text-muted);font-size:13px;margin-bottom:16px">○ Not configured yet — <i>that's perfectly fine</i></div>
+    <div class="wiz-btns"><button class="btn btn-ghost" onclick="wizBack()">← Back</button><div style="flex:1"></div><button class="btn btn-ghost" onclick="wizNext()">Skip</button><button class="btn btn-primary" onclick="wizNext()">Next →</button></div>
+  </div>
+  <div class="wiz-card wiz-pane" data-step="4" style="display:none">
+    <h3>📊 Connect Google Ads</h3>
+    <div class="wd">Pull live campaign data straight into the Zen Den. <b>Read-only</b> — it can never modify your campaigns. Everything stays on your machine.<br><br>Don't have these yet? No worries — skip for now and set up later in Settings. The Zen Den works great with demo data too! 🌿</div>
+    <label>OAuth Client ID</label>
+    <input type="text" id="wiz-gads-cid" placeholder="xxxx.apps.googleusercontent.com" autocomplete="off">
+    <div class="hint">From <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console</a> → Credentials → OAuth 2.0 Client IDs</div>
+    <label>OAuth Client Secret</label>
+    <input type="password" id="wiz-gads-cs" placeholder="GOCSPX-..." autocomplete="off">
+    <label>Developer Token</label>
+    <input type="password" id="wiz-gads-dt" placeholder="From Google Ads MCC → Tools → API Center" autocomplete="off">
+    <div class="hint">Your MCC already has a test token — find it at <a href="https://ads.google.com/aw/apicenter" target="_blank">ads.google.com/aw/apicenter</a></div>
+    <label>MCC Customer ID</label>
+    <input type="text" id="wiz-gads-mcc" placeholder="123-456-7890" autocomplete="off">
+    <div class="hint">The number in the top-left of Google Ads when viewing your manager account</div>
+    <div class="wiz-btns"><button class="btn btn-ghost" onclick="wizBack()">← Back</button><div style="flex:1"></div><button class="btn btn-ghost" onclick="wizNext()">Skip</button><button class="btn btn-primary" onclick="wizSaveGads()">Save &amp; Next →</button></div>
+  </div>
+  <div class="wiz-card wiz-pane" data-step="5" style="display:none">
+    <h3>🎉 Your Zen Den is Ready</h3>
+    <div class="wd" style="font-size:14px;line-height:1.8">
+      <b>Everything is set up. Here's what's waiting for you:</b><br><br>
+      🧘 <b>48 pre-loaded Q&As</b> — budget, performance, reporting, strategy, and more<br>
+      💬 <b>Chat</b> — ask anything, get instant answers<br>
+      📊 <b>Dashboard</b> — all campaigns at a glance<br>
+      📄 <b>One-click PDF reports</b> — professional client decks, zero typing<br>
+      ☀️ <b>Morning digest</b> — daily briefing delivered to your Slack<br>
+      ❓ <b>Add new Q&As</b> — the library grows with you, forever<br>
+      🛡️ <b>Privacy page</b> — show anyone how your data stays safe<br><br>
+      <div id="wiz-gads-connect" style="display:none;margin-bottom:14px"><div style="background:var(--green-bg);padding:14px 16px;border-radius:var(--radius-sm);border:1px solid rgba(134,239,172,.15);display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span>📊 Google Ads credentials saved!</span><button class="btn btn-sage btn-sm" onclick="wizConnectGads()">🔗 Connect Google Account Now</button><span style="font-size:11px;color:var(--text-muted)">(opens in browser)</span></div></div>
+      <div style="background:var(--accent-bg);padding:16px;border-radius:var(--radius-sm);border:1px solid rgba(167,139,250,.15)">
+        <span style="font-size:16px">💜</span> <b>Remember:</b> You deserve to work without the chaos. This tool is yours to shape — anything you need, it can be expanded to fit. Breathe easy.
+      </div>
+    </div>
+    <div class="wiz-btns"><button class="btn btn-ghost" onclick="wizBack()">← Back</button><div style="flex:1"></div><button class="btn btn-ghost" onclick="finishWiz(false)">Skip Tour</button><button class="btn btn-sage" onclick="finishWiz(true)">🌿 Take the Guided Tour</button></div>
+  </div>
+</div>
+</div>
+
+<!-- ═══ TOUR ═══ -->
+<div class="tour-tip hidden" id="tour-tip"><h4 id="tt-title"></h4><div id="tt-body"></div><div class="tb"><button class="ts" onclick="endTour()">Skip</button><button class="tn" onclick="tourN()">Next →</button></div></div>
+
+<!-- ═══ APP ═══ -->
+<div class="sidebar">
+  <div class="sb-brand"><div class="logo">🧘</div><h1>Zen Den</h1><div class="tagline">Breathe easy. It's handled.</div></div>
+  <nav class="sb-nav">
+    <div class="ni active" data-page="dashboard" id="nav-dashboard"><span class="ic">📊</span><span>Dashboard</span></div>
+    <div class="ni" data-page="chat" id="nav-chat"><span class="ic">💬</span><span>Chat</span></div>
+    <div class="ni" data-page="digest" id="nav-digest"><span class="ic">☀️</span><span>Digest</span></div>
+    <div class="ni" data-page="reports" id="nav-reports"><span class="ic">📄</span><span>Reports</span></div>
+    <div class="ni" data-page="faq" id="nav-faq"><span class="ic">❓</span><span>Q&A Library</span><span class="badge" id="faq-count">48</span></div>
+    <div class="ni" data-page="templates" id="nav-templates"><span class="ic">⚡</span><span>Quick Replies</span><span class="badge" id="qr-count">36</span></div>
+    <div class="ni" data-page="settings" id="nav-settings"><span class="ic">⚙️</span><span>Settings</span></div>
+    <div class="ni" data-page="privacy" id="nav-privacy"><span class="ic">🛡️</span><span>Privacy</span></div>
+    <div class="ni" data-page="audit" id="nav-audit"><span class="ic">📋</span><span>Audit Log</span></div>
+  </nav>
+  <div class="sb-footer"><button class="theme-toggle" onclick="toggleTheme()"><span class="ticon">🌙</span><span>Dark Mode</span></button></div>
+  <div class="sb-zen">🌿 Take a breath. You're doing great.</div>
+  <div class="sb-zen" style="font-size:10px;border-top:none;padding-top:0">Built with 💜 by <a href="https://github.com/KalinaLux" target="_blank" style="color:var(--accent2);text-decoration:none">Kalina Lux</a></div>
+</div>
+
+<div class="main">
+  <div class="page active" id="page-dashboard"><div class="ph"><div><h2>📊 Campaign Dashboard</h2><p>Everything at a glance — no digging required</p></div></div><div class="pb" id="dash-body"></div></div>
+  <div class="page" id="page-chat">
+    <div class="ph"><div><h2>💬 Ask the Zen Den</h2><p>Type like you're messaging on Slack — I'll find the answer</p></div></div>
+    <div class="chat-msgs" id="chat-msgs"><div class="cm bot"><div class="ms">🧘 Zen Den</div><div class="mb">Hey! 👋 Ask me anything — campaign statuses, promos, budgets, reporting schedules, strategy questions. I've got 50 answers pre-loaded and can check live data too. 🌿</div></div></div>
+    <div class="ci-area"><div class="ci-wrap"><input type="text" class="ci-inp" id="ci" placeholder="Ask anything... 'Is the campaign on?' 'When are reports due?'" autocomplete="off"><button class="ci-send" id="cs">Send ✨</button></div><div class="sugs" id="sugs"><div class="sug">Is the Solara brand campaign on?</div><div class="sug">What promos are running for TrueForm?</div><div class="sug">How much are we spending?</div><div class="sug">When are reports due?</div><div class="sug">What bidding strategy should we use?</div><div class="sug">Give me my digest</div></div></div>
+  </div>
+  <div class="page" id="page-digest"><div class="ph"><div><h2>☀️ Morning Digest</h2><p>Your daily calm-before-the-storm briefing</p></div></div><div class="pb" id="dig-body"></div></div>
+  <div class="page" id="page-reports"><div class="ph"><div><h2>📄 One-Click Reports</h2><p>Professional PDF reports — zero typing required</p></div></div><div class="pb" id="rpt-body"></div></div>
+  <div class="page" id="page-faq"><div class="ph" style="gap:12px"><div><h2>❓ Q&A Library</h2><p>Every answer your team needs, always growing</p></div><button class="btn btn-primary" onclick="openAdd()">+ Add New Question</button></div><div class="pb"><div class="ff-bar" id="ff-bar"></div><div class="faq-grid" id="faq-grid"></div></div></div>
+  <div class="page" id="page-settings"><div class="ph"><div><h2>⚙️ Settings</h2><p>API keys, integrations, and preferences</p></div></div><div class="pb" id="set-body"></div></div>
+  <div class="page" id="page-privacy"><div class="ph"><div><h2>🛡️ Privacy &amp; Security</h2><p>How your data stays safe — in plain English</p></div></div><div class="pb" id="priv-body">
+    <div class="priv-hero glass"><div class="priv-hero-icon">🔒</div><h3>Your data never leaves your laptop.</h3><p>Zen Den runs 100% locally on your machine — like Spotify or Slack. Nothing is hosted in the cloud. Nothing is uploaded anywhere.</p></div>
+    <div class="priv-grid">
+      <div class="priv-card glass"><div class="priv-icon">💻</div><h4>Runs on Your Machine</h4><p>The entire app is a local program. Your campaign data, API keys, and conversation history live in files on your Mac — not on anyone's server.</p><div class="priv-check">✓ No cloud hosting</div><div class="priv-check">✓ No external database</div><div class="priv-check">✓ Works offline (except live API queries)</div></div>
+      <div class="priv-card glass"><div class="priv-icon">🔗</div><h4>Direct Google Connection</h4><p>When the app checks a campaign, it talks directly to Google's servers using your own login — the same encrypted connection Google Ads already uses. No middleman.</p><div class="priv-check">✓ Your credentials, your connection</div><div class="priv-check">✓ Read-only access — can never modify campaigns</div><div class="priv-check">✓ Same security as google.com</div></div>
+      <div class="priv-card glass"><div class="priv-icon">🧠</div><h4>AI Sees Questions, Not Data</h4><p>The AI (ChatGPT/Claude) only receives your question — like "is the campaign on?" A separate local script fetches the answer from Google Ads. The AI formats the response but never sees raw account data, billing info, or anything sensitive.</p><div class="priv-check">✓ AI gets the question only</div><div class="priv-check">✓ Data fetched by local Python script</div><div class="priv-check">✓ No client PII sent to AI</div></div>
+      <div class="priv-card glass"><div class="priv-icon">🚫</div><h4>Never Used to Train AI</h4><p>Because you use the <b>API</b> (not the ChatGPT website), both OpenAI and Anthropic <b>contractually guarantee</b> your data is:</p><div class="priv-check">✓ Not used to train their AI models — ever</div><div class="priv-check">✓ Not stored beyond 30 days (abuse monitoring only)</div><div class="priv-check">✓ Not seen by any human at OpenAI or Anthropic</div><p style="margin-top:8px;font-size:11.5px;color:var(--text-muted)">This is different from free ChatGPT. The API has strict business-grade data policies.</p></div>
+      <div class="priv-card glass"><div class="priv-icon">📋</div><h4>Full Audit Trail</h4><p>Every question asked and every action taken is logged locally. You can review the audit log anytime, and share it with your security team to prove data is handled responsibly.</p><div class="priv-check">✓ Every query timestamped</div><div class="priv-check">✓ Logs stored locally only</div><div class="priv-check">✓ Go to Audit Log to review</div></div>
+      <div class="priv-card glass"><div class="priv-icon">🌿</div><h4>Local-Only Mode</h4><p>Want even more privacy? The Zen Den can run in <b>local-only mode</b> where the AI is never called at all — it just uses the pre-loaded Q&A library and direct API queries. Zero data leaves your machine, period.</p><div class="priv-check">✓ Toggle in Settings anytime</div><div class="priv-check">✓ Q&A library works 100% offline</div><div class="priv-check">✓ Google Ads queries go direct</div></div>
+    </div>
+    <div class="priv-policy glass">
+      <h4>📜 Official Data Policies</h4>
+      <p>For your security team or anyone who asks:</p>
+      <div class="priv-links">
+        <a href="https://openai.com/enterprise-privacy/" target="_blank" class="priv-link">OpenAI API Data Policy →</a>
+        <a href="https://www.anthropic.com/policies/privacy" target="_blank" class="priv-link">Anthropic Privacy Policy →</a>
+        <a href="https://support.google.com/google-ads/answer/6052909" target="_blank" class="priv-link">Google Ads API Terms →</a>
+      </div>
+      <div style="margin-top:14px;padding:14px;background:var(--accent-bg);border-radius:var(--radius-sm);border:1px solid rgba(167,139,250,.15)"><span style="font-size:15px">💜</span> <b>Bottom line:</b> Your client data stays on your machine. The AI helps you write responses, not access accounts. And everything is logged so you can prove it.</div>
+    </div>
+  </div></div>
+  <div class="page" id="page-templates"><div class="ph" style="gap:12px"><div><h2>⚡ Quick Replies</h2><p>One-click responses — stop typing the same things over and over</p></div></div><div class="pb" id="tpl-body"></div></div>
+  <div class="page" id="page-audit"><div class="ph"><div><h2>📋 Audit Log</h2><p>Every query, logged for privacy and peace of mind</p></div></div><div class="pb" id="aud-body"></div></div>
+</div>
+
+<!-- ═══ FAQ MODAL ═══ -->
+<div class="modal-bg hidden" id="faq-modal"><div class="modal"><h3 id="fm-title">Add New Question</h3><label>Category</label><select id="fm-cat"><option>Campaign Status</option><option>Promotions</option><option>Budget</option><option>Performance</option><option>Reporting</option><option>Process</option><option>Optimization</option><option>Strategy</option><option>Client</option><option>Technical</option><option>Campaign Types</option><option>Platform</option><option>Team</option><option>Admin</option><option>Custom</option></select><label>Example Questions (how people might ask this)</label><textarea id="fm-pats" placeholder="One per line, e.g.:&#10;how much are we spending&#10;what's the budget&#10;current spend"></textarea><label>Answer</label><textarea id="fm-ans" placeholder="The answer the Zen Den should give..."></textarea><input type="hidden" id="fm-id"><div class="btn-row" style="justify-content:flex-end"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveFaq()">Save Question 🌿</button></div></div></div>
+<!-- ═══ SCHEDULE MODAL ═══ -->
+<div class="modal-bg hidden" id="sched-modal"><div class="modal" style="width:520px">
+  <h3 id="sm-title">Schedule Report</h3>
+  <p style="font-size:12.5px;color:var(--text-dim);margin-bottom:18px;line-height:1.5">Set up automatic report delivery. The Zen Den will generate and email the PDF on your schedule — zero effort.</p>
+  <input type="hidden" id="sm-client">
+  <label>Recipients</label>
+  <div class="recip-list" id="sm-recips"></div>
+  <div class="recip-add"><input type="email" id="sm-email" placeholder="name@company.com" onkeydown="if(event.key==='Enter'){event.preventDefault();addRecip()}"><button onclick="addRecip()">+ Add</button></div>
+  <label>Frequency</label>
+  <select id="sm-freq"><option value="weekly">Weekly</option><option value="biweekly" selected>Biweekly (every 2 weeks)</option><option value="monthly">Monthly</option></select>
+  <label>Day of Week</label>
+  <select id="sm-day"><option value="monday" selected>Monday</option><option value="tuesday">Tuesday</option><option value="wednesday">Wednesday</option><option value="thursday">Thursday</option><option value="friday">Friday</option></select>
+  <label>Time</label>
+  <input type="time" id="sm-time" value="09:00" style="width:140px">
+  <label>Date Range for Report</label>
+  <select id="sm-range"><option value="Last 7 Days">Last 7 Days</option><option value="Last 30 Days" selected>Last 30 Days</option><option value="Last Quarter">Last Quarter</option></select>
+  <label style="display:flex;align-items:center;gap:8px;margin-top:8px;cursor:pointer"><input type="checkbox" id="sm-enabled" checked> <span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:13px">Enable automatic sending</span></label>
+  <div class="btn-row" style="justify-content:flex-end;margin-top:18px"><button class="btn btn-ghost" onclick="closeSched()">Cancel</button><button class="btn btn-primary" onclick="saveSched()">Save Schedule 📅</button></div>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+let setupState={},faqData=[],afFilter='All',editId=null;
+const $=id=>document.getElementById(id);
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function pill(s){const l=s.toLowerCase();return`<span class="pill ${l}"><span class="dot"></span>${s}</span>`}
+function ptag(p){let c='not-serving',i='○';if(p.status==='DISAPPROVED'){c='disapproved';i='✗'}else if(p.serving){c='serving';i='✓'}return`<span class="ptag ${c}">${i} ${p.text}</span>`}
+
+// ── Theme ──
+function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dark'?'light':'dark';h.dataset.theme=d;const btn=document.querySelector('.theme-toggle');btn.innerHTML=d==='dark'?'<span class="ticon">🌙</span><span>Dark Mode</span>':'<span class="ticon">☀️</span><span>Light Mode</span>';localStorage.setItem('zen-theme',d)}
+(function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
+
+// ── Nav ──
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates}[p]||function(){})()}
+document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
+
+// ── Wizard ──
+let wStep=0,aProv='openai';
+function wizShow(s){document.querySelectorAll('.wiz-pane').forEach(p=>p.style.display='none');const p=document.querySelector(`.wiz-pane[data-step="${s}"]`);if(p)p.style.display='';document.querySelectorAll('.wiz-dot').forEach((d,i)=>{d.className='wiz-dot'+(i<s?' done':i===s?' now':'')});if(s===5){const gc=$('wiz-gads-cid');if(gc&&gc.value.trim())$('wiz-gads-connect').style.display=''}}
+function wizNext(){wStep++;wizShow(wStep)}
+function wizBack(){if(wStep>0){wStep--;wizShow(wStep)}}
+function pickP(p){aProv=p;document.querySelectorAll('.pp').forEach(b=>b.classList.toggle('on',b.dataset.p===p))}
+async function wizConnectGads(){const res=await fetch('/api/gads/auth-url');const d=await res.json();if(d.url)window.open(d.url,'_blank')}
+async function wizSaveGads(){const cid=$('wiz-gads-cid').value.trim(),cs=$('wiz-gads-cs').value.trim(),dt=$('wiz-gads-dt').value.trim(),mcc=$('wiz-gads-mcc').value.trim();if(cid||cs||dt||mcc){await fetch('/api/gads/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_id:cid,client_secret:cs,developer_token:dt,mcc_customer_id:mcc})})}wizNext()}
+async function finishWiz(tour){setupState={completed:true,current_step:6,openai_key:$('wiz-openai').value,claude_key:$('wiz-claude').value,slack_token:$('wiz-slack').value,gmail_configured:false,active_provider:aProv};await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(setupState)});$('wizard').classList.add('hidden');if(tour)startTour()}
+async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
+
+// ── Tour ──
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+let tIdx=0;
+function startTour(){tIdx=0;showT()}
+function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
+function tourN(){tIdx++;showT()}
+function endTour(){$('tour-tip').classList.add('hidden');document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));goTo('dashboard')}
+
+// ── Dashboard ──
+async function loadDash(){
+const [d,ts,anom,pacing,slackSt,emailSt]=await Promise.all([
+  fetch('/api/data').then(r=>r.json()),
+  fetch('/api/time-saved').then(r=>r.json()).catch(()=>({})),
+  fetch('/api/anomalies').then(r=>r.json()).catch(()=>[]),
+  fetch('/api/pacing').then(r=>r.json()).catch(()=>[]),
+  fetch('/api/slack/status').then(r=>r.json()).catch(()=>({running:false})),
+  fetch('/api/email/status').then(r=>r.json()).catch(()=>({running:false}))
+]);
+const el=$('dash-body');let tot=0,en=0,pa=0,pr=0;
+d.clients.forEach(c=>c.campaigns.forEach(x=>{tot++;if(x.status==='ENABLED')en++;if(x.status==='PAUSED')pa++;pr+=x.promos.length}));
+
+// Time saved banner
+const hrs=ts.estimated_hours_saved||0;const acts=ts.total_actions||0;const todayActs=(ts.today||{}).actions||0;
+let h=`<div class="time-banner glass"><div><div class="tb-num">${hrs.toFixed(1)}h</div><div class="tb-label">Time Saved</div></div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--text)">${acts} actions automated</div><div class="tb-detail">${todayActs} today · ${(ts.this_week||{}).actions||0} this week${ts.streak_days?` · ${ts.streak_days}-day streak 🔥`:''}</div></div></div>`;
+
+// Integrations status
+h+=`<div class="integ-row"><div class="integ-card glass"><div class="ig-icon">💬</div><div class="ig-info"><div class="ig-name">Slack Bot</div><div class="ig-stat ${slackSt.running?'on':'off'}">${slackSt.running?`✓ Active — ${slackSt.auto_replies_sent||0} auto-replies sent`:'○ Not connected'}</div></div><button class="ig-btn${slackSt.running?' active':''}" onclick="goTo('settings')">${slackSt.running?'Running':'Set Up →'}</button></div>`;
+h+=`<div class="integ-card glass"><div class="ig-icon">✉️</div><div class="ig-info"><div class="ig-name">Email Watcher</div><div class="ig-stat ${emailSt.running?'on':'off'}">${emailSt.running?`✓ Active — ${emailSt.drafts_pending||0} drafts pending`:'○ Not connected'}</div></div><button class="ig-btn${emailSt.running?' active':''}" onclick="goTo('settings')">${emailSt.running?'Running':'Set Up →'}</button></div></div>`;
+
+// Stats row
+h+=`<div class="stats"><div class="st glass v-accent"><div class="sl">Clients</div><div class="sv">${d.clients.length}</div><div class="ss">Active accounts</div></div><div class="st glass v-green"><div class="sl">Live</div><div class="sv">${en}</div><div class="ss">of ${tot} campaigns</div></div><div class="st glass v-yellow"><div class="sl">Paused</div><div class="sv">${pa}</div><div class="ss">campaigns</div></div><div class="st glass v-coral"><div class="sl">Promos</div><div class="sv">${pr}</div><div class="ss">across clients</div></div></div>`;
+
+// Anomaly alerts
+const criticals=anom.filter(a=>a.severity==='critical');const warnings=anom.filter(a=>a.severity==='warning');
+if(criticals.length||warnings.length){h+=`<div style="margin-bottom:20px"><h3 style="font-size:15px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px">🚨 Alerts <span style="font-size:11px;font-weight:600;padding:2px 10px;border-radius:10px;background:var(--coral-bg);color:var(--coral)">${criticals.length} critical</span><span style="font-size:11px;font-weight:600;padding:2px 10px;border-radius:10px;background:var(--yellow-bg);color:var(--yellow)">${warnings.length} warning</span></h3><div class="alert-list">`;
+[...criticals,...warnings].slice(0,6).forEach(a=>{const icon=a.severity==='critical'?'🔴':'🟡';h+=`<div class="alert-item ${a.severity} glass"><div class="ai-icon">${icon}</div><div class="ai-body"><div class="ai-title">${a.client} — ${a.metric_label}</div><div>${a.message}</div><div class="ai-rec">💡 ${a.recommendation}</div></div></div>`});
+h+=`</div></div>`}
+
+// Budget pacing
+if(pacing.length){h+=`<div style="margin-bottom:24px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px">📈 Budget Pacing</h3><div class="pace-grid">`;
+pacing.forEach(p=>{p.campaigns.filter(c=>c.status==='ENABLED').forEach(c=>{const pct=Math.min(c.pace_percent||0,200);const cls=c.pace_status==='on_track'?'ok':c.pace_status==='overspending'?'danger':'warn';
+h+=`<div class="pace-card glass"><div class="pc-name">${p.client} · ${c.name.split('|')[1]||c.name}</div><div class="pace-bar"><div class="pace-fill ${cls}" style="width:${Math.min(pct/2,100)}%"></div></div><div class="pc-row"><span>$${c.spent.toLocaleString(undefined,{maximumFractionDigits:0})} / $${c.monthly_budget.toLocaleString(undefined,{maximumFractionDigits:0})}</span><span style="color:var(${cls==='ok'?'--green':cls==='danger'?'--coral':'--yellow'})">${pct.toFixed(0)}% pace</span></div></div>`})});
+h+=`</div></div>`}
+
+// Client tables + meeting prep buttons
+d.clients.forEach(c=>{h+=`<div class="client-hdr"><h3>${c.name}</h3><span>Lead: ${c.account_lead}</span><button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="openPrep('${c.name.replace(/'/g,"\\'")}')">📋 Meeting Prep</button></div><table class="tbl glass"><thead><tr><th>Campaign</th><th>Status</th><th>Budget</th><th>Network</th><th>Dates</th><th>Promos</th></tr></thead><tbody>`;c.campaigns.forEach(x=>{const p=x.promos.map(ptag).join('')||'<span style="color:var(--text-muted);font-size:12px">—</span>';h+=`<tr><td style="font-weight:600">${x.name}</td><td>${pill(x.status)}</td><td>${x.budget_daily}/day</td><td>${x.network}</td><td style="font-size:12px;color:var(--text-dim)">${x.start_date} → ${x.end_date}</td><td>${p}</td></tr>`});h+=`</tbody></table>`});
+el.innerHTML=h}
+
+// ── Meeting Prep ──
+async function openPrep(clientName){
+const brief=await fetch('/api/meeting-prep/'+encodeURIComponent(clientName)).then(r=>r.json());
+if(brief.error){toast(brief.error);return}
+const el=$('dash-body');
+let h=`<div style="margin-bottom:14px"><button class="btn btn-ghost btn-sm" onclick="loadDash()">← Back to Dashboard</button></div>`;
+h+=`<div class="prep-card glass"><h3 style="font-size:18px;margin-bottom:16px">📋 Meeting Prep — ${brief.client}</h3>`;
+const km=brief.key_metrics||{};h+=`<div class="prep-metrics"><div class="prep-m"><div class="pv" style="color:var(--accent2)">${km.active_campaigns||0}/${km.total_campaigns||0}</div><div class="pl">Campaigns</div></div><div class="prep-m"><div class="pv" style="color:var(--green)">$${(km.total_spend||0).toLocaleString(undefined,{maximumFractionDigits:0})}</div><div class="pl">Spend</div></div><div class="prep-m"><div class="pv" style="color:var(--peach)">${km.total_conversions||0}</div><div class="pl">Conv.</div></div><div class="prep-m"><div class="pv" style="color:var(--blue)">${(km.avg_roas||0).toFixed(1)}x</div><div class="pl">ROAS</div></div></div>`;
+h+=`<h4>✅ Highlights</h4><ul>${(brief.highlights||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+h+=`<h4 style="margin-top:14px">⚠️ Concerns</h4><ul>${(brief.concerns||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+h+=`<h4 style="margin-top:14px">💡 Talking Points</h4><ul>${(brief.talking_points||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+h+=`<h4 style="margin-top:14px">📌 Action Items</h4><ul>${(brief.action_items||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+if(brief.promos_status&&brief.promos_status.length){h+=`<h4 style="margin-top:14px">🎯 Promos</h4><ul>${brief.promos_status.map(p=>`<li>${p.text} — <b>${p.status}</b>${p.serving?' ✓ serving':' ○ not serving'}${p.note?' ('+p.note+')':''}</li>`).join('')}</ul>`}
+h+=`</div>`;
+h+=`<div style="text-align:center;padding:12px"><button class="btn btn-ghost btn-sm" onclick="copyPrep()">📋 Copy to Clipboard</button></div>`;
+el.innerHTML=h;
+el._prepBrief=brief}
+
+function copyPrep(){const b=$('dash-body')._prepBrief;if(!b)return;const km=b.key_metrics||{};let t=`📋 Meeting Prep — ${b.client}\n${'='.repeat(40)}\nSpend: $${km.total_spend} | Conv: ${km.total_conversions} | ROAS: ${km.avg_roas}x\n\n✅ HIGHLIGHTS\n${(b.highlights||[]).map(x=>'• '+x).join('\n')}\n\n⚠️ CONCERNS\n${(b.concerns||[]).map(x=>'• '+x).join('\n')}\n\n💡 TALKING POINTS\n${(b.talking_points||[]).map(x=>'• '+x).join('\n')}\n\n📌 ACTION ITEMS\n${(b.action_items||[]).map(x=>'• '+x).join('\n')}`;navigator.clipboard.writeText(t).then(()=>toast('Copied to clipboard! 📋'))}
+
+// ── Chat ──
+const cMsgs=$('chat-msgs'),cInp=$('ci'),cSend=$('cs');
+function addMsg(r,html,meta){const d=document.createElement('div');d.className=`cm ${r==='user'?'user':'bot'}`;let m='';if(meta)m=`<div class="mm">${meta.time||''}${meta.skill?` <span class="sk">${meta.skill}</span>`:''}</div>`;d.innerHTML=`<div class="ms">${r==='user'?'You':'🧘 Zen Den'}</div><div class="mb">${html}</div>${m}`;cMsgs.appendChild(d);cMsgs.scrollTop=cMsgs.scrollHeight}
+function rC(r){let h=`<b>${r.client}</b> — ${r.campaigns.length} campaign${r.campaigns.length!==1?'s':''}:<div class="cc">`;r.campaigns.forEach(c=>{const p=c.promos.map(ptag).join('');h+=`<div class="ccc"><div class="cn">${c.name}</div><div class="cr">${pill(c.status)} <span>Budget: ${c.budget_daily}/day</span> <span>${c.network}</span></div>${p?'<div style="margin-top:6px">'+p+'</div>':''}</div>`});return h+'</div>'}
+function rP(r){if(r.type==='all_promos'){if(!r.promos.length)return'No promotions found.';let h='<b>All Promotions:</b><div class="cc">';r.promos.forEach(p=>{h+=`<div class="ccc"><div class="cn">${p.client} → ${p.campaign}</div><div class="cr">${pill(p.campaign_status)}</div><div style="margin-top:6px">${ptag(p.promo)}</div>${p.promo.reason?`<div style="font-size:11px;color:var(--text-dim);margin-top:4px">↳ ${p.promo.reason}</div>`:''}</div>`});return h+'</div>'}if(!r.promos.length)return`No promos for <b>${r.client}</b>.`;let h=`<b>${r.client}</b> — ${r.promos.length} promo${r.promos.length!==1?'s':''}:<div class="cc">`;r.promos.forEach(p=>{h+=`<div class="ccc"><div class="cn">${p.campaign}</div><div class="cr">${pill(p.campaign_status)}</div><div style="margin-top:6px">${ptag(p.promo)}</div>${p.promo.reason?`<div style="font-size:11px;color:var(--text-dim);margin-top:4px">↳ ${p.promo.reason}</div>`:''}</div>`});return h+'</div>'}
+function rD(r){let h=`<div class="ds"><h4>⚠️ Campaign Alerts</h4>`;r.alerts.forEach(a=>{h+=`<div class="di"><span>${a.level==='critical'?'🔴':'🟡'}</span><span>${a.message}</span></div>`});h+=`<div class="di"><span>🟢</span><span>${r.enabled_count} campaigns active across ${r.client_count} clients</span></div><h4>🚨 Urgent</h4>`;r.urgent.forEach(u=>{h+=`<div class="di"><span>•</span><span><b>${u.sender}</b> in <span class="ch">${u.channel}</span>: "${u.message}" — ${u.time}</span></div>`});h+=`<h4>📌 Action Needed</h4>`;r.action_needed.forEach(a=>{h+=`<div class="di"><span>•</span><span><b>${a.sender}</b> in <span class="ch">${a.channel}</span>: "${a.message}"</span></div>`});h+=`<h4>📅 Today</h4>`;r.calendar.forEach(c=>{h+=`<div class="di"><span>•</span><span><b>${c.time}</b> — ${c.event} (${c.attendees})</span></div>`});return h+'</div>'}
+async function sendChat(){const q=cInp.value.trim();if(!q)return;cInp.value='';addMsg('user',q);cSend.disabled=true;try{const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:q})});const d=await res.json(),r=d.result;let html='',skill=d.category;if(r.type==='campaigns'){html=rC(r);skill='campaign-status'}else if(r.type==='client_promos'||r.type==='all_promos'){html=rP(r);skill='promo-checker'}else if(r.type==='digest'){html=rD(r);skill='daily-digest'}else if(r.type==='faq'){html=`<div style="margin-bottom:6px"><span class="fc" style="display:inline-block;font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:10px;background:var(--sage-bg);color:var(--sage)">${r.category}</span></div>${r.answer}`;skill='Q&A Library'}else if(r.type==='error'){html=`⚠️ ${r.message}`}else{html=r.message||"Hmm, I don't have that one yet. Add it to the Q&A Library!"};const now=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});addMsg('bot',html,{time:now,skill})}catch(e){addMsg('bot','❌ Error — is the server running?')}cSend.disabled=false;cInp.focus()}
+cSend.addEventListener('click',sendChat);cInp.addEventListener('keydown',e=>{if(e.key==='Enter')sendChat()});document.querySelectorAll('.sug').forEach(s=>s.addEventListener('click',()=>{cInp.value=s.textContent;sendChat()}));
+
+// ── Digest ──
+async function loadDigest(){const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:'digest'})});const d=await res.json(),r=d.result;$('dig-body').innerHTML=`<div class="glass" style="padding:28px;max-width:700px"><h3 style="font-size:18px;margin-bottom:4px">☀️ Morning Briefing — ${r.date}</h3><p style="font-size:12px;color:var(--text-muted);margin-bottom:16px">Auto-generated at 8:30am · Your daily calm briefing</p>${rD(r)}</div>`}
+
+// ── Reports ──
+let schedData={schedules:[],email_config:{}},smRecips=[];
+async function loadReports(){const[d,sd]=await Promise.all([fetch('/api/data').then(r=>r.json()),fetch('/api/schedules').then(r=>r.json())]);schedData=sd;const el=$('rpt-body');
+let emailCfg=sd.email_config||{};let h=`<div class="ss-card glass" style="margin-bottom:24px"><h3>✉️ Email Delivery</h3><div class="sd">Configure your email so the Zen Den can send reports automatically. Uses Gmail with an <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--accent2)">App Password</a> (no boss approval needed).</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Sender Email</label><input type="text" id="em-sender" value="${emailCfg.sender_email||''}" placeholder="you@gmail.com" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:10px 12px;outline:none;font-family:var(--font)"></div><div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">App Password</label><input type="password" id="em-pass" value="${emailCfg.app_password||''}" placeholder="xxxx xxxx xxxx xxxx" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:10px 12px;outline:none;font-family:var(--font)"></div></div><div class="btn-row" style="margin-top:10px"><button class="btn btn-primary btn-sm" onclick="saveEmailCfg()">Save Email Config</button><button class="btn btn-ghost btn-sm" onclick="testEmail()">Send Test Email</button></div></div>`;
+h+='<div class="rpt-grid">';d.clients.forEach((c,i)=>{const camps=c.campaigns||[];const active=camps.filter(x=>x.status!=='REMOVED');const enabled=active.filter(x=>x.status==='ENABLED').length;const perf=camps.filter(x=>x.performance);const totCost=perf.reduce((s,x)=>s+(x.performance.cost||0),0);const totVal=perf.reduce((s,x)=>s+(x.performance.conv_value||0),0);const roas=totCost>0?(totVal/totCost):0;const promoCount=camps.reduce((s,x)=>s+x.promos.length,0);const disapproved=camps.some(x=>x.promos.some(p=>p.status==='DISAPPROVED'));
+const sched=(sd.schedules||[]).find(s=>s.client_name===c.name);const hasSchedule=sched&&sched.enabled;const schedInfo=sched?`<span class="sched-pill ${sched.enabled?'on':'off'}">${sched.enabled?'✓':'○'} ${sched.frequency} · ${sched.day_of_week}s ${sched.time}</span>`:'';const recipCount=sched?(sched.recipients||[]).length:0;const lastSent=sched&&sched.last_sent?new Date(sched.last_sent).toLocaleDateString([],{month:'short',day:'numeric'}):'never';
+h+=`<div class="rpt-card glass"><div class="rc-top"><div><div class="rc-name">${c.name}</div><div class="rc-lead">Lead: ${c.account_lead} · ID: ${c.customer_id}</div></div>${disapproved?'<span style="font-size:11px;background:var(--coral-bg);color:var(--coral);padding:3px 10px;border-radius:10px;font-weight:600">⚠ Action needed</span>':''}</div><div class="rc-stats"><div class="rs v-accent"><div class="rv">${enabled}/${active.length}</div><div class="rl">Campaigns</div></div><div class="rs v-green"><div class="rv">${roas.toFixed(1)}x</div><div class="rl">ROAS</div></div><div class="rs v-coral"><div class="rv">$${totCost>=1000?(totCost/1000).toFixed(1)+'K':totCost.toFixed(0)}</div><div class="rl">Spend</div></div></div>${schedInfo?`<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">${schedInfo}<span style="font-size:11px;color:var(--text-muted)">${recipCount} recipient${recipCount!==1?'s':''} · Last sent: ${lastSent}</span></div>`:''}<div class="rpt-preview"><b>Report includes:</b> Executive summary · ${active.length} campaign breakdown · ${promoCount} promotion${promoCount!==1?'s':''} · Alerts · Next steps</div><div class="rpt-actions"><select class="rpt-range" id="range-${i}"><option value="Last 7 Days">Last 7 Days</option><option value="Last 30 Days" selected>Last 30 Days</option><option value="Last Quarter">Last Quarter</option><option value="Year to Date">Year to Date</option></select><button class="btn-report" id="rpt-btn-${i}" onclick="genReport('${c.name.replace(/'/g,"\\'")}',${i})"><span class="spinner"></span><span class="btn-text">Generate PDF 📄</span></button><button class="btn btn-sage btn-sm" onclick="openSched('${c.name.replace(/'/g,"\\'")}')">📅 Schedule</button>${hasSchedule&&recipCount?`<button class="btn btn-ghost btn-sm" onclick="sendNow('${c.name.replace(/'/g,"\\'")}')">✉️ Send Now</button>`:''}</div></div>`;});h+='</div>';el.innerHTML=h}
+
+async function genReport(clientName,idx){const btn=$('rpt-btn-'+idx);const range=$('range-'+idx).value;btn.classList.add('loading');btn.disabled=true;try{const url='/api/report/'+encodeURIComponent(clientName)+'?range='+encodeURIComponent(range);const res=await fetch(url);if(!res.ok){const err=await res.json();toast('Error: '+(err.error||'Failed'));return}const blob=await res.blob();const fname=clientName.replace(/\s/g,'_').toLowerCase()+'_report.pdf';const blobUrl=URL.createObjectURL(blob);const a=document.createElement('a');a.href=blobUrl;a.download=fname;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(blobUrl)},500);toast('Report downloaded! 📄')}catch(e){toast('Download failed — check server')}finally{btn.classList.remove('loading');btn.disabled=false}}
+
+async function saveEmailCfg(){schedData.email_config={...schedData.email_config,sender_email:$('em-sender').value.trim(),app_password:$('em-pass').value.trim(),smtp_host:'smtp.gmail.com',smtp_port:587,sender_name:'Zen Den',method:'smtp'};await fetch('/api/schedules',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(schedData)});toast('Email config saved ✉️')}
+async function testEmail(){toast('Sending test...');const r=await fetch('/api/schedules/test-email',{method:'POST'}).then(r=>r.json());toast(r.ok?'Test email sent! Check your inbox':'Error: '+(r.error||r.message))}
+
+function openSched(clientName){const existing=(schedData.schedules||[]).find(s=>s.client_name===clientName);$('sm-client').value=clientName;$('sm-title').textContent='Schedule: '+clientName;smRecips=existing?(existing.recipients||[]).slice():[];renderRecips();$('sm-freq').value=existing?existing.frequency:'biweekly';$('sm-day').value=existing?existing.day_of_week:'monday';$('sm-time').value=existing?existing.time:'09:00';$('sm-range').value=existing?existing.date_range:'Last 30 Days';$('sm-enabled').checked=existing?existing.enabled:true;$('sched-modal').classList.remove('hidden')}
+function closeSched(){$('sched-modal').classList.add('hidden')}
+function renderRecips(){let h='';smRecips.forEach((e,i)=>{h+=`<span class="recip-tag">${e}<span class="rx" onclick="rmRecip(${i})">×</span></span>`});$('sm-recips').innerHTML=h||'<span style="font-size:12px;color:var(--text-muted);font-style:italic">No recipients yet</span>'}
+function addRecip(){const v=$('sm-email').value.trim();if(!v||!v.includes('@'))return;if(!smRecips.includes(v))smRecips.push(v);$('sm-email').value='';renderRecips()}
+function rmRecip(i){smRecips.splice(i,1);renderRecips()}
+async function saveSched(){const clientName=$('sm-client').value;const entry={client_name:clientName,enabled:$('sm-enabled').checked,frequency:$('sm-freq').value,day_of_week:$('sm-day').value,time:$('sm-time').value,date_range:$('sm-range').value,recipients:smRecips};const idx=(schedData.schedules||[]).findIndex(s=>s.client_name===clientName);if(idx>=0){entry.last_sent=schedData.schedules[idx].last_sent;schedData.schedules[idx]=entry}else{entry.last_sent=null;if(!schedData.schedules)schedData.schedules=[];schedData.schedules.push(entry)}await fetch('/api/schedules',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(schedData)});closeSched();loadReports();toast('Schedule saved! 📅')}
+async function sendNow(clientName){const sched=(schedData.schedules||[]).find(s=>s.client_name===clientName);if(!sched||!sched.recipients.length){toast('No recipients — open Schedule first');return}toast('Sending report...');const r=await fetch('/api/schedules/send-now',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:clientName,date_range:sched.date_range||'Last 30 Days',recipients:sched.recipients})}).then(r=>r.json());toast(r.ok?'Report sent! ✉️':'Error: '+(r.error||r.message));if(r.ok)loadReports()}
+
+// ── FAQ ──
+async function loadFaq(){faqData=await fetch('/api/config/faq').then(r=>r.json());$('faq-count').textContent=faqData.length;const cats=['All',...new Set(faqData.map(f=>f.category||'Uncategorized'))];let fh='';cats.forEach(c=>{fh+=`<button class="ff${c===afFilter?' act':''}" onclick="filterF('${c}')">${c}</button>`});$('ff-bar').innerHTML=fh;renderFG()}
+function filterF(c){afFilter=c;document.querySelectorAll('.ff').forEach(b=>b.classList.toggle('act',b.textContent===c));renderFG()}
+function renderFG(){const f=afFilter==='All'?faqData:faqData.filter(x=>(x.category||'Uncategorized')===afFilter);if(!f.length){$('faq-grid').innerHTML='<div class="empty"><div class="ei">🌿</div><h3>No questions here yet</h3><p>Add one with the button above!</p></div>';return}let h='';f.forEach(q=>{const pats=(q.patterns||[]).slice(0,3).map(p=>`"${p}"`).join(', ');h+=`<div class="fi glass"><div class="fb"><span class="fc">${q.category||'Uncategorized'}</span><div class="fq">${pats}</div><div class="fa">${q.answer}</div></div><div class="fx"><button class="fb2" onclick="editF('${q.id}')">Edit</button><button class="fb2 del" onclick="delF('${q.id}')">Delete</button></div></div>`});$('faq-grid').innerHTML=h}
+function openAdd(){editId=null;$('fm-title').textContent='Add New Question';$('fm-cat').value='Custom';$('fm-pats').value='';$('fm-ans').value='';$('fm-id').value='';$('faq-modal').classList.remove('hidden')}
+function editF(id){const f=faqData.find(x=>x.id===id);if(!f)return;editId=id;$('fm-title').textContent='Edit Question';$('fm-cat').value=f.category||'Custom';$('fm-pats').value=(f.patterns||[]).join('\n');$('fm-ans').value=f.answer||'';$('fm-id').value=id;$('faq-modal').classList.remove('hidden')}
+function closeModal(){$('faq-modal').classList.add('hidden');editId=null}
+async function saveFaq(){const cat=$('fm-cat').value,pats=$('fm-pats').value.split('\n').map(s=>s.trim()).filter(Boolean),ans=$('fm-ans').value.trim();if(!pats.length||!ans){toast('Need at least one question and an answer');return}const id=editId||('custom_'+Date.now());if(editId){const i=faqData.findIndex(f=>f.id===id);if(i>=0)faqData[i]={...faqData[i],category:cat,patterns:pats,answer:ans}}else faqData.push({id,category:cat,patterns:pats,answer:ans});await fetch('/api/config/faq',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(faqData)});closeModal();loadFaq();toast(editId?'Updated! 🌿':'New question added! ✨')}
+async function delF(id){if(!confirm('Delete this question?'))return;faqData=faqData.filter(f=>f.id!==id);await fetch('/api/config/faq',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(faqData)});loadFaq();toast('Removed 🧘')}
+
+// ── Settings ──
+async function loadSettings(){const[vip,access,setup,gads,slackSt,emailSt,emailCfg]=await Promise.all([fetch('/api/config/vip').then(r=>r.json()),fetch('/api/config/access').then(r=>r.json()),fetch('/api/setup').then(r=>r.json()),fetch('/api/gads/status').then(r=>r.json()).catch(()=>({connected:false})),fetch('/api/slack/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/config').then(r=>r.json()).catch(()=>({}))]);
+const slackRunning=slackSt.running;const emailRunning=emailSt.running;
+$('set-body').innerHTML=`
+<div class="ss-card glass"><h3>💬 Slack Auto-Responder</h3><div class="sd">Connect the Zen Den to Slack so it auto-responds to questions in your channels. Requires a Slack App with Socket Mode enabled.</div>
+<div class="gads-status ${slackRunning?'connected':'disconnected'}">${slackRunning?`✓ Connected — ${slackSt.auto_replies_sent||0} auto-replies sent, ${(slackSt.channels_active||[]).length} channels`:'○ Not running — set up below'}</div>
+${!slackRunning?`<details style="margin-bottom:14px"><summary style="font-size:12.5px;font-weight:600;color:var(--accent2);cursor:pointer;margin-bottom:8px">📋 How to set up (3 minutes)</summary><div class="gads-steps" style="background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2);margin-top:8px"><div class="gads-step">Go to <a href="https://api.slack.com/apps" target="_blank">api.slack.com/apps</a> → Create New App → From Scratch</div><div class="gads-step">Go to <b>Socket Mode</b> → Enable → Generate an <b>App-Level Token</b> (name it "zen-den") with scope <code>connections:write</code></div><div class="gads-step">Go to <b>Event Subscriptions</b> → Enable → Subscribe to <code>message.channels</code> and <code>message.groups</code></div><div class="gads-step">Go to <b>OAuth & Permissions</b> → add scopes: <code>chat:write</code>, <code>channels:history</code>, <code>groups:history</code>, <code>users:read</code></div><div class="gads-step">Install the app to your workspace → Copy the <b>Bot User OAuth Token</b></div><div class="gads-step">Invite the bot to channels: <code>/invite @zen-den</code></div></div></details>`:''}<label>Bot Token (xoxb-...)</label><input type="password" id="s-slack-bot" value="${setup.slack_token||''}" placeholder="xoxb-..."><label>App-Level Token (xapp-...)</label><input type="password" id="s-slack-app" value="" placeholder="xapp-...">
+<div class="btn-row">${slackRunning?`<button class="btn btn-ghost" onclick="stopSlack()">⏹ Stop Bot</button>`:`<button class="btn btn-primary" onclick="startSlack()">🚀 Start Bot</button>`}</div></div>
+
+<div class="ss-card glass"><h3>✉️ Email Auto-Responder</h3><div class="sd">Watch your inbox and auto-draft (or auto-send) replies to routine questions. Works with Gmail, Outlook, Yahoo, or any IMAP email.</div>
+<div class="gads-status ${emailRunning?'connected':'disconnected'}">${emailRunning?`✓ Connected — ${emailSt.emails_scanned||0} emails scanned, ${emailSt.drafts_pending||0} drafts pending`:'○ Not running'}</div>
+<label>Email Provider</label>
+<div class="provider-pick"><button class="pp ep${(emailCfg.imap_host||'').includes('gmail')||!emailCfg.imap_host?' on':''}" data-p="gmail" onclick="pickEmail('gmail')">Gmail</button><button class="pp ep${(emailCfg.imap_host||'').includes('office365')?' on':''}" data-p="outlook" onclick="pickEmail('outlook')">Outlook</button><button class="pp ep${(emailCfg.imap_host||'').includes('yahoo')?' on':''}" data-p="yahoo" onclick="pickEmail('yahoo')">Yahoo</button><button class="pp ep" data-p="custom" onclick="pickEmail('custom')">Other</button></div>
+<label>Email Address</label><input type="text" id="s-em-addr" value="${emailCfg.email||''}" placeholder="you@company.com">
+<label>Password / App Password</label><input type="password" id="s-em-pass" value="${emailCfg.password||''}" placeholder="App password (not your regular password)">
+<div class="hint" style="margin-top:-8px;margin-bottom:10px;font-size:11.5px;color:var(--text-muted)">For Gmail: use an <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--accent2)">App Password</a>. For Outlook: use your regular password with IMAP enabled.</div>
+<label>Mode</label>
+<div class="provider-pick"><button class="pp em-mode${(emailCfg.mode||'draft')==='draft'?' on':''}" data-p="draft" onclick="pickEMode('draft')">📝 Draft (review first)</button><button class="pp em-mode${emailCfg.mode==='auto-send'?' on':''}" data-p="auto-send" onclick="pickEMode('auto-send')">🚀 Auto-send</button></div>
+<div class="btn-row"><button class="btn btn-primary" onclick="saveEmailWatcher()">Save & Start</button><button class="btn btn-ghost" onclick="testEmailConn()">Test Connection</button>${emailRunning?`<button class="btn btn-ghost" onclick="stopEmailW()">⏹ Stop</button>`:''}</div></div>
+
+<div class="ss-card glass"><h3>🧠 AI Provider</h3><div class="sd">Your API keys — stored locally, never sent anywhere except the AI provider.</div><label>OpenAI (ChatGPT) API Key</label><input type="password" id="s-openai" value="${setup.openai_key||''}" placeholder="sk-..."><label>Anthropic (Claude) API Key</label><input type="password" id="s-claude" value="${setup.claude_key||''}" placeholder="sk-ant-..."><label>Active</label><div class="provider-pick"><button class="pp ${setup.active_provider==='openai'?'on':''} sp" data-p="openai" onclick="setP('openai')">🟢 ChatGPT</button><button class="pp ${setup.active_provider==='claude'?'on':''} sp" data-p="claude" onclick="setP('claude')">🟣 Claude</button></div><div class="btn-row"><button class="btn btn-primary" onclick="saveKeys()">Save Keys 🔐</button></div></div>
+<div class="ss-card glass"><h3>📊 Google Ads — Live Data</h3><div class="sd">Connect your Google Ads MCC to pull real campaign data automatically. <b>Read-only access</b> — Zen Den can never modify your campaigns.</div>
+<div class="gads-status ${gads.connected?'connected':'disconnected'}" id="gads-badge">${gads.connected?'✓ Connected — live data available':'○ Not connected — using demo data'}</div>
+${!gads.connected?`<details style="margin-bottom:16px"><summary style="font-size:12.5px;font-weight:600;color:var(--accent2);cursor:pointer;margin-bottom:10px">📋 How to get your credentials (one-time setup, ~10 min)</summary><div class="gads-steps" style="background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2);margin-top:8px">
+<div class="gads-step">Go to <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console</a> → Create a new project (or use existing) → Name it anything, e.g. "Zen Den"</div>
+<div class="gads-step">In the project, go to <b>APIs & Services → Enable APIs</b> → Search for <b>"Google Ads API"</b> → Click <b>Enable</b></div>
+<div class="gads-step">Go to <b>APIs & Services → Credentials</b> → Click <b>"Create Credentials" → "OAuth client ID"</b> → Choose <b>"Desktop app"</b> → Create</div>
+<div class="gads-step">Copy the <b>Client ID</b> and <b>Client Secret</b> and paste them below</div>
+<div class="gads-step">In Google Ads, go to <b>Tools → API Center</b> (in your MCC) → Copy the <b>Developer Token</b> shown there. The test-level token works immediately.</div>
+<div class="gads-step">Your <b>MCC Customer ID</b> is the number in the top-left of Google Ads when viewing the manager account (e.g. <code>123-456-7890</code>)</div>
+<div class="gads-step">Add <code>http://127.0.0.1:18923/oauth/callback</code> as an authorized redirect URI in your Google Cloud OAuth consent screen settings</div>
+</div></details>`:''}<label>OAuth Client ID</label><input type="text" id="s-gads-cid" value="${gads.client_id||''}" placeholder="xxxx.apps.googleusercontent.com">
+<label>OAuth Client Secret</label><input type="password" id="s-gads-cs" value="${gads.client_secret||''}" placeholder="GOCSPX-...">
+<label>Developer Token</label><input type="password" id="s-gads-dt" value="${gads.developer_token||''}" placeholder="From Google Ads MCC → Tools → API Center">
+<label>MCC Customer ID</label><input type="text" id="s-gads-mcc" value="${gads.mcc_customer_id||''}" placeholder="123-456-7890">
+<div class="btn-row"><button class="btn btn-primary" onclick="saveGads()">Save Google Ads Config</button>${gads.client_id?`<button class="btn btn-sage" onclick="connectGads()">🔗 Connect Google Account</button>`:''}</div>
+${gads.connected?`<div class="btn-row" style="margin-top:8px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-dim)"><input type="checkbox" id="s-gads-live" ${gads.use_live_data?'checked':''} onchange="toggleLive(this.checked)"> Use live data instead of demo data</label><button class="btn btn-ghost btn-sm" onclick="syncGads()">🔄 Sync Now</button></div>`:''}</div>
+<div class="ss-card glass"><h3>💬 Slack</h3><div class="sd">Bot token for reading and responding to Slack.</div><label>Slack Bot Token</label><input type="password" id="s-slack" value="${setup.slack_token||''}" placeholder="xoxb-..."><div class="btn-row"><button class="btn btn-primary" onclick="saveSlack()">Save Slack Token</button></div></div><div class="ss-card glass"><h3>⭐ VIP Senders</h3><div class="sd">Messages from these people always get top priority. One per line.</div><textarea id="s-vip">${vip.content||''}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveVip()">Save VIPs</button></div></div><div class="ss-card glass"><h3>🔒 Access Control</h3><div class="sd">Who can query which client's campaign data.</div><textarea id="s-access">${JSON.stringify(access,null,2)}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveAccess()">Save</button></div></div><div class="ss-card glass"><h3>🔄 Reset</h3><div class="sd">Re-run the welcome wizard.</div><button class="btn btn-ghost" onclick="resetWiz()">Re-run Setup Wizard</button></div>`}
+function setP(p){document.querySelectorAll('.sp').forEach(b=>b.classList.toggle('on',b.dataset.p===p))}
+async function saveKeys(){const s=await fetch('/api/setup').then(r=>r.json());s.openai_key=$('s-openai').value;s.claude_key=$('s-claude').value;const a=document.querySelector('.sp.on');s.active_provider=a?a.dataset.p:'openai';await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});toast('Keys saved 🔐')}
+async function saveSlack(){const s=await fetch('/api/setup').then(r=>r.json());s.slack_token=$('s-slack').value;await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});toast('Slack saved 💬')}
+async function saveVip(){await fetch('/api/config/vip',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({content:$('s-vip').value})});toast('VIPs saved ⭐')}
+async function saveAccess(){try{await fetch('/api/config/access',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(JSON.parse($('s-access').value))});toast('Access control saved 🔒')}catch(e){toast('Invalid JSON — check syntax')}}
+async function resetWiz(){const s=await fetch('/api/setup').then(r=>r.json());s.completed=false;s.current_step=0;await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});location.reload()}
+
+// ── Slack Bot ──
+async function startSlack(){const bot=$('s-slack-bot').value.trim(),app=$('s-slack-app').value.trim();if(!bot||!app){toast('Need both Bot Token and App-Level Token');return}toast('Starting Slack bot...');const r=await fetch('/api/slack/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bot_token:bot,app_token:app})}).then(r=>r.json());if(r.ok===false)toast('Error: '+(r.error||'Failed'));else{toast('Slack bot started! 💬');const s=await fetch('/api/setup').then(r=>r.json());s.slack_token=bot;await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});loadSettings()}}
+async function stopSlack(){await fetch('/api/slack/stop',{method:'POST'});toast('Slack bot stopped');loadSettings()}
+
+// ── Email Watcher ──
+let _emailProvider='gmail',_emailMode='draft';
+function pickEmail(p){_emailProvider=p;document.querySelectorAll('.ep').forEach(b=>b.classList.toggle('on',b.dataset.p===p))}
+function pickEMode(m){_emailMode=m;document.querySelectorAll('.em-mode').forEach(b=>b.classList.toggle('on',b.dataset.p===m))}
+const EMAIL_PRESETS={gmail:{imap_host:'imap.gmail.com',imap_port:993,smtp_host:'smtp.gmail.com',smtp_port:587},outlook:{imap_host:'outlook.office365.com',imap_port:993,smtp_host:'smtp.office365.com',smtp_port:587},yahoo:{imap_host:'imap.mail.yahoo.com',imap_port:993,smtp_host:'smtp.mail.yahoo.com',smtp_port:587}};
+async function saveEmailWatcher(){const preset=EMAIL_PRESETS[_emailProvider]||{};const cfg={enabled:true,mode:_emailMode,email:$('s-em-addr').value.trim(),password:$('s-em-pass').value.trim(),imap_host:preset.imap_host||'',imap_port:preset.imap_port||993,smtp_host:preset.smtp_host||'',smtp_port:preset.smtp_port||587};await fetch('/api/email/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});toast('Starting email watcher...');const r=await fetch('/api/email/start',{method:'POST'}).then(r=>r.json());if(r.ok===false)toast('Error: '+(r.error||'Failed'));else{toast('Email watcher started! ✉️');loadSettings()}}
+async function testEmailConn(){const preset=EMAIL_PRESETS[_emailProvider]||{};toast('Testing connection...');const r=await fetch('/api/email/test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('s-em-addr').value.trim(),password:$('s-em-pass').value.trim(),imap_host:preset.imap_host||'',imap_port:preset.imap_port||993})}).then(r=>r.json());toast(r.ok?'Connected! ✓':('Error: '+(r.message||'Failed')))}
+async function stopEmailW(){await fetch('/api/email/stop',{method:'POST'});toast('Email watcher stopped');loadSettings()}
+
+// ── Google Ads ──
+async function saveGads(){const cfg={client_id:$('s-gads-cid').value.trim(),client_secret:$('s-gads-cs').value.trim(),developer_token:$('s-gads-dt').value.trim(),mcc_customer_id:$('s-gads-mcc').value.trim()};await fetch('/api/gads/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});toast('Google Ads config saved 📊');loadSettings()}
+async function connectGads(){const res=await fetch('/api/gads/auth-url');const d=await res.json();if(d.url){window.open(d.url,'_blank');toast('Sign into Google in the browser window...')}else{toast(d.error||'Missing credentials')}}
+async function syncGads(){toast('Syncing live data...');const res=await fetch('/api/gads/sync',{method:'POST'});const d=await res.json();if(d.ok){toast(`Synced! ${d.client_count} clients loaded`);loadSettings()}else{toast('Sync failed: '+(d.error||'unknown error'))}}
+async function toggleLive(on){await fetch('/api/gads/toggle-live',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({use_live_data:on})});toast(on?'Using live Google Ads data':'Switched to demo data');loadSettings()}
+
+// ── Quick Reply Templates ──
+let allTemplates=[],tplFilter='All';
+async function loadTemplates(){
+allTemplates=await fetch('/api/quick-replies').then(r=>r.json());
+$('qr-count').textContent=allTemplates.length;
+const cats=['All',...new Set(allTemplates.map(t=>t.category))];
+let h=`<div class="ff-bar" style="margin-bottom:14px">${cats.map(c=>`<button class="ff${c===tplFilter?' act':''}" onclick="tplFilter='${c}';loadTemplates()">${c}</button>`).join('')}</div>`;
+const filtered=tplFilter==='All'?allTemplates:allTemplates.filter(t=>t.category===tplFilter);
+h+='<div class="tpl-grid">';
+filtered.forEach(t=>{h+=`<div class="tpl-item glass"><div class="ti-body"><div class="ti-title">${t.title}</div><div class="ti-text">${t.template.substring(0,120)}${t.template.length>120?'...':''}</div><div class="ti-meta"><span class="ti-tag">${t.category}</span><span class="ti-tag" style="background:var(--${t.use_for==='slack'?'blue':t.use_for==='email'?'green':'sage'}-bg);color:var(--${t.use_for==='slack'?'blue':t.use_for==='email'?'green':'sage'})">${t.use_for}</span></div></div><button class="ti-copy" onclick="copyTpl('${t.id}')">📋 Copy</button></div>`});
+h+='</div>';$('tpl-body').innerHTML=h}
+function copyTpl(id){const t=allTemplates.find(x=>x.id===id);if(!t)return;navigator.clipboard.writeText(t.template).then(()=>toast('Copied! Paste into Slack or email ⚡'))}
+
+// ── Audit ──
+async function loadAudit(){const log=await fetch('/api/audit').then(r=>r.json());if(!log.length){$('aud-body').innerHTML='<div class="empty"><div class="ei">🧘</div><h3>No queries yet</h3><p>Ask something in Chat — it\'ll show up here.</p></div>';return}let h='<table class="tbl glass"><thead><tr><th>Time</th><th>User</th><th>Question</th><th>Skill</th></tr></thead><tbody>';log.reverse().forEach(e=>{const t=new Date(e.ts).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});h+=`<tr><td style="white-space:nowrap;color:var(--text-dim)">${t}</td><td>${e.asked_by}</td><td>${e.question}</td><td><span class="cat-badge ${e.category}">${e.category}</span></td></tr>`});$('aud-body').innerHTML=h+'</tbody></table>'}
+
+// ── Close modals on background click ──
+$('faq-modal').addEventListener('click',e=>{if(e.target===$('faq-modal'))closeModal()});
+$('sched-modal').addEventListener('click',e=>{if(e.target===$('sched-modal'))closeSched()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('faq-modal').classList.contains('hidden'))closeModal();if(!$('sched-modal').classList.contains('hidden'))closeSched()}});
+
+checkSetup();loadDash();
+</script>
+</body>
+</html>

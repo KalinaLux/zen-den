@@ -1,0 +1,305 @@
+[
+  {
+    "id": "campaign_on_off",
+    "category": "Campaign Status",
+    "patterns": ["is the campaign on", "is the campaign turned on", "is it live", "is it running", "did we turn it on", "is the campaign active", "is it enabled"],
+    "answer": "Let me check the live status right now. (This triggers the campaign-status skill to query Google Ads API directly for real-time data.)",
+    "auto_skill": "campaign-status"
+  },
+  {
+    "id": "campaign_paused",
+    "category": "Campaign Status",
+    "patterns": ["did we pause the campaign", "is it paused", "why is it paused", "when did we pause it", "who paused it"],
+    "answer": "Let me check the current status. (Triggers campaign-status skill for live data.)",
+    "auto_skill": "campaign-status"
+  },
+  {
+    "id": "promo_applied",
+    "category": "Promotions",
+    "patterns": ["has the promo been applied", "is the promo active", "is the discount live", "did we add the promotion", "is the sale extension running", "promo code active"],
+    "answer": "Let me check promotion extensions right now. (Triggers promo-checker skill.)",
+    "auto_skill": "promo-checker"
+  },
+  {
+    "id": "how_much_spending",
+    "category": "Budget",
+    "patterns": ["how much are we spending", "what's our spend", "current spend", "how much has been spent", "what's the budget", "daily spend", "monthly spend"],
+    "answer": "I can pull the current daily budget from Google Ads. For actual spend-to-date, I'll check the account. One moment."
+  },
+  {
+    "id": "budget_pacing",
+    "category": "Budget",
+    "patterns": ["are we on pace", "budget pacing", "will we overspend", "are we going to go over budget", "are we underspending", "spend rate"],
+    "answer": "I'll check current spend vs. the monthly budget target. If we're pacing above 105% or below 90%, I'll flag it with a recommendation."
+  },
+  {
+    "id": "budget_increase",
+    "category": "Budget",
+    "patterns": ["can we increase the budget", "budget increase", "raise the budget", "spend more", "scale up spend", "add more budget"],
+    "answer": "Budget change approval thresholds: Under 10% = team lead approval. 10-25% = AD approval. Over 25% = Director approval + client sign-off. I'll draft the request — which campaign and how much?"
+  },
+  {
+    "id": "budget_decrease",
+    "category": "Budget",
+    "patterns": ["cut the budget", "reduce spend", "lower the budget", "decrease budget", "pull back spend", "pause spend"],
+    "answer": "I can draft a budget reduction plan. Important: cutting budget mid-flight can reset learning phases on Smart Bidding campaigns. Want me to model the impact first?"
+  },
+  {
+    "id": "roas_performance",
+    "category": "Performance",
+    "patterns": ["what's the ROAS", "return on ad spend", "are we profitable", "what's the return", "ROI on ads", "ROAS this month"],
+    "answer": "I'll pull ROAS from Google Ads for the period you need. Note: ROAS calculations may differ from client-side attribution — I'll flag any discrepancies."
+  },
+  {
+    "id": "cpc_ctr",
+    "category": "Performance",
+    "patterns": ["what's the CPC", "cost per click", "click through rate", "CTR", "average CPC", "are clicks expensive"],
+    "answer": "I'll pull the latest CPC and CTR data. I'll also compare against last period and industry benchmarks where available."
+  },
+  {
+    "id": "conversions",
+    "category": "Performance",
+    "patterns": ["how many conversions", "conversion rate", "are we getting conversions", "leads this week", "sales from ads", "conversion count"],
+    "answer": "I'll check conversion data from Google Ads. Heads up: conversion data can lag 24-72 hours for some conversion types (especially offline or view-through)."
+  },
+  {
+    "id": "quality_score",
+    "category": "Performance",
+    "patterns": ["quality score", "ad quality", "relevance score", "ad rank", "keyword quality"],
+    "answer": "Quality Scores are at the keyword level. I can pull the current scores for your top keywords. Scores below 5 usually indicate ad copy or landing page relevance issues."
+  },
+  {
+    "id": "competitor_activity",
+    "category": "Performance",
+    "patterns": ["what are competitors doing", "competitor ads", "who else is bidding", "auction insights", "impression share", "are we losing to competitors"],
+    "answer": "I'll pull Auction Insights from Google Ads to show who you're competing against, their impression share, and overlap rate. This data is available at campaign or keyword level."
+  },
+  {
+    "id": "report_due",
+    "category": "Reporting",
+    "patterns": ["when is the report due", "reporting deadline", "when do reports go out", "report schedule", "client report timeline"],
+    "answer": "Weekly reports: Every Monday by 12pm PT. Monthly reports: By the 5th of each month. QBRs: Last 2 weeks of each quarter. Templates are in the shared drive."
+  },
+  {
+    "id": "where_is_report",
+    "category": "Reporting",
+    "patterns": ["where's the report", "can I see the report", "send me the report", "report link", "latest report"],
+    "answer": "Reports are in the shared drive under [Client Name] > Reports > [Month]. I can also pull key metrics for you right now if you need a quick answer."
+  },
+  {
+    "id": "report_metrics",
+    "category": "Reporting",
+    "patterns": ["what metrics should we include", "key metrics", "what goes in the report", "reporting KPIs"],
+    "answer": "Standard report metrics: Impressions, Clicks, CTR, Avg CPC, Cost, Conversions, Conv Rate, CPA, ROAS. For e-commerce add: Revenue, AOV. For lead gen add: CPL, MQLs."
+  },
+  {
+    "id": "naming_conventions",
+    "category": "Process",
+    "patterns": ["naming convention", "campaign naming", "how should I name this", "naming structure", "naming format"],
+    "answer": "Standard naming: [Client] | [Campaign Type] | [Targeting] | [Network] | [Geo]. Example: 'Nike | Non-Brand | Running Shoes | Search | US'. Ad group: [Match Type] | [Theme]."
+  },
+  {
+    "id": "new_campaign_launch",
+    "category": "Process",
+    "patterns": ["how do I launch a new campaign", "new campaign process", "campaign setup steps", "build a new campaign", "campaign launch checklist"],
+    "answer": "Launch checklist: 1) Get brief from AM, 2) Keyword research, 3) Build in draft mode, 4) Internal QA review, 5) Client approval, 6) Launch with monitoring plan. Full SOP is in the team wiki."
+  },
+  {
+    "id": "campaign_approval",
+    "category": "Process",
+    "patterns": ["who approves campaigns", "approval process", "do I need approval", "sign off needed", "campaign review"],
+    "answer": "New campaigns: Team lead review → AD sign-off → Client approval. Changes to live campaigns: Under $500/day change = team lead. Over $500/day = AD approval. Strategy changes = Director."
+  },
+  {
+    "id": "keyword_research",
+    "category": "Process",
+    "patterns": ["how to do keyword research", "keyword research process", "finding keywords", "keyword tools", "keyword planning"],
+    "answer": "Tools: Google Keyword Planner (primary), SEMrush, SpyFu for competitive. Process: Start with seed terms → expand with Planner → check search terms report for existing campaigns → group by theme → estimate volume and CPC."
+  },
+  {
+    "id": "negative_keywords",
+    "category": "Optimization",
+    "patterns": ["negative keywords", "add negatives", "search term review", "wasted spend", "irrelevant clicks"],
+    "answer": "Search term review cadence: Weekly for new campaigns, bi-weekly for mature. Flag any search term with spend > $20 and zero conversions. Shared negative lists are managed at the MCC level."
+  },
+  {
+    "id": "bidding_strategy",
+    "category": "Optimization",
+    "patterns": ["what bidding strategy", "should we use smart bidding", "manual vs automated", "target CPA", "target ROAS bidding", "maximize conversions"],
+    "answer": "General guidance: Campaigns with 30+ conversions/month → tCPA or tROAS. Under 30 → Maximize Conversions or Manual CPC. New campaigns → start Manual CPC for 2-4 weeks to gather data, then switch. Always set portfolio bid strategies for related campaigns."
+  },
+  {
+    "id": "ad_copy_update",
+    "category": "Optimization",
+    "patterns": ["update ad copy", "new ad copy", "change the ads", "refresh creatives", "ad copy test", "RSA update"],
+    "answer": "Ad copy refresh cadence: every 6-8 weeks or when performance drops. Always A/B test — keep the winning ad, replace the loser. RSAs should have 10+ unique headlines and 4 descriptions minimum."
+  },
+  {
+    "id": "landing_page",
+    "category": "Optimization",
+    "patterns": ["landing page", "which landing page", "LP performance", "page not converting", "bounce rate high"],
+    "answer": "I can check which landing pages each campaign is pointing to and their conversion rates. If bounce rate is above 60% on Search, the page likely needs work — either relevance, speed, or mobile UX."
+  },
+  {
+    "id": "account_access",
+    "category": "Team",
+    "patterns": ["how do I get access", "add me to the account", "Google Ads access", "MCC access request", "can't log in"],
+    "answer": "Request account access via the #account-access Slack channel. Include: your Google email, client name, and access level needed (read-only or standard). Turnaround: same business day."
+  },
+  {
+    "id": "meeting_schedule",
+    "category": "Client",
+    "patterns": ["when is the next meeting", "client call", "next sync", "meeting schedule", "recurring call"],
+    "answer": "Check the team calendar for the specific client. Most clients are on weekly or bi-weekly syncs. QBRs are quarterly. I can look up the next meeting for a specific client if you tell me which one."
+  },
+  {
+    "id": "qbr_prep",
+    "category": "Client",
+    "patterns": ["QBR prep", "quarterly review", "QBR deck", "QBR template", "business review prep"],
+    "answer": "QBR template and past decks are in the shared drive under [Client] > QBRs. Standard sections: Exec Summary, Performance vs Goals, Key Wins, Challenges, Competitive Landscape, Next Quarter Strategy, Budget Recommendation."
+  },
+  {
+    "id": "client_onboarding",
+    "category": "Client",
+    "patterns": ["new client onboarding", "onboarding checklist", "new client setup", "client kickoff"],
+    "answer": "New client checklist: 1) Kickoff call, 2) Audit existing account, 3) Strategy doc, 4) Get access credentials, 5) Set up tracking/conversion tags, 6) Build campaign structure, 7) Internal QA, 8) Client review, 9) Launch. Timeline: 2-3 weeks."
+  },
+  {
+    "id": "conversion_tracking",
+    "category": "Technical",
+    "patterns": ["conversion tracking", "tracking setup", "pixel firing", "conversions not showing", "tag manager", "GTM setup"],
+    "answer": "Check Google Tag Manager for the client's container. Verify: 1) Google Ads conversion tag is firing on the right page, 2) Enhanced conversions are enabled, 3) Conversion window is set correctly. Use Google Tag Assistant to debug."
+  },
+  {
+    "id": "remarketing_audiences",
+    "category": "Technical",
+    "patterns": ["remarketing", "retargeting", "audience lists", "RLSA", "audience size", "custom audiences"],
+    "answer": "Remarketing lists need 1,000+ cookies for Search (RLSA) and 100+ for Display. Check audience sizes in Google Ads > Audience Manager. Standard lists: All visitors (540 days), Cart abandoners (30 days), Converters (90 days)."
+  },
+  {
+    "id": "google_policy",
+    "category": "Technical",
+    "patterns": ["ad disapproved", "policy violation", "ad rejected", "why was my ad rejected", "Google policy issue"],
+    "answer": "Check the specific disapproval reason in Google Ads > Ads & Extensions. Common issues: trademark in ad copy, restricted content (alcohol, pharma, gambling), misleading claims, or landing page mismatch. I can look up the specific ad if you share details."
+  },
+  {
+    "id": "pmax_questions",
+    "category": "Campaign Types",
+    "patterns": ["Performance Max", "pmax", "should we use pmax", "pmax vs shopping", "pmax strategy"],
+    "answer": "Performance Max best practices: 1) Provide strong asset groups (15+ images, 5+ videos, 5+ headlines, 5 descriptions), 2) Use audience signals, 3) Give it 4-6 weeks learning phase, 4) Don't run overlapping Shopping campaigns. ROAS targets should be 10-20% lower than established Shopping campaigns initially."
+  },
+  {
+    "id": "shopping_feed",
+    "category": "Campaign Types",
+    "patterns": ["shopping feed", "product feed", "merchant center", "feed issues", "product disapproved"],
+    "answer": "Check Google Merchant Center for feed diagnostics. Common issues: missing GTINs, price mismatches, out-of-stock products, image quality. Feed should update at least daily. Contact the client's dev team for feed fixes."
+  },
+  {
+    "id": "display_campaigns",
+    "category": "Campaign Types",
+    "patterns": ["display campaigns", "display ads", "GDN", "banner ads", "display performance"],
+    "answer": "Display campaigns: Judge on view-through conversions AND click-through, not just last-click. Placement exclusions are critical — review the 'Where ads showed' report weekly. Exclude mobile apps and parked domains."
+  },
+  {
+    "id": "youtube_video",
+    "category": "Campaign Types",
+    "patterns": ["YouTube ads", "video campaigns", "video views", "YouTube performance", "TrueView"],
+    "answer": "YouTube campaign metrics: View rate (target 15%+), cost per view (target under $0.10), earned actions. For action campaigns (TrueView for Action), optimize toward conversions. Video creative should hook in first 5 seconds."
+  },
+  {
+    "id": "microsoft_bing",
+    "category": "Platform",
+    "patterns": ["Microsoft Ads", "Bing ads", "Bing performance", "should we run Bing", "Microsoft import"],
+    "answer": "Microsoft Ads typically gets 15-30% of Google's volume at 20-40% lower CPCs. Easy to set up via campaign import from Google Ads. Recommended for all accounts spending $3k+/month on Google Search."
+  },
+  {
+    "id": "how_long_results",
+    "category": "Client",
+    "patterns": ["how long until results", "when will we see results", "timeline for results", "when will ads work", "expected timeline"],
+    "answer": "General timeline: Week 1-2: Data collection. Week 3-4: Initial optimizations based on data. Month 2: Meaningful trends emerge. Month 3+: Mature optimization. Smart Bidding campaigns need 2-4 weeks learning phase. Set this expectation with clients early."
+  },
+  {
+    "id": "why_costs_up",
+    "category": "Client",
+    "patterns": ["why did costs go up", "CPC increased", "costs are higher", "spending more than usual", "why is it more expensive"],
+    "answer": "Common reasons: 1) Seasonal competition increase, 2) New competitors entering the auction, 3) Quality Score drops, 4) Broad match expansion, 5) Bid strategy learning phase. I'll check Auction Insights and Change History to pinpoint the cause."
+  },
+  {
+    "id": "why_conversions_down",
+    "category": "Client",
+    "patterns": ["why are conversions down", "conversions dropped", "less leads", "fewer sales", "performance declining"],
+    "answer": "Diagnostic checklist: 1) Is tracking still working? (check tag firing), 2) Landing page changes?, 3) Budget/bid changes?, 4) Seasonal factors?, 5) Competitor changes?, 6) Website down or slow? I'll run through each and report back."
+  },
+  {
+    "id": "seasonal_planning",
+    "category": "Strategy",
+    "patterns": ["seasonal planning", "holiday campaigns", "Black Friday", "back to school", "seasonal trends", "peak season"],
+    "answer": "Key retail dates: Valentine's (Feb), Mother's Day (May), Back to School (Jul-Aug), Prime Day (Jul), Black Friday/Cyber Monday (Nov), Holiday (Dec). Plan budgets 6-8 weeks ahead. Historical YoY data is in the shared drive."
+  },
+  {
+    "id": "geo_targeting",
+    "category": "Strategy",
+    "patterns": ["geo targeting", "location targeting", "target specific cities", "geo expansion", "local campaigns"],
+    "answer": "Best practice: Start with 'Presence' targeting (not 'Interest'). Segment campaigns by top-performing geos for bid control. Review the geographic report monthly. DMA-level targeting for large accounts, state-level for smaller."
+  },
+  {
+    "id": "test_ideas",
+    "category": "Strategy",
+    "patterns": ["what should we test", "testing ideas", "experiment ideas", "A/B test", "what to optimize next"],
+    "answer": "Testing priority: 1) Bid strategy (biggest lever), 2) Ad copy (headlines first), 3) Landing pages, 4) Audience targeting, 5) Match types, 6) Ad scheduling. Run one test at a time per campaign. Need 100+ conversions for statistical significance."
+  },
+  {
+    "id": "brand_vs_nonbrand",
+    "category": "Strategy",
+    "patterns": ["brand vs non-brand", "should we run brand", "brand campaign worth it", "branded search", "brand bidding"],
+    "answer": "Brand campaigns: Always run them. They prevent competitors from stealing your branded traffic, cost very little (usually $0.50-2 CPC), have 30%+ CTR, and protect your SERP presence. Segment brand vs non-brand for clean reporting."
+  },
+  {
+    "id": "attribution",
+    "category": "Technical",
+    "patterns": ["attribution model", "which attribution", "first click vs last click", "data driven attribution", "credit for conversions"],
+    "answer": "Google Ads default is now data-driven attribution (DDA). For reporting to clients, clarify which model you're using. DDA spreads credit across touchpoints. If conversion volume is low (<300/month), it falls back to last-click."
+  },
+  {
+    "id": "scripts_automation",
+    "category": "Technical",
+    "patterns": ["Google Ads scripts", "automation", "automated rules", "scripts for reporting", "automation setup"],
+    "answer": "Recommended scripts: 1) Budget pacing alerts, 2) Broken URL checker, 3) Quality Score tracker, 4) N-gram search term analysis, 5) Bid adjustment by device/time. All scripts are in the team GitHub repo."
+  },
+  {
+    "id": "invoice_billing",
+    "category": "Admin",
+    "patterns": ["invoice", "billing", "client invoice", "how much do we bill", "agency fee", "management fee"],
+    "answer": "Billing questions go to the finance team. Standard agency fee structure and billing cycles are managed by Account Management. For ad spend billing, that's directly between the client and Google."
+  },
+  {
+    "id": "team_capacity",
+    "category": "Admin",
+    "patterns": ["capacity", "bandwidth", "can we take on more", "workload", "how many accounts"],
+    "answer": "Team capacity questions go to the Director. Current load and account assignments are tracked in the team spreadsheet. Flag any bandwidth concerns early — don't wait until you're overwhelmed."
+  },
+  {
+    "id": "tool_access",
+    "category": "Admin",
+    "patterns": ["tool access", "SEMrush access", "SpyFu login", "analytics access", "Google Analytics"],
+    "answer": "Tool access requests: SEMrush, SpyFu, and GA4 → ask in #tools-access. Google Ads MCC → ask your team lead. Looker Studio dashboards → ask the analytics team. Most tool access is granted same-day."
+  },
+  {
+    "id": "training_resources",
+    "category": "Admin",
+    "patterns": ["training", "learning resources", "how to learn", "Google certification", "skill development"],
+    "answer": "Resources: Google Skillshop (free certs), internal Wiki SOPs, weekly team knowledge shares, Search Engine Journal, PPC Hero blog. Google Ads Search certification is expected for all team members."
+  },
+  {
+    "id": "client_unhappy",
+    "category": "Client",
+    "patterns": ["client is unhappy", "client complaint", "client wants to leave", "client escalation", "performance not meeting expectations"],
+    "answer": "Escalation path: 1) Acknowledge the concern immediately, 2) Diagnose the root cause with data, 3) Create an action plan with specific dates, 4) Loop in your AD or Director if needed, 5) Schedule an extra call to walk through the plan. Don't wait — speed matters."
+  },
+  {
+    "id": "competitor_brand_bidding",
+    "category": "Strategy",
+    "patterns": ["competitor bidding on our brand", "competitor brand bidding", "someone bidding on our name", "trademark issue"],
+    "answer": "Options: 1) File a Google trademark complaint (only blocks ad copy, not keywords), 2) Increase brand campaign bids to maintain top position, 3) If competitor is a known entity, reach out directly — some industries have gentleman's agreements. 4) Report to AM for client communication."
+  }
+]

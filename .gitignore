@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+*.whl
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Distribution / Build
+build/
+dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# macOS app bundle
+*.app
+*.dmg
+
+# Zen Den — local data & credentials
+demo/logs/
+demo/snapshots/
+demo/google_ads_tokens.json
+demo/google_ads_config.json
+demo/email_watcher_config.json
+demo/email_drafts.json
+demo/report_schedules.json
+demo/live_campaigns.json
+demo/time_stats.json

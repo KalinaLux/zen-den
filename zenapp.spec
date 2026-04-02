@@ -1,0 +1,111 @@
+# -*- mode: python ; coding: utf-8 -*-
+"""PyInstaller spec for Zen Den macOS app."""
+
+import os
+block_cipher = None
+ROOT = SPECPATH
+
+a = Analysis(
+    [os.path.join(ROOT, 'demo', 'desktop.py')],
+    pathex=[os.path.join(ROOT, 'demo')],
+    binaries=[],
+    datas=[
+        (os.path.join(ROOT, 'demo', 'index.html'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'mock_campaigns.json'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'setup_state.json'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'quick_replies.json'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'report_generator.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'report_mailer.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'google_ads_client.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'slack_bot.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'email_watcher.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'analytics.py'), 'demo'),
+        (os.path.join(ROOT, 'config'), 'config'),
+    ],
+    hiddenimports=[
+        'webview',
+        'webview.platforms.cocoa',
+        'reportlab',
+        'reportlab.platypus',
+        'reportlab.lib',
+        'reportlab.lib.colors',
+        'reportlab.lib.pagesizes',
+        'reportlab.lib.styles',
+        'reportlab.lib.units',
+        'reportlab.lib.enums',
+        'reportlab.platypus.doctemplate',
+        'reportlab.platypus.frames',
+        'reportlab.platypus.paragraph',
+        'reportlab.platypus.tables',
+        'reportlab.platypus.flowables',
+        'report_generator',
+        'report_mailer',
+        'google_ads_client',
+        'slack_bot',
+        'email_watcher',
+        'analytics',
+        'slack_bolt',
+        'slack_bolt.app',
+        'slack_bolt.adapter.socket_mode',
+        'slack_sdk',
+        'slack_sdk.socket_mode',
+        'slack_sdk.web',
+    ],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    [],
+    exclude_binaries=True,
+    name="Zen Den",
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=False,
+    console=False,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)
+
+coll = COLLECT(
+    exe,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    strip=False,
+    upx=False,
+    upx_exclude=[],
+    name="Zen Den",
+)
+
+app = BUNDLE(
+    coll,
+    name="Zen Den.app",
+    icon=os.path.join(ROOT, 'build', 'ZenDen.icns'),
+    bundle_identifier='com.kalinalux.zenden',
+    info_plist={
+        'CFBundleName': "Zen Den",
+        'CFBundleDisplayName': "Zen Den",
+        'CFBundleVersion': '1.0.0',
+        'CFBundleShortVersionString': '1.0.0',
+        'NSHighResolutionCapable': True,
+        'LSMinimumSystemVersion': '10.15',
+        'NSAppTransportSecurity': {
+            'NSAllowsLocalNetworking': True,
+        },
+    },
+)

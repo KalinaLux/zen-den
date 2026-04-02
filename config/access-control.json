@@ -1,0 +1,18 @@
+{
+  "_comment": "Controls who can query which client's campaign data via Slack. Admins can query any client.",
+
+  "admins": [
+    "@UPDATE-your-slack-username"
+  ],
+
+  "client_access": {
+    "1234567890": ["@UPDATE-team-member-1", "@UPDATE-team-member-2"],
+    "0987654321": ["@UPDATE-team-member-1", "*"]
+  },
+
+  "_notes": {
+    "admins": "Slack usernames who can query ANY client account",
+    "client_access": "Map of Google Ads customer_id → list of Slack users allowed to query it. Use '*' for open access within the team.",
+    "why": "Prevents someone on Client A's team from accidentally seeing Client B's campaign data"
+  }
+}

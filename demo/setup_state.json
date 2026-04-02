@@ -1,0 +1,9 @@
+{
+  "completed": false,
+  "current_step": 0,
+  "openai_key": "",
+  "claude_key": "",
+  "slack_token": "",
+  "gmail_configured": false,
+  "active_provider": "openai"
+}

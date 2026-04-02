@@ -1,0 +1,334 @@
+{
+  "clients": [
+    {
+      "name": "Solara Skincare",
+      "aliases": ["solara", "skincare client"],
+      "customer_id": "555-111-2222",
+      "account_lead": "@danielm",
+      "campaigns": [
+        {
+          "id": "C-1001",
+          "name": "Solara | Brand | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$120.00",
+          "start_date": "2026-01-15",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 48320,
+            "clicks": 6218,
+            "ctr": 12.87,
+            "avg_cpc": 1.42,
+            "cost": 8829.56,
+            "conversions": 312,
+            "conv_rate": 5.02,
+            "conv_value": 28080.00,
+            "roas": 3.18
+          }
+        },
+        {
+          "id": "C-1002",
+          "name": "Solara | Q2 Summer Sale | Search | US",
+          "status": "PAUSED",
+          "network": "SEARCH",
+          "budget_daily": "$250.00",
+          "start_date": "2026-05-01",
+          "end_date": "2026-06-30",
+          "promos": [
+            {
+              "type": "promotion_extension",
+              "text": "20% Off Summer Essentials — Use code SUN20",
+              "status": "APPROVED",
+              "serving": false,
+              "reason": "Campaign is paused — promo will serve once campaign is enabled",
+              "start_date": "2026-05-01",
+              "end_date": "2026-06-30"
+            }
+          ],
+          "performance": {
+            "impressions": 0,
+            "clicks": 0,
+            "ctr": 0,
+            "avg_cpc": 0,
+            "cost": 0,
+            "conversions": 0,
+            "conv_rate": 0,
+            "conv_value": 0,
+            "roas": 0
+          }
+        },
+        {
+          "id": "C-1003",
+          "name": "Solara | Non-Brand | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$300.00",
+          "start_date": "2026-02-01",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 112450,
+            "clicks": 5890,
+            "ctr": 5.24,
+            "avg_cpc": 2.87,
+            "cost": 16904.30,
+            "conversions": 189,
+            "conv_rate": 3.21,
+            "conv_value": 17010.00,
+            "roas": 1.01
+          }
+        },
+        {
+          "id": "C-1004",
+          "name": "Solara | Shopping | Smart | US",
+          "status": "ENABLED",
+          "network": "SHOPPING",
+          "budget_daily": "$180.00",
+          "start_date": "2026-01-15",
+          "end_date": "ongoing",
+          "promos": [
+            {
+              "type": "promotion_extension",
+              "text": "Free Shipping on Orders $50+",
+              "status": "APPROVED",
+              "serving": true,
+              "start_date": "2026-03-01",
+              "end_date": "2026-12-31"
+            }
+          ],
+          "performance": {
+            "impressions": 205800,
+            "clicks": 8745,
+            "ctr": 4.25,
+            "avg_cpc": 0.98,
+            "cost": 8570.10,
+            "conversions": 541,
+            "conv_rate": 6.19,
+            "conv_value": 43280.00,
+            "roas": 5.05
+          }
+        }
+      ]
+    },
+    {
+      "name": "TrueForm Athletics",
+      "aliases": ["trueform", "athletics client", "the fitness brand"],
+      "customer_id": "555-333-4444",
+      "account_lead": "@jessicaw",
+      "campaigns": [
+        {
+          "id": "C-2001",
+          "name": "TrueForm | Brand | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$200.00",
+          "start_date": "2025-11-01",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 67400,
+            "clicks": 9850,
+            "ctr": 14.61,
+            "avg_cpc": 0.95,
+            "cost": 9357.50,
+            "conversions": 620,
+            "conv_rate": 6.29,
+            "conv_value": 55800.00,
+            "roas": 5.96
+          }
+        },
+        {
+          "id": "C-2002",
+          "name": "TrueForm | Spring Launch | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$500.00",
+          "start_date": "2026-03-15",
+          "end_date": "2026-04-30",
+          "promos": [
+            {
+              "type": "promotion_extension",
+              "text": "New Arrivals — 15% Off First Order with code SPRING15",
+              "status": "APPROVED",
+              "serving": true,
+              "start_date": "2026-03-15",
+              "end_date": "2026-04-30"
+            },
+            {
+              "type": "sitelink",
+              "text": "Shop Spring Collection",
+              "status": "APPROVED",
+              "serving": true
+            }
+          ],
+          "performance": {
+            "impressions": 89200,
+            "clicks": 4920,
+            "ctr": 5.52,
+            "avg_cpc": 3.15,
+            "cost": 15498.00,
+            "conversions": 287,
+            "conv_rate": 5.83,
+            "conv_value": 34440.00,
+            "roas": 2.22
+          }
+        },
+        {
+          "id": "C-2003",
+          "name": "TrueForm | Non-Brand | Search | CA",
+          "status": "PAUSED",
+          "network": "SEARCH",
+          "budget_daily": "$150.00",
+          "start_date": "2026-01-10",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 12100,
+            "clicks": 580,
+            "ctr": 4.79,
+            "avg_cpc": 3.42,
+            "cost": 1983.60,
+            "conversions": 18,
+            "conv_rate": 3.10,
+            "conv_value": 1620.00,
+            "roas": 0.82
+          }
+        },
+        {
+          "id": "C-2004",
+          "name": "TrueForm | Retargeting | Display | US",
+          "status": "ENABLED",
+          "network": "DISPLAY",
+          "budget_daily": "$75.00",
+          "start_date": "2026-02-01",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 542000,
+            "clicks": 3210,
+            "ctr": 0.59,
+            "avg_cpc": 0.68,
+            "cost": 2182.80,
+            "conversions": 95,
+            "conv_rate": 2.96,
+            "conv_value": 8550.00,
+            "roas": 3.92
+          }
+        },
+        {
+          "id": "C-2005",
+          "name": "TrueForm | Memorial Day Sale | Search | US",
+          "status": "PAUSED",
+          "network": "SEARCH",
+          "budget_daily": "$400.00",
+          "start_date": "2026-05-20",
+          "end_date": "2026-05-28",
+          "promos": [
+            {
+              "type": "promotion_extension",
+              "text": "Memorial Day Sale — 25% Off Sitewide",
+              "status": "APPROVED",
+              "serving": false,
+              "reason": "Campaign is paused — scheduled to enable May 20",
+              "start_date": "2026-05-20",
+              "end_date": "2026-05-28"
+            }
+          ],
+          "performance": {
+            "impressions": 0,
+            "clicks": 0,
+            "ctr": 0,
+            "avg_cpc": 0,
+            "cost": 0,
+            "conversions": 0,
+            "conv_rate": 0,
+            "conv_value": 0,
+            "roas": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "Coppervine Wines",
+      "aliases": ["coppervine", "the wine client", "wine brand"],
+      "customer_id": "555-555-6666",
+      "account_lead": "@markr",
+      "campaigns": [
+        {
+          "id": "C-3001",
+          "name": "Coppervine | Brand | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$80.00",
+          "start_date": "2026-01-01",
+          "end_date": "ongoing",
+          "promos": [],
+          "performance": {
+            "impressions": 18900,
+            "clicks": 2430,
+            "ctr": 12.86,
+            "avg_cpc": 1.12,
+            "cost": 2721.60,
+            "conversions": 156,
+            "conv_rate": 6.42,
+            "conv_value": 7800.00,
+            "roas": 2.87
+          }
+        },
+        {
+          "id": "C-3002",
+          "name": "Coppervine | Wine Club Promo | Search | US",
+          "status": "ENABLED",
+          "network": "SEARCH",
+          "budget_daily": "$200.00",
+          "start_date": "2026-03-01",
+          "end_date": "2026-04-15",
+          "promos": [
+            {
+              "type": "promotion_extension",
+              "text": "Join the Wine Club — First Month Free",
+              "status": "DISAPPROVED",
+              "serving": false,
+              "reason": "Google policy: alcohol promotion restrictions. Needs review.",
+              "start_date": "2026-03-01",
+              "end_date": "2026-04-15"
+            }
+          ],
+          "performance": {
+            "impressions": 34500,
+            "clicks": 1820,
+            "ctr": 5.28,
+            "avg_cpc": 2.65,
+            "cost": 4823.00,
+            "conversions": 67,
+            "conv_rate": 3.68,
+            "conv_value": 4690.00,
+            "roas": 0.97
+          }
+        },
+        {
+          "id": "C-3003",
+          "name": "Coppervine | Non-Brand | Search | US",
+          "status": "REMOVED",
+          "network": "SEARCH",
+          "budget_daily": "$0.00",
+          "start_date": "2025-09-01",
+          "end_date": "2026-02-28",
+          "promos": [],
+          "performance": {
+            "impressions": 0,
+            "clicks": 0,
+            "ctr": 0,
+            "avg_cpc": 0,
+            "cost": 0,
+            "conversions": 0,
+            "conv_rate": 0,
+            "conv_value": 0,
+            "roas": 0
+          }
+        }
+      ]
+    }
+  ]
+}

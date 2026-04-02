@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example Client A",
+    "aliases": ["client a", "example"],
+    "customer_id": "1234567890",
+    "account_lead": "@UPDATE-account-lead",
+    "slack_channels": ["#UPDATE-client-a"],
+    "platforms": ["google_ads", "microsoft_ads"]
+  },
+  {
+    "name": "Example Client B",
+    "aliases": ["client b"],
+    "customer_id": "0987654321",
+    "account_lead": "@UPDATE-account-lead",
+    "slack_channels": ["#UPDATE-client-b"],
+    "platforms": ["google_ads"]
+  }
+]

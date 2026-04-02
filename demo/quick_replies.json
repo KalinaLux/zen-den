@@ -1,0 +1,290 @@
+[
+  {
+    "id": "qr_001",
+    "category": "Campaign Status",
+    "title": "Campaign is live and running",
+    "template": "Hey! Yes, [Campaign] is live and running. Everything looks good on our end — impressions are flowing and the budget is pacing normally. Shout if you want [Numbers] broken out.",
+    "tags": ["status", "running", "live", "enabled"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_002",
+    "category": "Campaign Status",
+    "title": "Campaign paused — with reason",
+    "template": "Quick update: we paused [Campaign] because [reason — e.g. landing page issue, client request, budget cap]. Happy to walk through timing to turn it back on — just say the word.",
+    "tags": ["paused", "status", "hold"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_003",
+    "category": "Campaign Status",
+    "title": "Scheduled launch with date",
+    "template": "Hi [Name],\n\n[Campaign] is scheduled to go live on [Date]. I’ll keep an eye on launch-day pacing and flag anything odd right away.\n\nBest,\nDavid",
+    "tags": ["launch", "scheduled", "date"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_004",
+    "category": "Campaign Status",
+    "title": "All campaigns overview",
+    "template": "Here’s the snapshot across [Client]’s paid search: live campaigns are serving, nothing erroring out in the account, and we’re watching pacing daily. If you want a deeper dive on any one line, tell me which and I’ll pull [Numbers].",
+    "tags": ["overview", "all", "status"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_005",
+    "category": "Campaign Status",
+    "title": "Just enabled or changed",
+    "template": "Done — [Campaign] is enabled / updated as discussed. Changes can take a little bit to fully reflect in the UI, but you should see traffic pick up shortly. I’ll check back in a few hours to confirm it’s behaving.",
+    "tags": ["change", "enabled", "update"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_006",
+    "category": "Campaign Status",
+    "title": "Live status — email",
+    "template": "Hi [Name],\n\nYes — [Campaign] is currently live and running. Delivery and pacing look healthy on our side. I’m happy to share specific metrics or a quick Loom if that’s easier.\n\nBest,\nDavid",
+    "tags": ["status", "live", "email"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_007",
+    "category": "Budget & Spend",
+    "title": "Budget pacing on track",
+    "template": "Budget’s pacing right where we want it for [Campaign] — no fire drills. I’ll keep monitoring, especially if volume shifts, and ping you if anything looks off.",
+    "tags": ["budget", "pacing", "on-track"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_008",
+    "category": "Budget & Spend",
+    "title": "Underspending — context",
+    "template": "We’re a bit light on spend for [Campaign] right now — usually a mix of auction softness, bid caps, or audience overlap. I’m already testing a few levers to pull volume up without wrecking efficiency. Will update once we have a clearer read.",
+    "tags": ["budget", "underspend", "volume"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_009",
+    "category": "Budget & Spend",
+    "title": "Overspending — need approval",
+    "template": "Hi [Name],\n\nWe’re pacing hot on [Campaign] (roughly [Amount] ahead of where we’d expect for this point in the period). I can pull levers to slow it down, or — if you’re comfortable — we can request a budget bump so we don’t throttle winners. Let me know which direction you prefer and I’ll move today.\n\nBest,\nDavid",
+    "tags": ["budget", "overspend", "approval"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_010",
+    "category": "Budget & Spend",
+    "title": "Budget change acknowledged",
+    "template": "Got it — noted the budget change to [Amount] for [Campaign]. I’ll implement, double-check delivery after the change, and follow up if anything looks funky in the first 24 hours.",
+    "tags": ["budget", "change", "ack"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_011",
+    "category": "Performance",
+    "title": "Performance is strong",
+    "template": "[Campaign] is in a good spot — we’re seeing strong efficiency vs. recent baseline and the query mix looks cleaner than it has in a while. I’ll still keep an eye on anything that spikes CPAs, but you’re in a solid window right now.",
+    "tags": ["performance", "strong", "good"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_012",
+    "category": "Performance",
+    "title": "Needs improvement — plan",
+    "template": "Fair flag — performance on [Campaign] has softened. Here’s the plan I’m executing: tighten loose match types / negatives where waste showed up, refresh ad copy on the fatigued assets, and re-check geo/device bid adjustments. I’ll report back with [Numbers] once those changes have a few days to settle.",
+    "tags": ["performance", "plan", "optimization"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_013",
+    "category": "Performance",
+    "title": "Monthly performance summary",
+    "template": "Hi [Name],\n\nQuick monthly recap for [Client]: we held or improved core efficiency metrics on [Campaign] vs. last month, with the main story being [Numbers / one-line narrative]. I’ve attached the detail; happy to walk through anything that jumps out on our next call.\n\nBest,\nDavid",
+    "tags": ["monthly", "summary", "report"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_014",
+    "category": "Performance",
+    "title": "Quick metrics snapshot",
+    "template": "Snapshot for [Campaign] (last 7d vs. prior 7d): [Numbers]. TL;DR — [one line: e.g. CPA flat, conv volume up]. Ask if you want this sliced by brand/non-brand or device.",
+    "tags": ["metrics", "snapshot", "kpi"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_015",
+    "category": "Promos & Extensions",
+    "title": "Promo active and serving",
+    "template": "The promo extension / sitelink for [Campaign] is approved and live — it’s showing in the wild. If you want screenshots or a quick check on which ad groups it’s attached to, I can send that over.",
+    "tags": ["promo", "extension", "live"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_016",
+    "category": "Promos & Extensions",
+    "title": "Promo disapproved — fixing",
+    "template": "Heads up: Google disapproved the promo asset for [Campaign] — usually policy wording or a date mismatch. I’m revising copy / dates to match their rules and will resubmit today; turnaround is often same-day once it’s clean.",
+    "tags": ["promo", "disapproved", "policy"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_017",
+    "category": "Promos & Extensions",
+    "title": "New promo request acknowledged",
+    "template": "Hi [Name],\n\nThanks for the promo details — I’ve got the request for [Campaign] and will build the extensions / sitelinks, run them through policy best practices, and send a preview before pushing live.\n\nBest,\nDavid",
+    "tags": ["promo", "request", "ack"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_018",
+    "category": "Reporting",
+    "title": "Report will be sent on day",
+    "template": "Hi [Name],\n\nYou’ll have the [Client] paid search report in your inbox on [day] — same sections as last time unless you want anything added. If there’s a specific question leadership will ask, send it over and I’ll front-load the answer.\n\nBest,\nDavid",
+    "tags": ["report", "schedule", "delivery"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_019",
+    "category": "Reporting",
+    "title": "Report attached / just sent",
+    "template": "Just sent over the report for [Client] / [Campaign] — [Numbers] are in the summary tab if you only have two minutes. Happy to jump on a quick sync if anything needs context.",
+    "tags": ["report", "sent", "attached"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_020",
+    "category": "Reporting",
+    "title": "Meeting prep — talking points",
+    "template": "For the call: (1) [Campaign] pacing + any budget watchouts, (2) performance vs. goal — [Numbers], (3) what we’re testing next / what we need from you (creative, promo dates, LP). I can drive slides or keep it conversational — your call.",
+    "tags": ["meeting", "prep", "agenda"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_021",
+    "category": "Reporting",
+    "title": "Weekly recap intro",
+    "template": "Weekly recap for [Client]: overall spend and conversions tracked about where we expected; the main movers were [Numbers / narrative]. Deeper detail is in the deck — flag anything you want expanded for leadership.",
+    "tags": ["weekly", "recap", "summary"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_022",
+    "category": "Scheduling & Timelines",
+    "title": "Back by EOD",
+    "template": "On it — I’ll get you a solid answer by EOD today. If anything blocking pops up earlier, I’ll ping you before then.",
+    "tags": ["eod", "timing", "follow-up"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_023",
+    "category": "Scheduling & Timelines",
+    "title": "In meetings — reply tonight",
+    "template": "Swamped in meetings today but I saw this — I’ll dig in and reply tonight. If it’s truly urgent (revenue down / ads off), text me and I’ll prioritize.",
+    "tags": ["meetings", "delay", "availability"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_024",
+    "category": "Scheduling & Timelines",
+    "title": "Handling now — update soon",
+    "template": "Got it — I’m on this now and will send an update shortly with what I changed / what I’m seeing in the account.",
+    "tags": ["now", "update", "in-progress"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_025",
+    "category": "Client Communication",
+    "title": "New client onboarding intro",
+    "template": "Hi [Name],\n\nI’m David — I’ll be your paid search lead on the Hawke side. I’ve already done a first pass on the account and have a short list of quick wins vs. longer-term bets; we can align on goals, tracking, and reporting rhythm on our kickoff. Looking forward to working with you.\n\nBest,\nDavid",
+    "tags": ["onboarding", "intro", "new-client"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_026",
+    "category": "Client Communication",
+    "title": "Campaign launch confirmation",
+    "template": "Hi [Name],\n\n[Campaign] is officially live as of [Date]. Initial delivery looks normal; I’ll monitor closely over the next 48 hours and share a short launch readout once we have enough data to mean something.\n\nBest,\nDavid",
+    "tags": ["launch", "confirmation", "live"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_027",
+    "category": "Client Communication",
+    "title": "Optimization recommendations",
+    "template": "Here are the paid search recommendations I’d prioritize for [Client]: (1) [topic / e.g. search terms & negatives], (2) [topic / e.g. RSA refresh & testing], (3) [topic / e.g. bid strategy or budget reallocation]. None of these are “because Google said so” — they’re tied to what we’re seeing in [Numbers]. Happy to implement whatever you green-light first.",
+    "tags": ["recommendations", "optimization", "plan"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_028",
+    "category": "Client Communication",
+    "title": "Quarter-end review summary",
+    "template": "Hi [Name],\n\nQuarter wrap for [Client] paid search: we [one-line outcome vs. goal], with the biggest learnings around [Numbers / narrative]. I’ve attached the summary; if you want a tighter version for execs, I can cut a one-pager.\n\nBest,\nDavid",
+    "tags": ["quarter", "review", "qbr"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_029",
+    "category": "Internal Team",
+    "title": "Task acknowledged — on it",
+    "template": "Seen — I’m on it. Will circle back when it’s done or if I hit a blocker.",
+    "tags": ["internal", "ack", "task"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_030",
+    "category": "Internal Team",
+    "title": "Need input on topic",
+    "template": "Quick ask — I need your input on [topic] before I move forward on [Client] / [Campaign]. What’s your take / who owns the final call?",
+    "tags": ["internal", "input", "question"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_031",
+    "category": "Internal Team",
+    "title": "Handoff to person",
+    "template": "Looping in [person] — they’re closer to [topic] on this one and can get you an answer faster than I can from the search side. I’ll stay available if anything touches bidding or account structure.",
+    "tags": ["handoff", "internal", "cc"],
+    "use_for": "both"
+  },
+  {
+    "id": "qr_032",
+    "category": "Budget & Spend",
+    "title": "Pacing check-in — Slack",
+    "template": "Pacing check for [Campaign]: we’re on track for the month against [Amount]. No action needed unless you want to push harder — then we can talk bid/budget.",
+    "tags": ["budget", "pacing", "monthly"],
+    "use_for": "slack"
+  },
+  {
+    "id": "qr_033",
+    "category": "Performance",
+    "title": "Performance email — neutral update",
+    "template": "Hi [Name],\n\nSharing a quick performance update on [Campaign]: results this period are [Numbers vs. goal]. I’m including context on what drove the shift and what we’re doing next so it’s not just a dashboard screenshot.\n\nBest,\nDavid",
+    "tags": ["performance", "update", "email"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_034",
+    "category": "Campaign Status",
+    "title": "Paused — email to client",
+    "template": "Hi [Name],\n\nI wanted to let you know we’ve paused [Campaign] as of [Date] because [reason]. I’m happy to discuss timing to resume or any adjustments you’d like on the go-live plan.\n\nBest,\nDavid",
+    "tags": ["paused", "client", "email"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_035",
+    "category": "Reporting",
+    "title": "Report delay — honest",
+    "template": "Hi [Name],\n\nRunning a little behind on the report — you’ll have it by [Date]. The numbers are pulled; I’m tightening the narrative so it’s actually useful, not just export-and-send.\n\nBest,\nDavid",
+    "tags": ["report", "delay", "honest"],
+    "use_for": "email"
+  },
+  {
+    "id": "qr_036",
+    "category": "Client Communication",
+    "title": "Thanks + next steps — both",
+    "template": "Thanks for the context — super helpful. Next steps on my side: I’ll [action] for [Campaign] and follow up by [Date] with [Numbers] or a short summary, whichever is more useful.",
+    "tags": ["thanks", "next-steps", "client"],
+    "use_for": "both"
+  }
+]
