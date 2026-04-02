@@ -362,6 +362,28 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .integ-card .ig-btn.active{background:var(--green-bg);border-color:var(--green);color:var(--green)}
 .empty{text-align:center;padding:60px 20px;color:var(--text-muted)}.empty .ei{font-size:52px;margin-bottom:16px}
 .client-hdr{display:flex;align-items:center;gap:12px;margin-bottom:12px;margin-top:28px}.client-hdr:first-child{margin-top:0}.client-hdr h3{font-size:16px;font-weight:700}.client-hdr span{font-size:12px;color:var(--text-muted)}
+/* ── Client Manager ── */
+.cm-grid{display:grid;gap:16px}
+.cm-card{padding:24px;transition:all .2s}
+.cm-card:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.cm-card .cm-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+.cm-card .cm-name{font-size:18px;font-weight:700;letter-spacing:-.3px}
+.cm-card .cm-meta{font-size:12px;color:var(--text-dim);margin-top:2px}
+.cm-camp-row{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-glass);border-radius:var(--radius-sm);border:1px solid var(--border2);margin-bottom:6px;font-size:13px}
+.cm-camp-row .camp-net{font-size:10px;padding:2px 8px;border-radius:8px;font-weight:600;text-transform:uppercase}
+.cm-camp-row .camp-net.google{background:var(--blue-bg);color:var(--blue)}.cm-camp-row .camp-net.meta{background:var(--accent-bg);color:var(--accent2)}.cm-camp-row .camp-net.microsoft{background:var(--sage-bg);color:var(--sage)}.cm-camp-row .camp-net.tiktok{background:var(--coral-bg);color:var(--coral)}.cm-camp-row .camp-net.search{background:var(--blue-bg);color:var(--blue)}.cm-camp-row .camp-net.display{background:var(--green-bg);color:var(--green)}
+.cm-camp-row .camp-del{margin-left:auto;cursor:pointer;opacity:.4;font-size:16px;transition:opacity .15s}.cm-camp-row .camp-del:hover{opacity:1;color:var(--coral)}
+.cm-add-camp{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.cm-add-camp input,.cm-add-camp select{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 12px;outline:none;font-family:var(--font)}
+.lang-select{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;padding:10px 14px;outline:none;font-family:var(--font);cursor:pointer;transition:border .2s}
+.lang-select:focus{border-color:var(--accent)}
+.plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
+.plat-card{padding:18px;text-align:center;transition:all .2s;cursor:pointer}
+.plat-card:hover{transform:translateY(-1px)}
+.plat-card .plat-icon{font-size:32px;margin-bottom:8px}
+.plat-card .plat-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.plat-card .plat-stat{font-size:11.5px}
+.plat-card .plat-stat.on{color:var(--green)}.plat-card .plat-stat.off{color:var(--text-muted)}
 
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
 @media(max-width:900px){.sidebar{width:60px}.sb-brand h1,.sb-brand .tagline,.ni span:not(.ic),.sb-zen,.ni .badge{display:none}.sb-brand{padding:16px 12px}.sb-brand .logo{font-size:22px}.ni{justify-content:center;padding:12px}.stats{grid-template-columns:repeat(2,1fr)}.theme-toggle span:not(.ticon){display:none}}
@@ -460,6 +482,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     <div class="ni" data-page="reports" id="nav-reports"><span class="ic">📄</span><span>Reports</span></div>
     <div class="ni" data-page="faq" id="nav-faq"><span class="ic">❓</span><span>Q&A Library</span><span class="badge" id="faq-count">48</span></div>
     <div class="ni" data-page="templates" id="nav-templates"><span class="ic">⚡</span><span>Quick Replies</span><span class="badge" id="qr-count">36</span></div>
+    <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Manage Clients</span></div>
     <div class="ni" data-page="settings" id="nav-settings"><span class="ic">⚙️</span><span>Settings</span></div>
     <div class="ni" data-page="privacy" id="nav-privacy"><span class="ic">🛡️</span><span>Privacy</span></div>
     <div class="ni" data-page="audit" id="nav-audit"><span class="ic">📋</span><span>Audit Log</span></div>
@@ -501,6 +524,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
       <div style="margin-top:14px;padding:14px;background:var(--accent-bg);border-radius:var(--radius-sm);border:1px solid rgba(167,139,250,.15)"><span style="font-size:15px">💜</span> <b>Bottom line:</b> Your client data stays on your machine. The AI helps you write responses, not access accounts. And everything is logged so you can prove it.</div>
     </div>
   </div></div>
+  <div class="page" id="page-clients"><div class="ph" style="gap:12px"><div><h2>👥 Manage Clients</h2><p>Add, edit, and organize your clients and campaigns</p></div><button class="btn btn-primary" onclick="openAddClient()">+ Add Client</button></div><div class="pb" id="clients-body"></div></div>
   <div class="page" id="page-templates"><div class="ph" style="gap:12px"><div><h2>⚡ Quick Replies</h2><p>One-click responses — stop typing the same things over and over</p></div></div><div class="pb" id="tpl-body"></div></div>
   <div class="page" id="page-audit"><div class="ph"><div><h2>📋 Audit Log</h2><p>Every query, logged for privacy and peace of mind</p></div></div><div class="pb" id="aud-body"></div></div>
 </div>
@@ -540,7 +564,7 @@ function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dar
 (function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
 
 // ── Nav ──
-function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates}[p]||function(){})()}
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients}[p]||function(){})()}
 document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
 
 // ── Wizard ──
@@ -555,7 +579,7 @@ async function finishWiz(tour){setupState={completed:true,current_step:6,openai_
 async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
 
 // ── Tour ──
-const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
 let tIdx=0;
 function startTour(){tIdx=0;showT()}
 function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
@@ -666,7 +690,7 @@ async function saveFaq(){const cat=$('fm-cat').value,pats=$('fm-pats').value.spl
 async function delF(id){if(!confirm('Delete this question?'))return;faqData=faqData.filter(f=>f.id!==id);await fetch('/api/config/faq',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(faqData)});loadFaq();toast('Removed 🧘')}
 
 // ── Settings ──
-async function loadSettings(){const[vip,access,setup,gads,slackSt,emailSt,emailCfg]=await Promise.all([fetch('/api/config/vip').then(r=>r.json()),fetch('/api/config/access').then(r=>r.json()),fetch('/api/setup').then(r=>r.json()),fetch('/api/gads/status').then(r=>r.json()).catch(()=>({connected:false})),fetch('/api/slack/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/config').then(r=>r.json()).catch(()=>({}))]);
+async function loadSettings(){const[vip,access,setup,gads,slackSt,emailSt,emailCfg,plat]=await Promise.all([fetch('/api/config/vip').then(r=>r.json()),fetch('/api/config/access').then(r=>r.json()),fetch('/api/setup').then(r=>r.json()),fetch('/api/gads/status').then(r=>r.json()).catch(()=>({connected:false})),fetch('/api/slack/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/status').then(r=>r.json()).catch(()=>({running:false})),fetch('/api/email/config').then(r=>r.json()).catch(()=>({})),fetch('/api/platforms').then(r=>r.json()).catch(()=>({}))]);
 const slackRunning=slackSt.running;const emailRunning=emailSt.running;
 $('set-body').innerHTML=`
 <div class="ss-card glass"><h3>💬 Slack Auto-Responder</h3><div class="sd">Connect the Zen Den to Slack so it auto-responds to questions in your channels. Requires a Slack App with Socket Mode enabled.</div>
@@ -702,7 +726,35 @@ ${!gads.connected?`<details style="margin-bottom:16px"><summary style="font-size
 <label>MCC Customer ID</label><input type="text" id="s-gads-mcc" value="${gads.mcc_customer_id||''}" placeholder="123-456-7890">
 <div class="btn-row"><button class="btn btn-primary" onclick="saveGads()">Save Google Ads Config</button>${gads.client_id?`<button class="btn btn-sage" onclick="connectGads()">🔗 Connect Google Account</button>`:''}</div>
 ${gads.connected?`<div class="btn-row" style="margin-top:8px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text-dim)"><input type="checkbox" id="s-gads-live" ${gads.use_live_data?'checked':''} onchange="toggleLive(this.checked)"> Use live data instead of demo data</label><button class="btn btn-ghost btn-sm" onclick="syncGads()">🔄 Sync Now</button></div>`:''}</div>
-<div class="ss-card glass"><h3>💬 Slack</h3><div class="sd">Bot token for reading and responding to Slack.</div><label>Slack Bot Token</label><input type="password" id="s-slack" value="${setup.slack_token||''}" placeholder="xoxb-..."><div class="btn-row"><button class="btn btn-primary" onclick="saveSlack()">Save Slack Token</button></div></div><div class="ss-card glass"><h3>⭐ VIP Senders</h3><div class="sd">Messages from these people always get top priority. One per line.</div><textarea id="s-vip">${vip.content||''}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveVip()">Save VIPs</button></div></div><div class="ss-card glass"><h3>🔒 Access Control</h3><div class="sd">Who can query which client's campaign data.</div><textarea id="s-access">${JSON.stringify(access,null,2)}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveAccess()">Save</button></div></div><div class="ss-card glass"><h3>🔄 Reset</h3><div class="sd">Re-run the welcome wizard.</div><button class="btn btn-ghost" onclick="resetWiz()">Re-run Setup Wizard</button></div>`}
+<div class="ss-card glass"><h3>💬 Slack</h3><div class="sd">Bot token for reading and responding to Slack.</div><label>Slack Bot Token</label><input type="password" id="s-slack" value="${setup.slack_token||''}" placeholder="xoxb-..."><div class="btn-row"><button class="btn btn-primary" onclick="saveSlack()">Save Slack Token</button></div></div><div class="ss-card glass"><h3>⭐ VIP Senders</h3><div class="sd">Messages from these people always get top priority. One per line.</div><textarea id="s-vip">${vip.content||''}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveVip()">Save VIPs</button></div></div><div class="ss-card glass"><h3>🔒 Access Control</h3><div class="sd">Who can query which client's campaign data.</div><textarea id="s-access">${JSON.stringify(access,null,2)}</textarea><div class="btn-row"><button class="btn btn-primary" onclick="saveAccess()">Save</button></div></div><div class="ss-card glass"><h3>🌐 Language</h3><div class="sd">Choose your preferred language. Translations apply to navigation and labels.</div>
+<select class="lang-select" onchange="switchLang(this.value)"><option value="en"${currentLang==='en'?' selected':''}>🇺🇸 English</option><option value="es"${currentLang==='es'?' selected':''}>🇪🇸 Español</option><option value="fr"${currentLang==='fr'?' selected':''}>🇫🇷 Français</option><option value="pt"${currentLang==='pt'?' selected':''}>🇧🇷 Português</option></select></div>
+
+<div class="ss-card glass"><h3>📡 Ad Platforms</h3><div class="sd">Connect additional ad platforms to pull campaign data from all your networks into one place.</div>
+<div class="plat-grid">
+<div class="plat-card glass" style="cursor:default"><div class="plat-icon">📊</div><div class="plat-name">Google Ads</div><div class="plat-stat ${gads.connected?'on':'off'}">${gads.connected?'✓ Connected':'Configured above'}</div></div>
+<div class="plat-card glass" style="cursor:default"><div class="plat-icon">📘</div><div class="plat-name">Meta Ads</div><div class="plat-stat ${plat.meta?.connected?'on':'off'}">${plat.meta?.connected?'✓ Connected':'○ Not connected'}</div></div>
+<div class="plat-card glass" style="cursor:default"><div class="plat-icon">Ⓜ️</div><div class="plat-name">Microsoft Ads</div><div class="plat-stat ${plat.microsoft?.connected?'on':'off'}">${plat.microsoft?.connected?'✓ Connected':'○ Not connected'}</div></div>
+<div class="plat-card glass" style="cursor:default"><div class="plat-icon">🎵</div><div class="plat-name">TikTok Ads</div><div class="plat-stat ${plat.tiktok?.connected?'on':'off'}">${plat.tiktok?.connected?'✓ Connected':'○ Not connected'}</div></div>
+</div>
+<details style="margin-top:14px"><summary style="font-size:12.5px;font-weight:600;color:var(--accent2);cursor:pointer">📘 Configure Meta Ads</summary>
+<div style="padding:16px 0"><label>App ID</label><input type="text" id="s-meta-appid" value="${plat.meta?.app_id||''}" placeholder="From developers.facebook.com">
+<label>App Secret</label><input type="password" id="s-meta-secret" value="${plat.meta?.app_secret||''}" placeholder="App secret">
+<label>Ad Account ID</label><input type="text" id="s-meta-acct" value="${plat.meta?.ad_account_id||''}" placeholder="act_123456789">
+<div class="btn-row"><button class="btn btn-primary btn-sm" onclick="savePlatform('meta')">Save Meta Config</button></div></div></details>
+<details style="margin-top:8px"><summary style="font-size:12.5px;font-weight:600;color:var(--accent2);cursor:pointer">Ⓜ️ Configure Microsoft Ads</summary>
+<div style="padding:16px 0"><label>Client ID</label><input type="text" id="s-ms-cid" value="${plat.microsoft?.client_id||''}" placeholder="From portal.azure.com">
+<label>Client Secret</label><input type="password" id="s-ms-secret" value="${plat.microsoft?.client_secret||''}" placeholder="Client secret">
+<label>Developer Token</label><input type="password" id="s-ms-devtoken" value="${plat.microsoft?.developer_token||''}" placeholder="From Microsoft Advertising">
+<label>Account ID</label><input type="text" id="s-ms-acctid" value="${plat.microsoft?.account_id||''}" placeholder="Account ID">
+<label>Customer ID</label><input type="text" id="s-ms-custid" value="${plat.microsoft?.customer_id||''}" placeholder="Customer ID">
+<div class="btn-row"><button class="btn btn-primary btn-sm" onclick="savePlatform('microsoft')">Save Microsoft Config</button></div></div></details>
+<details style="margin-top:8px"><summary style="font-size:12.5px;font-weight:600;color:var(--accent2);cursor:pointer">🎵 Configure TikTok Ads</summary>
+<div style="padding:16px 0"><label>App ID</label><input type="text" id="s-tt-appid" value="${plat.tiktok?.app_id||''}" placeholder="From ads.tiktok.com/marketing_api">
+<label>App Secret</label><input type="password" id="s-tt-secret" value="${plat.tiktok?.app_secret||''}" placeholder="App secret">
+<label>Advertiser ID</label><input type="text" id="s-tt-advid" value="${plat.tiktok?.advertiser_id||''}" placeholder="Advertiser ID">
+<div class="btn-row"><button class="btn btn-primary btn-sm" onclick="savePlatform('tiktok')">Save TikTok Config</button></div></div></details></div>
+
+<div class="ss-card glass"><h3>🔄 Reset</h3><div class="sd">Re-run the welcome wizard.</div><button class="btn btn-ghost" onclick="resetWiz()">Re-run Setup Wizard</button></div>`}
 function setP(p){document.querySelectorAll('.sp').forEach(b=>b.classList.toggle('on',b.dataset.p===p))}
 async function saveKeys(){const s=await fetch('/api/setup').then(r=>r.json());s.openai_key=$('s-openai').value;s.claude_key=$('s-claude').value;const a=document.querySelector('.sp.on');s.active_provider=a?a.dataset.p:'openai';await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});toast('Keys saved 🔐')}
 async function saveSlack(){const s=await fetch('/api/setup').then(r=>r.json());s.slack_token=$('s-slack').value;await fetch('/api/setup',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)});toast('Slack saved 💬')}
@@ -729,6 +781,16 @@ async function connectGads(){const res=await fetch('/api/gads/auth-url');const d
 async function syncGads(){toast('Syncing live data...');const res=await fetch('/api/gads/sync',{method:'POST'});const d=await res.json();if(d.ok){toast(`Synced! ${d.client_count} clients loaded`);loadSettings()}else{toast('Sync failed: '+(d.error||'unknown error'))}}
 async function toggleLive(on){await fetch('/api/gads/toggle-live',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({use_live_data:on})});toast(on?'Using live Google Ads data':'Switched to demo data');loadSettings()}
 
+async function savePlatform(platform){
+if(platform==='meta'){
+  await fetch('/api/meta/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({app_id:$('s-meta-appid').value.trim(),app_secret:$('s-meta-secret').value.trim(),ad_account_id:$('s-meta-acct').value.trim()})});
+}else if(platform==='microsoft'){
+  await fetch('/api/microsoft/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_id:$('s-ms-cid').value.trim(),client_secret:$('s-ms-secret').value.trim(),developer_token:$('s-ms-devtoken').value.trim(),account_id:$('s-ms-acctid').value.trim(),customer_id:$('s-ms-custid').value.trim()})});
+}else if(platform==='tiktok'){
+  await fetch('/api/tiktok/config',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({app_id:$('s-tt-appid').value.trim(),app_secret:$('s-tt-secret').value.trim(),advertiser_id:$('s-tt-advid').value.trim()})});
+}
+toast('Platform config saved! 📡');loadSettings()}
+
 // ── Quick Reply Templates ──
 let allTemplates=[],tplFilter='All';
 async function loadTemplates(){
@@ -749,6 +811,90 @@ async function loadAudit(){const log=await fetch('/api/audit').then(r=>r.json())
 $('faq-modal').addEventListener('click',e=>{if(e.target===$('faq-modal'))closeModal()});
 $('sched-modal').addEventListener('click',e=>{if(e.target===$('sched-modal'))closeSched()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(!$('faq-modal').classList.contains('hidden'))closeModal();if(!$('sched-modal').classList.contains('hidden'))closeSched()}});
+
+// ── Client Manager ──
+async function loadClients(){
+const d=await fetch('/api/data').then(r=>r.json());
+const plat=await fetch('/api/platforms').then(r=>r.json()).catch(()=>({}));
+const el=$('clients-body');
+if(!d.clients.length){el.innerHTML='<div class="empty"><div class="ei">👥</div><h3>No clients yet</h3><p>Add your first client to get started!</p></div>';return}
+
+let h=`<div style="margin-bottom:20px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px">📡 Connected Platforms</h3><div class="plat-grid">`;
+const platforms=[
+  {key:'google',icon:'📊',name:'Google Ads',connected:plat.google?.connected},
+  {key:'meta',icon:'📘',name:'Meta Ads',connected:plat.meta?.connected},
+  {key:'microsoft',icon:'Ⓜ️',name:'Microsoft Ads',connected:plat.microsoft?.connected},
+  {key:'tiktok',icon:'🎵',name:'TikTok Ads',connected:plat.tiktok?.connected}
+];
+platforms.forEach(p=>{h+=`<div class="plat-card glass" onclick="goTo('settings')"><div class="plat-icon">${p.icon}</div><div class="plat-name">${p.name}</div><div class="plat-stat ${p.connected?'on':'off'}">${p.connected?'✓ Connected':'○ Not connected'}</div></div>`});
+h+='</div></div>';
+
+h+='<div class="cm-grid">';
+d.clients.forEach(c=>{
+const campCount=c.campaigns.length;
+const activeCount=c.campaigns.filter(x=>x.status==='ENABLED').length;
+h+=`<div class="cm-card glass"><div class="cm-top"><div><div class="cm-name">${c.name}</div><div class="cm-meta">Lead: ${c.account_lead||'—'} · ID: ${c.customer_id||'—'} · ${campCount} campaigns (${activeCount} active)</div></div><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="editClient('${c.name.replace(/'/g,"\\'")}')">✏️ Edit</button><button class="btn btn-ghost btn-sm" onclick="deleteClient('${c.name.replace(/'/g,"\\'")}')">🗑</button></div></div>`;
+c.campaigns.forEach(x=>{
+const netLow=(x.network||'SEARCH').toLowerCase();
+h+=`<div class="cm-camp-row"><span class="camp-net ${netLow}">${x.network||'SEARCH'}</span>${pill(x.status)}<span style="font-weight:600;flex:1">${x.name}</span><span style="font-size:12px;color:var(--text-dim)">${x.budget_daily}/day</span><span class="camp-del" onclick="deleteCampaign('${c.name.replace(/'/g,"\\'")}','${x.id}')">×</span></div>`});
+h+=`<div class="cm-add-camp"><input type="text" id="nc-name-${c.name.replace(/\s/g,'_')}" placeholder="Campaign name"><select id="nc-net-${c.name.replace(/\s/g,'_')}"><option>SEARCH</option><option>DISPLAY</option><option>SHOPPING</option><option>VIDEO</option><option>PMAX</option><option>META</option><option>MICROSOFT</option><option>TIKTOK</option></select><select id="nc-stat-${c.name.replace(/\s/g,'_')}"><option>ENABLED</option><option>PAUSED</option></select><input type="text" id="nc-budget-${c.name.replace(/\s/g,'_')}" placeholder="$50.00" style="width:80px"><button class="btn btn-ghost btn-sm" onclick="addCampaign('${c.name.replace(/'/g,"\\'")}')">+ Add</button></div>`;
+h+='</div>'});
+h+='</div>';
+el.innerHTML=h}
+
+function openAddClient(){
+const name=prompt('Client name:');
+if(!name)return;
+const lead=prompt('Account lead (optional):','');
+const custId=prompt('Customer ID (optional):','');
+fetch('/api/clients/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,account_lead:lead||'',customer_id:custId||''})}).then(()=>{toast('Client added! 👥');loadClients()})
+}
+function editClient(name){
+const newName=prompt('Client name:',name);
+if(!newName)return;
+const newLead=prompt('Account lead:','');
+fetch('/api/clients/edit',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({original_name:name,name:newName,account_lead:newLead||''})}).then(()=>{toast('Updated! ✏️');loadClients()})
+}
+async function deleteClient(name){
+if(!confirm(`Delete "${name}" and all its campaigns?`))return;
+await fetch('/api/clients/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name})});
+toast('Deleted 🗑');loadClients()
+}
+async function addCampaign(clientName){
+const key=clientName.replace(/\s/g,'_');
+const name=document.getElementById('nc-name-'+key)?.value.trim();
+if(!name){toast('Enter a campaign name');return}
+const network=document.getElementById('nc-net-'+key)?.value||'SEARCH';
+const status=document.getElementById('nc-stat-'+key)?.value||'ENABLED';
+const budget=document.getElementById('nc-budget-'+key)?.value.trim()||'$50.00';
+await fetch('/api/campaigns/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:clientName,name,network,status,budget_daily:budget})});
+toast('Campaign added! ⚡');loadClients()
+}
+async function deleteCampaign(clientName,campId){
+if(!confirm('Remove this campaign?'))return;
+await fetch('/api/campaigns/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:clientName,campaign_id:campId})});
+toast('Removed');loadClients()
+}
+
+// ── i18n ──
+let i18nData={},currentLang=localStorage.getItem('zen-lang')||'en';
+async function loadI18n(){
+try{i18nData=await fetch('/api/i18n').then(r=>r.json())}catch(e){i18nData={en:{}}}
+applyLang(currentLang);
+}
+function t(key){return (i18nData[currentLang]||i18nData.en||{})[key]||key}
+function applyLang(lang){
+currentLang=lang;
+localStorage.setItem('zen-lang',lang);
+document.documentElement.lang=lang;
+}
+function switchLang(lang){
+applyLang(lang);
+const page=document.querySelector('.page.active');
+if(page)goTo(page.id.replace('page-',''));
+toast('Language: '+{en:'English',es:'Español',fr:'Français',pt:'Português'}[lang]);
+}
+loadI18n();
 
 checkSetup();loadDash();
 </script>

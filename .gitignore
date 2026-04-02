@@ -43,3 +43,9 @@ demo/email_drafts.json
 demo/report_schedules.json
 demo/live_campaigns.json
 demo/time_stats.json
+demo/meta_ads_config.json
+demo/meta_ads_tokens.json
+demo/msads_config.json
+demo/msads_tokens.json
+demo/tiktok_ads_config.json
+demo/tiktok_ads_tokens.json

@@ -38,6 +38,18 @@ from analytics import (
     save_snapshot, get_change_log, record_action, get_time_summary,
     generate_weekly_recap,
 )
+from meta_ads_client import (
+    build_oauth_url as meta_oauth_url, exchange_code as meta_exchange,
+    load_meta_config, save_meta_config, sync_all_live_data as meta_sync,
+)
+from microsoft_ads_client import (
+    build_oauth_url as ms_oauth_url, exchange_code as ms_exchange,
+    load_msads_config, save_msads_config, sync_all_live_data as ms_sync,
+)
+from tiktok_ads_client import (
+    build_oauth_url as tt_oauth_url, exchange_code as tt_exchange,
+    load_tiktok_config, save_tiktok_config, sync_all_live_data as tt_sync,
+)
 import shutil
 import time as _time
 
@@ -450,6 +462,21 @@ class Handler(http.server.BaseHTTPRequestHandler):
             data = load_mock_data()
             ts = get_time_summary(DATA_DIR)
             self._json(generate_weekly_recap(data, ts))
+        elif path == "/api/i18n":
+            i18n_path = BUNDLE_DIR / "i18n.json"
+            if not i18n_path.exists():
+                i18n_path = DATA_DIR / "i18n.json"
+            if i18n_path.exists():
+                with open(i18n_path) as f:
+                    self._json(json.load(f))
+            else:
+                self._json({"en": {}})
+        elif path == "/api/platforms":
+            meta_cfg = load_meta_config()
+            ms_cfg = load_msads_config()
+            tt_cfg = load_tiktok_config()
+            gads_cfg = load_gads_config()
+            self._json({"google": {"connected": gads_cfg.get("connected", False), "use_live": gads_cfg.get("use_live_data", False)}, "meta": {"connected": meta_cfg.get("connected", False), "use_live": meta_cfg.get("use_live_data", False)}, "microsoft": {"connected": ms_cfg.get("connected", False), "use_live": ms_cfg.get("use_live_data", False)}, "tiktok": {"connected": tt_cfg.get("connected", False), "use_live": tt_cfg.get("use_live_data", False)}})
         else:
             self.send_error(404)
 
@@ -568,6 +595,42 @@ class Handler(http.server.BaseHTTPRequestHandler):
             data = load_mock_data()
             save_snapshot(data, DATA_DIR)
             self._json({"ok": True})
+        elif path == "/api/clients/add":
+            body = self._body()
+            data = load_mock_data()
+            new_client = {"name": body.get("name", "New Client"), "aliases": body.get("aliases", []), "customer_id": body.get("customer_id", ""), "account_lead": body.get("account_lead", ""), "campaigns": []}
+            data["clients"].append(new_client)
+            save_mock_data(data)
+            self._json({"ok": True, "client_count": len(data["clients"])})
+        elif path == "/api/clients/delete":
+            body = self._body()
+            name = body.get("name", "")
+            data = load_mock_data()
+            data["clients"] = [c for c in data["clients"] if c["name"] != name]
+            save_mock_data(data)
+            self._json({"ok": True})
+        elif path == "/api/campaigns/add":
+            body = self._body()
+            client_name = body.get("client_name", "")
+            data = load_mock_data()
+            for c in data["clients"]:
+                if c["name"] == client_name:
+                    camp = {"id": f"C-{int(_time.time())}", "name": body.get("name", "New Campaign"), "status": body.get("status", "ENABLED"), "network": body.get("network", "SEARCH"), "budget_daily": body.get("budget_daily", "$0.00"), "start_date": body.get("start_date", datetime.now().strftime("%Y-%m-%d")), "end_date": body.get("end_date", "ongoing"), "promos": [], "performance": {"impressions": 0, "clicks": 0, "ctr": 0, "avg_cpc": 0, "cost": 0, "conversions": 0, "conv_rate": 0, "conv_value": 0, "roas": 0}}
+                    c["campaigns"].append(camp)
+                    save_mock_data(data)
+                    self._json({"ok": True})
+                    return
+            self._json({"ok": False, "error": "Client not found"}, 404)
+        elif path == "/api/campaigns/delete":
+            body = self._body()
+            data = load_mock_data()
+            for c in data["clients"]:
+                if c["name"] == body.get("client_name", ""):
+                    c["campaigns"] = [x for x in c["campaigns"] if x["id"] != body.get("campaign_id", "")]
+                    save_mock_data(data)
+                    self._json({"ok": True})
+                    return
+            self._json({"ok": False, "error": "Not found"}, 404)
         else:
             self.send_error(404)
 
@@ -611,6 +674,40 @@ class Handler(http.server.BaseHTTPRequestHandler):
             with open(qr_path, "w") as f:
                 json.dump(self._body(), f, indent=2)
             self._json({"ok": True})
+        elif path == "/api/meta/config":
+            body = self._body()
+            cfg = load_meta_config()
+            for k in ("app_id", "app_secret", "ad_account_id"):
+                if k in body: cfg[k] = body[k]
+            save_meta_config(cfg)
+            self._json({"ok": True})
+        elif path == "/api/microsoft/config":
+            body = self._body()
+            cfg = load_msads_config()
+            for k in ("client_id", "client_secret", "developer_token", "account_id", "customer_id"):
+                if k in body: cfg[k] = body[k]
+            save_msads_config(cfg)
+            self._json({"ok": True})
+        elif path == "/api/tiktok/config":
+            body = self._body()
+            cfg = load_tiktok_config()
+            for k in ("app_id", "app_secret", "advertiser_id"):
+                if k in body: cfg[k] = body[k]
+            save_tiktok_config(cfg)
+            self._json({"ok": True})
+        elif path == "/api/clients/edit":
+            body = self._body()
+            data = load_mock_data()
+            for c in data["clients"]:
+                if c["name"] == body.get("original_name", ""):
+                    c["name"] = body.get("name", c["name"])
+                    c["aliases"] = body.get("aliases", c.get("aliases", []))
+                    c["customer_id"] = body.get("customer_id", c.get("customer_id", ""))
+                    c["account_lead"] = body.get("account_lead", c.get("account_lead", ""))
+                    save_mock_data(data)
+                    self._json({"ok": True})
+                    return
+            self._json({"ok": False, "error": "Client not found"}, 404)
         else:
             self.send_error(404)
 

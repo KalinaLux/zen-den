@@ -15,7 +15,8 @@ AI-powered marketing automation for paid search professionals.
 
 - 💬 **Slack auto-responder** — watches channels and answers campaign questions automatically
 - ✉️ **Email auto-responder** — IMAP watcher that auto-drafts replies (Gmail, Outlook, Yahoo, any provider)
-- 📊 **Campaign dashboard** — live campaign data from Google Ads at a glance
+- 📊 **Campaign dashboard** — live campaign data from Google Ads, Meta, Microsoft, and TikTok at a glance
+- 👥 **Client manager** — add, edit, and organize clients and campaigns through the UI
 - 📈 **Budget pacing** — visual spend tracking vs. calendar pace
 - 🚨 **Anomaly detection** — proactive alerts for ROAS drops, CPC spikes, disapproved promos
 - 📄 **One-click PDF reports** — professional client decks with scheduled email delivery
@@ -24,6 +25,7 @@ AI-powered marketing automation for paid search professionals.
 - ❓ **48 pre-loaded Q&As** — expandable knowledge base
 - 🛡️ **Privacy-first** — runs 100% locally, data never leaves your machine
 - ⏱️ **Time-saved tracker** — see how many hours the tool is saving you
+- 🌐 **Multi-language** — English, Spanish, French, Portuguese
 - 🎨 **Beautiful dark/light UI** with calming color psychology
 
 ## Screenshots
@@ -43,11 +45,13 @@ The Zen Den window will appear — you're ready to go.
 
 ## macOS App
 
-A pre-built `.dmg` is available on the [Releases](https://github.com/KalinaLux/zen-den/releases) page.
+Pre-built installers are available on the [Releases](https://github.com/KalinaLux/zen-den/releases) page.
 
-1. Download the latest `.dmg` from Releases.
-2. Open the `.dmg` and drag **Zen Den** to your Applications folder.
-3. Double-click to launch.
+**macOS:** Download the `.dmg`, drag **Zen Den** to Applications, double-click to launch.
+
+**Windows:** Download the `.zip`, extract, and run `Zen Den.exe`.
+
+Both are built automatically via GitHub Actions on every tagged release.
 
 ## Requirements
 
@@ -73,15 +77,24 @@ pip install -r requirements.txt
 ```
 zen-den/
 ├── demo/
-│   ├── desktop.py            # App entry point (pywebview)
-│   ├── index.html            # Primary UI
-│   ├── api.py                # Python ↔ JS bridge
-│   ├── slack_responder.py    # Slack auto-responder
+│   ├── desktop.py            # App entry point + HTTP server
+│   ├── index.html            # Single-page UI
+│   ├── report_generator.py   # PDF report generation
+│   ├── report_mailer.py      # Scheduled email delivery
+│   ├── google_ads_client.py  # Google Ads API client
+│   ├── meta_ads_client.py    # Meta (Facebook) Ads API client
+│   ├── microsoft_ads_client.py # Microsoft (Bing) Ads API client
+│   ├── tiktok_ads_client.py  # TikTok Ads API client
+│   ├── slack_bot.py          # Slack auto-responder
 │   ├── email_watcher.py      # IMAP email watcher
-│   ├── report_builder.py     # PDF report generation
-│   ├── assets/               # Images, icons, styles
-│   ├── logs/                 # Runtime logs (git-ignored)
-│   └── snapshots/            # Campaign snapshots (git-ignored)
+│   ├── analytics.py          # Pacing, anomalies, meeting prep
+│   ├── i18n.json             # Translations (EN/ES/FR/PT)
+│   ├── quick_replies.json    # Pre-built quick reply templates
+│   └── mock_campaigns.json   # Demo data
+├── config/                   # FAQ, access control, VIP senders
+├── build/                    # App icon + DMG assets
+├── .github/workflows/        # CI/CD for macOS + Windows builds
+├── zenapp.spec               # PyInstaller build spec
 ├── requirements.txt
 ├── LICENSE
 ├── README.md
@@ -103,6 +116,10 @@ Add any IMAP-compatible email account (Gmail, Outlook, Yahoo, etc.). Zen Den wat
 ### Google Ads
 
 Link your Google Ads account via OAuth to pull live campaign data into the dashboard. Zen Den uses read-only access for metrics, pacing, and anomaly detection.
+
+### Meta Ads / Microsoft Ads / TikTok Ads
+
+Same story — connect via OAuth in Settings. Each platform gets its own configuration card. All campaign data is normalized into one unified dashboard.
 
 ## Privacy & Security
 

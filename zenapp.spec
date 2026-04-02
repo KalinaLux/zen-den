@@ -20,6 +20,10 @@ a = Analysis(
         (os.path.join(ROOT, 'demo', 'slack_bot.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'email_watcher.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'analytics.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'meta_ads_client.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'microsoft_ads_client.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'tiktok_ads_client.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'i18n.json'), 'demo'),
         (os.path.join(ROOT, 'config'), 'config'),
     ],
     hiddenimports=[
@@ -41,6 +45,9 @@ a = Analysis(
         'report_generator',
         'report_mailer',
         'google_ads_client',
+        'meta_ads_client',
+        'microsoft_ads_client',
+        'tiktok_ads_client',
         'slack_bot',
         'email_watcher',
         'analytics',
@@ -100,8 +107,8 @@ app = BUNDLE(
     info_plist={
         'CFBundleName': "Zen Den",
         'CFBundleDisplayName': "Zen Den",
-        'CFBundleVersion': '1.0.0',
-        'CFBundleShortVersionString': '1.0.0',
+        'CFBundleVersion': '2.1.0',
+        'CFBundleShortVersionString': '2.1.0',
         'NSHighResolutionCapable': True,
         'LSMinimumSystemVersion': '10.15',
         'NSAppTransportSecurity': {

@@ -2,7 +2,10 @@
   "clients": [
     {
       "name": "Solara Skincare",
-      "aliases": ["solara", "skincare client"],
+      "aliases": [
+        "solara",
+        "skincare client"
+      ],
       "customer_id": "555-111-2222",
       "account_lead": "@danielm",
       "campaigns": [
@@ -23,7 +26,7 @@
             "cost": 8829.56,
             "conversions": 312,
             "conv_rate": 5.02,
-            "conv_value": 28080.00,
+            "conv_value": 28080.0,
             "roas": 3.18
           }
         },
@@ -38,10 +41,10 @@
           "promos": [
             {
               "type": "promotion_extension",
-              "text": "20% Off Summer Essentials — Use code SUN20",
+              "text": "20% Off Summer Essentials \u2014 Use code SUN20",
               "status": "APPROVED",
               "serving": false,
-              "reason": "Campaign is paused — promo will serve once campaign is enabled",
+              "reason": "Campaign is paused \u2014 promo will serve once campaign is enabled",
               "start_date": "2026-05-01",
               "end_date": "2026-06-30"
             }
@@ -72,10 +75,10 @@
             "clicks": 5890,
             "ctr": 5.24,
             "avg_cpc": 2.87,
-            "cost": 16904.30,
+            "cost": 16904.3,
             "conversions": 189,
             "conv_rate": 3.21,
-            "conv_value": 17010.00,
+            "conv_value": 17010.0,
             "roas": 1.01
           }
         },
@@ -102,10 +105,10 @@
             "clicks": 8745,
             "ctr": 4.25,
             "avg_cpc": 0.98,
-            "cost": 8570.10,
+            "cost": 8570.1,
             "conversions": 541,
             "conv_rate": 6.19,
-            "conv_value": 43280.00,
+            "conv_value": 43280.0,
             "roas": 5.05
           }
         }
@@ -113,7 +116,11 @@
     },
     {
       "name": "TrueForm Athletics",
-      "aliases": ["trueform", "athletics client", "the fitness brand"],
+      "aliases": [
+        "trueform",
+        "athletics client",
+        "the fitness brand"
+      ],
       "customer_id": "555-333-4444",
       "account_lead": "@jessicaw",
       "campaigns": [
@@ -131,10 +138,10 @@
             "clicks": 9850,
             "ctr": 14.61,
             "avg_cpc": 0.95,
-            "cost": 9357.50,
+            "cost": 9357.5,
             "conversions": 620,
             "conv_rate": 6.29,
-            "conv_value": 55800.00,
+            "conv_value": 55800.0,
             "roas": 5.96
           }
         },
@@ -149,7 +156,7 @@
           "promos": [
             {
               "type": "promotion_extension",
-              "text": "New Arrivals — 15% Off First Order with code SPRING15",
+              "text": "New Arrivals \u2014 15% Off First Order with code SPRING15",
               "status": "APPROVED",
               "serving": true,
               "start_date": "2026-03-15",
@@ -167,10 +174,10 @@
             "clicks": 4920,
             "ctr": 5.52,
             "avg_cpc": 3.15,
-            "cost": 15498.00,
+            "cost": 15498.0,
             "conversions": 287,
             "conv_rate": 5.83,
-            "conv_value": 34440.00,
+            "conv_value": 34440.0,
             "roas": 2.22
           }
         },
@@ -188,10 +195,10 @@
             "clicks": 580,
             "ctr": 4.79,
             "avg_cpc": 3.42,
-            "cost": 1983.60,
+            "cost": 1983.6,
             "conversions": 18,
-            "conv_rate": 3.10,
-            "conv_value": 1620.00,
+            "conv_rate": 3.1,
+            "conv_value": 1620.0,
             "roas": 0.82
           }
         },
@@ -209,10 +216,10 @@
             "clicks": 3210,
             "ctr": 0.59,
             "avg_cpc": 0.68,
-            "cost": 2182.80,
+            "cost": 2182.8,
             "conversions": 95,
             "conv_rate": 2.96,
-            "conv_value": 8550.00,
+            "conv_value": 8550.0,
             "roas": 3.92
           }
         },
@@ -227,10 +234,10 @@
           "promos": [
             {
               "type": "promotion_extension",
-              "text": "Memorial Day Sale — 25% Off Sitewide",
+              "text": "Memorial Day Sale \u2014 25% Off Sitewide",
               "status": "APPROVED",
               "serving": false,
-              "reason": "Campaign is paused — scheduled to enable May 20",
+              "reason": "Campaign is paused \u2014 scheduled to enable May 20",
               "start_date": "2026-05-20",
               "end_date": "2026-05-28"
             }
@@ -251,7 +258,11 @@
     },
     {
       "name": "Coppervine Wines",
-      "aliases": ["coppervine", "the wine client", "wine brand"],
+      "aliases": [
+        "coppervine",
+        "the wine client",
+        "wine brand"
+      ],
       "customer_id": "555-555-6666",
       "account_lead": "@markr",
       "campaigns": [
@@ -269,10 +280,10 @@
             "clicks": 2430,
             "ctr": 12.86,
             "avg_cpc": 1.12,
-            "cost": 2721.60,
+            "cost": 2721.6,
             "conversions": 156,
             "conv_rate": 6.42,
-            "conv_value": 7800.00,
+            "conv_value": 7800.0,
             "roas": 2.87
           }
         },
@@ -287,7 +298,7 @@
           "promos": [
             {
               "type": "promotion_extension",
-              "text": "Join the Wine Club — First Month Free",
+              "text": "Join the Wine Club \u2014 First Month Free",
               "status": "DISAPPROVED",
               "serving": false,
               "reason": "Google policy: alcohol promotion restrictions. Needs review.",
@@ -300,10 +311,10 @@
             "clicks": 1820,
             "ctr": 5.28,
             "avg_cpc": 2.65,
-            "cost": 4823.00,
+            "cost": 4823.0,
             "conversions": 67,
             "conv_rate": 3.68,
-            "conv_value": 4690.00,
+            "conv_value": 4690.0,
             "roas": 0.97
           }
         },
