@@ -50,6 +50,24 @@ from tiktok_ads_client import (
     build_oauth_url as tt_oauth_url, exchange_code as tt_exchange,
     load_tiktok_config, save_tiktok_config, sync_all_live_data as tt_sync,
 )
+from rules_engine import (
+    load_rules, save_rules, get_rule, create_rule, update_rule, delete_rule,
+    toggle_rule, process_message, get_rule_templates,
+)
+from ai_persona import (
+    load_persona, save_persona, get_global_config as get_persona_global,
+    update_global_config as update_persona_global, get_client_config as get_persona_client,
+    update_client_config as update_persona_client, delete_client_config,
+    get_templates as get_persona_templates, update_template as update_persona_template,
+    add_template as add_persona_template, delete_template as delete_persona_template,
+    get_tone_presets, build_system_prompt,
+)
+from sandbox import (
+    load_scripts, save_scripts, get_script, create_script, update_script,
+    delete_script, toggle_script, validate_code, execute_script,
+    run_all_scripts, get_script_templates, generate_script_prompt,
+    generate_placeholder_script,
+)
 import shutil
 import time as _time
 
@@ -477,6 +495,20 @@ class Handler(http.server.BaseHTTPRequestHandler):
             tt_cfg = load_tiktok_config()
             gads_cfg = load_gads_config()
             self._json({"google": {"connected": gads_cfg.get("connected", False), "use_live": gads_cfg.get("use_live_data", False)}, "meta": {"connected": meta_cfg.get("connected", False), "use_live": meta_cfg.get("use_live_data", False)}, "microsoft": {"connected": ms_cfg.get("connected", False), "use_live": ms_cfg.get("use_live_data", False)}, "tiktok": {"connected": tt_cfg.get("connected", False), "use_live": tt_cfg.get("use_live_data", False)}})
+        elif path == "/api/rules":
+            self._json(load_rules())
+        elif path == "/api/rules/templates":
+            self._json(get_rule_templates())
+        elif path == "/api/persona":
+            self._json(load_persona())
+        elif path == "/api/persona/tones":
+            self._json(get_tone_presets())
+        elif path == "/api/persona/templates":
+            self._json(get_persona_templates())
+        elif path == "/api/scripts":
+            self._json(load_scripts())
+        elif path == "/api/scripts/templates":
+            self._json(get_script_templates())
         else:
             self.send_error(404)
 
@@ -631,6 +663,66 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     self._json({"ok": True})
                     return
             self._json({"ok": False, "error": "Not found"}, 404)
+        elif path == "/api/rules":
+            body = self._body()
+            r = create_rule(body)
+            self._json(r)
+        elif path == "/api/rules/toggle":
+            body = self._body()
+            r = toggle_rule(body.get("id", ""))
+            self._json(r if r else {"ok": False}, 200 if r else 404)
+        elif path == "/api/rules/delete":
+            body = self._body()
+            ok = delete_rule(body.get("id", ""))
+            self._json({"ok": ok})
+        elif path == "/api/rules/install-template":
+            body = self._body()
+            tpl_id = body.get("template_id", "")
+            templates = get_rule_templates()
+            tpl = next((t for t in templates if t["id"] == tpl_id), None)
+            if tpl:
+                new_rule = {k: v for k, v in tpl.items() if k != "description"}
+                new_rule["enabled"] = True
+                r = create_rule(new_rule)
+                self._json(r)
+            else:
+                self._json({"ok": False, "error": "Template not found"}, 404)
+        elif path == "/api/scripts":
+            body = self._body()
+            s = create_script(body)
+            self._json(s)
+        elif path == "/api/scripts/validate":
+            body = self._body()
+            result = validate_code(body.get("code", ""))
+            self._json(result)
+        elif path == "/api/scripts/toggle":
+            body = self._body()
+            s = toggle_script(body.get("id", ""))
+            self._json(s if s else {"ok": False}, 200 if s else 404)
+        elif path == "/api/scripts/delete":
+            body = self._body()
+            ok = delete_script(body.get("id", ""))
+            self._json({"ok": ok})
+        elif path == "/api/scripts/test":
+            body = self._body()
+            ctx = body.get("context", {"sender": "test@example.com", "subject": "Test", "body": "test message", "message_type": "email"})
+            result = execute_script(body.get("id", ""), ctx)
+            self._json(result)
+        elif path == "/api/scripts/install-template":
+            body = self._body()
+            tpl_id = body.get("template_id", "")
+            templates = get_script_templates()
+            tpl = next((t for t in templates if t["id"] == tpl_id), None)
+            if tpl:
+                s = create_script({"name": tpl["name"], "description": tpl["description"], "code": tpl["code"], "trigger": tpl["trigger"], "prompt": f"Template: {tpl['name']}", "approved": True})
+                self._json(s)
+            else:
+                self._json({"ok": False, "error": "Template not found"}, 404)
+        elif path == "/api/scripts/generate":
+            body = self._body()
+            prompt = generate_script_prompt(body.get("request", ""))
+            placeholder = generate_placeholder_script(body.get("request", ""))
+            self._json({"prompt": prompt, "generated_code": placeholder})
         else:
             self.send_error(404)
 
@@ -708,6 +800,35 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     self._json({"ok": True})
                     return
             self._json({"ok": False, "error": "Client not found"}, 404)
+        elif path == "/api/rules":
+            body = self._body()
+            r = update_rule(body.get("id", ""), body)
+            self._json(r if r else {"ok": False}, 200 if r else 404)
+        elif path == "/api/persona":
+            body = self._body()
+            update_persona_global(body)
+            self._json({"ok": True})
+        elif path == "/api/persona/client":
+            body = self._body()
+            client_name = body.pop("client_name", "")
+            if client_name:
+                update_persona_client(client_name, body)
+                self._json({"ok": True})
+            else:
+                self._json({"ok": False, "error": "client_name required"}, 400)
+        elif path == "/api/persona/template":
+            body = self._body()
+            name = body.get("name", "")
+            text = body.get("template", "")
+            if name and text:
+                update_persona_template(name, text)
+                self._json({"ok": True})
+            else:
+                self._json({"ok": False, "error": "name and template required"}, 400)
+        elif path == "/api/scripts":
+            body = self._body()
+            s = update_script(body.get("id", ""), body)
+            self._json(s if s else {"ok": False}, 200 if s else 404)
         else:
             self.send_error(404)
 

@@ -49,3 +49,6 @@ demo/msads_config.json
 demo/msads_tokens.json
 demo/tiktok_ads_config.json
 demo/tiktok_ads_tokens.json
+demo/automation_rules.json
+demo/ai_persona.json
+demo/custom_scripts.json

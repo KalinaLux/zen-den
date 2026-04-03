@@ -375,6 +375,37 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .cm-camp-row .camp-del{margin-left:auto;cursor:pointer;opacity:.4;font-size:16px;transition:opacity .15s}.cm-camp-row .camp-del:hover{opacity:1;color:var(--coral)}
 .cm-add-camp{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .cm-add-camp input,.cm-add-camp select{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 12px;outline:none;font-family:var(--font)}
+/* ── Rules / Persona / Sandbox ── */
+.rule-card{padding:20px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start;transition:all .15s}
+.rule-card:hover{transform:translateY(-1px)}
+.rule-card .rc-toggle{flex-shrink:0;width:42px;height:24px;border-radius:12px;background:var(--border);position:relative;cursor:pointer;transition:background .2s;border:none}
+.rule-card .rc-toggle.on{background:var(--green)}
+.rule-card .rc-toggle::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .2s}
+.rule-card .rc-toggle.on::after{left:21px}
+.rule-card .rc-body{flex:1}.rule-card .rc-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.rule-card .rc-desc{font-size:12px;color:var(--text-dim);margin-bottom:8px}
+.rule-card .rc-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--text-muted)}
+.rule-conds{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
+.rule-cond{font-size:11px;padding:3px 10px;border-radius:8px;background:var(--accent-bg);color:var(--accent2);font-weight:500}
+.rule-action{font-size:11px;padding:3px 10px;border-radius:8px;background:var(--green-bg);color:var(--green);font-weight:500}
+.tone-card{padding:20px;cursor:pointer;transition:all .2s;text-align:center}
+.tone-card:hover{transform:translateY(-2px)}
+.tone-card.selected{border-color:var(--accent);box-shadow:0 0 0 2px var(--glow)}
+.tone-card .tc-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.tone-card .tc-desc{font-size:12px;color:var(--text-dim);line-height:1.5}
+.tone-card .tc-ex{font-size:11px;color:var(--text-muted);margin-top:10px;padding:10px;background:var(--bg-glass);border-radius:var(--radius-sm);text-align:left;line-height:1.5;font-style:italic}
+.script-card{padding:20px;margin-bottom:10px;transition:all .15s}
+.script-card:hover{transform:translateY(-1px)}
+.script-card .sc-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:8px}
+.script-card .sc-name{font-size:14px;font-weight:600}
+.script-card .sc-desc{font-size:12px;color:var(--text-dim);margin-bottom:10px}
+.script-card pre{background:var(--bg-glass);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:14px;font-size:12px;line-height:1.5;overflow-x:auto;color:var(--text-dim);font-family:'SF Mono','Fira Code',monospace;max-height:200px;overflow-y:auto}
+.script-card .sc-meta{display:flex;gap:10px;flex-wrap:wrap;font-size:11px;color:var(--text-muted);margin-top:8px}
+.tpl-install{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px}
+.tpl-install-card{padding:18px;transition:all .15s;cursor:pointer}
+.tpl-install-card:hover{transform:translateY(-1px);border-color:var(--accent)}
+.tpl-install-card .tic-name{font-size:13px;font-weight:600;margin-bottom:4px}
+.tpl-install-card .tic-desc{font-size:12px;color:var(--text-dim);line-height:1.45}
 .lang-select{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;padding:10px 14px;outline:none;font-family:var(--font);cursor:pointer;transition:border .2s}
 .lang-select:focus{border-color:var(--accent)}
 .plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:12px}
@@ -483,6 +514,9 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     <div class="ni" data-page="faq" id="nav-faq"><span class="ic">❓</span><span>Q&A Library</span><span class="badge" id="faq-count">48</span></div>
     <div class="ni" data-page="templates" id="nav-templates"><span class="ic">⚡</span><span>Quick Replies</span><span class="badge" id="qr-count">36</span></div>
     <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Manage Clients</span></div>
+    <div class="ni" data-page="rules" id="nav-rules"><span class="ic">🤖</span><span>Automation Rules</span></div>
+    <div class="ni" data-page="persona" id="nav-persona"><span class="ic">🎭</span><span>AI Behavior</span></div>
+    <div class="ni" data-page="sandbox" id="nav-sandbox"><span class="ic">🧪</span><span>Custom Scripts</span></div>
     <div class="ni" data-page="settings" id="nav-settings"><span class="ic">⚙️</span><span>Settings</span></div>
     <div class="ni" data-page="privacy" id="nav-privacy"><span class="ic">🛡️</span><span>Privacy</span></div>
     <div class="ni" data-page="audit" id="nav-audit"><span class="ic">📋</span><span>Audit Log</span></div>
@@ -525,6 +559,9 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     </div>
   </div></div>
   <div class="page" id="page-clients"><div class="ph" style="gap:12px"><div><h2>👥 Manage Clients</h2><p>Add, edit, and organize your clients and campaigns</p></div><button class="btn btn-primary" onclick="openAddClient()">+ Add Client</button></div><div class="pb" id="clients-body"></div></div>
+  <div class="page" id="page-rules"><div class="ph" style="gap:12px"><div><h2>🤖 Automation Rules</h2><p>IF this happens, THEN do that — customize how Zen Den responds</p></div><button class="btn btn-primary" onclick="openAddRule()">+ New Rule</button></div><div class="pb" id="rules-body"></div></div>
+  <div class="page" id="page-persona"><div class="ph"><div><h2>🎭 AI Behavior</h2><p>Customize the AI's tone, personality, and response style</p></div></div><div class="pb" id="persona-body"></div></div>
+  <div class="page" id="page-sandbox"><div class="ph" style="gap:12px"><div><h2>🧪 Custom Scripts</h2><p>Describe what you want in plain English — the AI writes the code</p></div><button class="btn btn-primary" onclick="openAddScript()">+ New Script</button></div><div class="pb" id="sandbox-body"></div></div>
   <div class="page" id="page-templates"><div class="ph" style="gap:12px"><div><h2>⚡ Quick Replies</h2><p>One-click responses — stop typing the same things over and over</p></div></div><div class="pb" id="tpl-body"></div></div>
   <div class="page" id="page-audit"><div class="ph"><div><h2>📋 Audit Log</h2><p>Every query, logged for privacy and peace of mind</p></div></div><div class="pb" id="aud-body"></div></div>
 </div>
@@ -564,7 +601,7 @@ function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dar
 (function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
 
 // ── Nav ──
-function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients}[p]||function(){})()}
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,rules:loadRules,persona:loadPersona,sandbox:loadSandbox}[p]||function(){})()}
 document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
 
 // ── Wizard ──
@@ -579,7 +616,7 @@ async function finishWiz(tour){setupState={completed:true,current_step:6,openai_
 async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
 
 // ── Tour ──
-const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
 let tIdx=0;
 function startTour(){tIdx=0;showT()}
 function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
@@ -875,6 +912,231 @@ if(!confirm('Remove this campaign?'))return;
 await fetch('/api/campaigns/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:clientName,campaign_id:campId})});
 toast('Removed');loadClients()
 }
+
+// ── Automation Rules ──
+async function loadRules(){
+const [rules, templates] = await Promise.all([
+  fetch('/api/rules').then(r=>r.json()),
+  fetch('/api/rules/templates').then(r=>r.json())
+]);
+const el=$('rules-body');
+let h='';
+
+// Template gallery
+const installed = new Set(rules.map(r=>r.name));
+const available = templates.filter(t=>!installed.has(t.name));
+if(available.length){
+h+=`<div style="margin-bottom:24px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px">📦 Quick-Install Templates</h3><div class="tpl-install">`;
+available.forEach(t=>{h+=`<div class="tpl-install-card glass" onclick="installRuleTpl('${t.id}')"><div class="tic-name">${t.name}</div><div class="tic-desc">${t.description}</div></div>`});
+h+='</div></div>'}
+
+// Active rules
+h+=`<h3 style="font-size:15px;font-weight:700;margin-bottom:12px">${rules.length?`📋 ${rules.length} Active Rules`:'No rules yet — create one or install a template above!'}</h3>`;
+rules.sort((a,b)=>(a.priority||99)-(b.priority||99));
+rules.forEach(r=>{
+h+=`<div class="rule-card glass"><button class="rc-toggle${r.enabled?' on':''}" onclick="toggleRuleUI('${r.id}')"></button><div class="rc-body"><div class="rc-name">${r.name}</div>`;
+h+=`<div class="rule-conds">${(r.conditions||[]).map(c=>`<span class="rule-cond">IF ${c.field} ${c.op} "${c.value||''}"</span>`).join('')}</div>`;
+h+=`<div class="rule-conds">${(r.actions||[]).map(a=>`<span class="rule-action">→ ${a.type}${a.value?' ('+a.value+')':''}</span>`).join('')}</div>`;
+h+=`<div class="rc-meta"><span>Trigger: ${r.trigger||'any'}</span><span>Runs: ${r.run_count||0}</span>${r.last_triggered?`<span>Last: ${new Date(r.last_triggered).toLocaleDateString()}</span>`:''}<span>Priority: ${r.priority||99}</span></div></div>`;
+h+=`<div style="display:flex;flex-direction:column;gap:6px"><button class="btn btn-ghost btn-sm" onclick="editRuleUI('${r.id}')">✏️</button><button class="btn btn-ghost btn-sm" onclick="deleteRuleUI('${r.id}')">🗑</button></div></div>`});
+el.innerHTML=h}
+
+async function installRuleTpl(tplId){
+await fetch('/api/rules/install-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({template_id:tplId})});
+toast('Rule installed! 🤖');loadRules()}
+
+async function toggleRuleUI(id){
+await fetch('/api/rules/toggle',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+loadRules()}
+
+async function deleteRuleUI(id){
+if(!confirm('Delete this rule?'))return;
+await fetch('/api/rules/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+toast('Deleted');loadRules()}
+
+function openAddRule(){
+const name=prompt('Rule name (e.g. "Auto-reply to budget questions"):');
+if(!name)return;
+const trigger=prompt('Trigger type (email or slack):','email');
+const field=prompt('Condition field (sender, subject, body, channel, client_name):','subject');
+const op=prompt('Operator (contains, equals, starts_with, ends_with):','contains');
+const val=prompt('Value to match:','');
+const actionType=prompt('Action (auto_reply, tag, escalate, forward, log, skip):','tag');
+const actionVal=prompt('Action value (tag name, reply text, etc.):','');
+
+const rule={name,trigger:trigger||'email',conditions:[{field:field||'subject',op:op||'contains',value:val||''}],condition_logic:'all',actions:[{type:actionType||'tag',value:actionVal||''}],priority:50,enabled:true};
+fetch('/api/rules',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(rule)}).then(()=>{toast('Rule created! 🤖');loadRules()})}
+
+async function editRuleUI(id){
+const rules=await fetch('/api/rules').then(r=>r.json());
+const rule=rules.find(r=>r.id===id);
+if(!rule)return;
+const name=prompt('Rule name:',rule.name);
+if(name===null)return;
+const enabled=confirm('Enable this rule?');
+const priority=parseInt(prompt('Priority (lower = higher priority):',rule.priority)||'50');
+await fetch('/api/rules',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,name,enabled,priority})});
+toast('Updated!');loadRules()}
+
+// ── AI Behavior / Persona ──
+async function loadPersona(){
+const [persona, tones] = await Promise.all([
+  fetch('/api/persona').then(r=>r.json()),
+  fetch('/api/persona/tones').then(r=>r.json())
+]);
+const g = persona.global || {};
+const el=$('persona-body');
+let h='';
+
+// Tone selector
+h+=`<div style="margin-bottom:24px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🎨 Tone Presets</h3><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">`;
+Object.entries(tones).forEach(([key, preset])=>{
+const selected=g.tone===key;
+h+=`<div class="tone-card glass${selected?' selected':''}" onclick="setTone('${key}')"><div class="tc-name">${key.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase())}</div><div class="tc-desc">${preset.description}</div><div class="tc-ex">"${preset.example.substring(0,120)}${preset.example.length>120?'...':''}"</div></div>`});
+h+='</div></div>';
+
+// Global settings
+h+=`<div class="ss-card glass"><h3>🌍 Global Settings</h3><div class="sd">These apply to all responses unless overridden per client.</div>
+<label>AI Name</label><input type="text" id="p-name" value="${g.name||'Zen Den'}">
+<label>Response Length</label><select id="p-length" class="lang-select" style="width:100%;margin-bottom:14px"><option value="concise"${g.response_length==='concise'?' selected':''}>Concise (1-2 sentences)</option><option value="moderate"${g.response_length==='moderate'?' selected':''}>Moderate (paragraph)</option><option value="detailed"${g.response_length==='detailed'?' selected':''}>Detailed (thorough)</option></select>
+<label>Sign-Off</label><input type="text" id="p-signoff" value="${(g.sign_off||'').replace(/\n/g,'\\n')}">
+<label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;cursor:pointer"><input type="checkbox" id="p-emoji"${g.use_emoji?' checked':''}><span style="text-transform:none;letter-spacing:0;font-weight:500;font-size:13px">Use emoji in responses</span></label>
+<label>Max Response Words</label><input type="text" id="p-maxwords" value="${g.max_response_words||150}" style="width:120px">
+<label>Forbidden Phrases (one per line)</label><textarea id="p-forbidden" style="min-height:60px">${(g.forbidden_phrases||[]).join('\\n')}</textarea>
+<label>Always Include (one per line)</label><textarea id="p-always" style="min-height:60px">${(g.always_include||[]).join('\\n')}</textarea>
+<label>Custom System Prompt (advanced)</label><textarea id="p-prompt" style="min-height:80px">${g.system_prompt||''}</textarea>
+<div class="btn-row"><button class="btn btn-primary" onclick="savePersonaGlobal()">Save Settings 🎭</button></div></div>`;
+
+// Response templates
+const templates = persona.templates || {};
+h+=`<div class="ss-card glass"><h3>📝 Response Templates</h3><div class="sd">Customize how the AI formats different types of responses. Use {sender_name}, {answer}, {sign_off}, {client_name}.</div>`;
+Object.entries(templates).forEach(([name, text])=>{
+h+=`<label>${name}</label><textarea id="ptpl-${name}" style="min-height:60px;margin-bottom:12px">${text}</textarea>`});
+h+=`<div class="btn-row"><button class="btn btn-primary" onclick="savePersonaTemplates()">Save Templates</button></div></div>`;
+
+// Per-client overrides
+const clients = persona.per_client || {};
+h+=`<div class="ss-card glass"><h3>👥 Per-Client Overrides</h3><div class="sd">Customize the AI's behavior for specific clients.</div>`;
+if(Object.keys(clients).length){
+Object.entries(clients).forEach(([name, cfg])=>{
+h+=`<div class="glass" style="padding:14px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:center"><b>${name}</b><button class="btn btn-ghost btn-sm" onclick="deleteClientPersona('${name.replace(/'/g,"\\'")}')">🗑</button></div><div style="font-size:12px;color:var(--text-dim);margin-top:4px">Tone: ${cfg.tone||'(global)'} · ${cfg.custom_context?cfg.custom_context.substring(0,60)+'...':'No custom context'}</div></div>`})}
+h+=`<div class="btn-row"><button class="btn btn-ghost" onclick="addClientPersona()">+ Add Client Override</button></div></div>`;
+
+el.innerHTML=h}
+
+async function setTone(tone){
+await fetch('/api/persona',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({tone})});
+toast('Tone updated! 🎨');loadPersona()}
+
+async function savePersonaGlobal(){
+const cfg={
+  name:$('p-name').value.trim(),
+  response_length:$('p-length').value,
+  sign_off:$('p-signoff').value.replace(/\\n/g,'\n'),
+  use_emoji:$('p-emoji').checked,
+  max_response_words:parseInt($('p-maxwords').value)||150,
+  forbidden_phrases:$('p-forbidden').value.split('\n').map(s=>s.trim()).filter(Boolean),
+  always_include:$('p-always').value.split('\n').map(s=>s.trim()).filter(Boolean),
+  system_prompt:$('p-prompt').value.trim()
+};
+await fetch('/api/persona',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(cfg)});
+toast('Persona saved! 🎭')}
+
+async function savePersonaTemplates(){
+const persona=await fetch('/api/persona').then(r=>r.json());
+const tpls=persona.templates||{};
+for(const name of Object.keys(tpls)){
+  const el=document.getElementById('ptpl-'+name);
+  if(el)await fetch('/api/persona/template',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,template:el.value})})
+}
+toast('Templates saved! 📝')}
+
+async function addClientPersona(){
+const name=prompt('Client name:');
+if(!name)return;
+const tone=prompt('Tone (friendly-professional, formal, casual, minimal, supportive):','friendly-professional');
+const ctx=prompt('Custom context (describe this client):','');
+await fetch('/api/persona/client',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:name,tone,custom_context:ctx})});
+toast('Added!');loadPersona()}
+
+async function deleteClientPersona(name){
+if(!confirm(`Remove override for "${name}"?`))return;
+await fetch('/api/persona/client',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:name,_delete:true})});
+toast('Removed');loadPersona()}
+
+// ── Custom Scripts Sandbox ──
+async function loadSandbox(){
+const [scripts, templates] = await Promise.all([
+  fetch('/api/scripts').then(r=>r.json()),
+  fetch('/api/scripts/templates').then(r=>r.json())
+]);
+const el=$('sandbox-body');
+let h='';
+
+// Intro
+h+=`<div class="glass" style="padding:24px;margin-bottom:20px;background:linear-gradient(135deg,rgba(167,139,250,.12),rgba(134,239,172,.08));border:1px solid rgba(167,139,250,.15)"><h3 style="font-size:16px;margin-bottom:8px">🧪 How Custom Scripts Work</h3><p style="font-size:13px;color:var(--text-dim);line-height:1.7"><b>1.</b> Describe what you want in plain English<br><b>2.</b> The AI generates a Python function<br><b>3.</b> You review the code and approve it<br><b>4.</b> It runs automatically alongside your Automation Rules<br><br>Scripts are <b>sandboxed</b> — they can't access files, the internet, or anything outside the Zen Den. Every script is validated for safety before it can run.</p></div>`;
+
+// Script generator
+h+=`<div class="ss-card glass"><h3>✨ Describe Your Automation</h3><div class="sd">Type what you want in plain English. The AI will write the code for you.</div><textarea id="sb-request" placeholder="Example: 'Auto-tag emails from clients with over $10k monthly spend as VIP'" style="min-height:80px"></textarea><div class="btn-row"><button class="btn btn-primary" onclick="generateScript()">🧠 Generate Script</button></div><div id="sb-preview" style="display:none;margin-top:16px"><label>Generated Code (review before approving):</label><textarea id="sb-code" style="font-family:'SF Mono','Fira Code',monospace;font-size:12px;min-height:160px;line-height:1.5"></textarea><div id="sb-validation" style="margin-top:8px"></div><div class="btn-row"><button class="btn btn-sage" onclick="approveScript()">✅ Approve & Save</button><button class="btn btn-ghost" onclick="$('sb-preview').style.display='none'">Cancel</button></div></div></div>`;
+
+// Template gallery
+const installed = new Set(scripts.map(s=>s.name));
+const available = templates.filter(t=>!installed.has(t.name));
+if(available.length){
+h+=`<div style="margin-bottom:24px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px">📦 Example Scripts</h3><div class="tpl-install">`;
+available.forEach(t=>{h+=`<div class="tpl-install-card glass" onclick="installScriptTpl('${t.id}')"><div class="tic-name">${t.name}</div><div class="tic-desc">${t.description}</div></div>`});
+h+='</div></div>'}
+
+// Active scripts
+h+=`<h3 style="font-size:15px;font-weight:700;margin-bottom:12px">${scripts.length?`📜 ${scripts.length} Custom Scripts`:'No scripts yet — generate one above!'}</h3>`;
+scripts.forEach(s=>{
+h+=`<div class="script-card glass"><div class="sc-top"><button class="rc-toggle${s.enabled?' on':''}" onclick="toggleScriptUI('${s.id}')"></button><div style="flex:1"><div class="sc-name">${s.name}${s.approved?'':' <span style=\"color:var(--yellow);font-size:11px\">⏳ Pending approval</span>'}</div><div class="sc-desc">${s.description||''}</div></div><div style="display:flex;gap:6px"><button class="btn btn-ghost btn-sm" onclick="testScriptUI('${s.id}')">▶️ Test</button><button class="btn btn-ghost btn-sm" onclick="deleteScriptUI('${s.id}')">🗑</button></div></div>`;
+h+=`<pre>${(s.code||'').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>`;
+h+=`<div class="sc-meta"><span>Trigger: ${s.trigger||'any'}</span><span>Runs: ${s.run_count||0}</span>${s.last_run?`<span>Last: ${new Date(s.last_run).toLocaleDateString()}</span>`:''}<span>v${s.version||1}</span></div></div>`});
+el.innerHTML=h}
+
+async function generateScript(){
+const req=$('sb-request').value.trim();
+if(!req){toast('Describe what you want first');return}
+toast('Generating...');
+const r=await fetch('/api/scripts/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request:req})}).then(r=>r.json());
+$('sb-code').value=r.generated_code||'';
+$('sb-preview').style.display='';
+// Validate immediately
+const v=await fetch('/api/scripts/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:r.generated_code||''})}).then(r=>r.json());
+$('sb-validation').innerHTML=v.valid?'<span style="color:var(--green);font-size:12px;font-weight:600">✓ Code is safe and valid</span>':`<span style="color:var(--coral);font-size:12px;font-weight:600">⚠ Issues: ${(v.errors||[]).join(', ')}</span>`}
+
+async function approveScript(){
+const req=$('sb-request').value.trim();
+const code=$('sb-code').value;
+const v=await fetch('/api/scripts/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code})}).then(r=>r.json());
+if(!v.valid){toast('Fix the issues first: '+(v.errors||[]).join(', '));return}
+const name=prompt('Name for this script:',req.substring(0,60));
+if(!name)return;
+await fetch('/api/scripts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,description:req,prompt:req,code,trigger:'email',approved:true,enabled:true})});
+$('sb-preview').style.display='none';$('sb-request').value='';
+toast('Script saved! 🧪');loadSandbox()}
+
+async function installScriptTpl(tplId){
+await fetch('/api/scripts/install-template',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({template_id:tplId})});
+toast('Script installed! 🧪');loadSandbox()}
+
+async function toggleScriptUI(id){
+await fetch('/api/scripts/toggle',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+loadSandbox()}
+
+async function deleteScriptUI(id){
+if(!confirm('Delete this script?'))return;
+await fetch('/api/scripts/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});
+toast('Deleted');loadSandbox()}
+
+async function testScriptUI(id){
+toast('Running test...');
+const r=await fetch('/api/scripts/test',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,context:{sender:'test@example.com',sender_name:'Test User',subject:'Is the budget campaign on?',body:'Can you check if the budget campaign is still running?',client_name:'Test Client',message_type:'email'}})}).then(r=>r.json());
+if(r.success)toast('Result: '+(r.result?JSON.stringify(r.result):'No action taken')+' ('+r.execution_time_ms+'ms)');
+else toast('Error: '+(r.error||'failed'))}
+
+function openAddScript(){goTo('sandbox')}
 
 // ── i18n ──
 let i18nData={},currentLang=localStorage.getItem('zen-lang')||'en';
