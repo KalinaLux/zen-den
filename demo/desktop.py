@@ -787,6 +787,38 @@ class Handler(http.server.BaseHTTPRequestHandler):
             body = self._body()
             ok = delete_creative_fn(body.get("id", ""))
             self._json({"ok": ok})
+        elif path.startswith("/api/report-save/"):
+            parsed = urllib.parse.urlparse(self.path)
+            qs = urllib.parse.parse_qs(parsed.query)
+            client_slug = urllib.parse.unquote(path[len("/api/report-save/"):])
+            date_range = qs.get("range", ["Last 30 Days"])[0]
+            data = load_mock_data()
+            client = None
+            for c in data["clients"]:
+                names = [c["name"].lower()] + [a.lower() for a in c.get("aliases", [])]
+                if client_slug.lower() in names:
+                    client = c; break
+            if not client:
+                for c in data["clients"]:
+                    if client_slug.lower() in c["name"].lower():
+                        client = c; break
+            if not client:
+                self._json({"ok": False, "error": f"Client '{client_slug}' not found"}, 404)
+                return
+            try:
+                pdf_bytes = generate_client_report(client, date_range)
+                safe_name = client["name"].replace(" ", "_").lower()
+                filename = f"{safe_name}_report_{datetime.now().strftime('%Y%m%d')}.pdf"
+                downloads = Path.home() / "Downloads"
+                downloads.mkdir(exist_ok=True)
+                dest = downloads / filename
+                with open(dest, "wb") as f:
+                    f.write(pdf_bytes)
+                audit_log(f"Generated report for {client['name']}", "report", "pdf")
+                record_action(DATA_DIR, "report_generated", {"client": client["name"]})
+                self._json({"ok": True, "filename": filename, "path": str(dest)})
+            except Exception as e:
+                self._json({"ok": False, "error": str(e)}, 500)
         else:
             self.send_error(404)
 
