@@ -105,6 +105,36 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .theme-toggle:hover{background:var(--bg-card);color:var(--text)}
 .theme-toggle .ticon{font-size:16px}
 .sb-zen{padding:12px 20px;font-size:11px;color:var(--text-muted);line-height:1.5;border-top:1px solid var(--border)}
+.sb-group-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text-muted);padding:14px 16px 4px;user-select:none}
+.sb-toggle{cursor:pointer;display:flex;align-items:center;gap:6px;transition:color .2s}.sb-toggle:hover{color:var(--text-dim)}
+.sb-arrow{font-size:10px;transition:transform .2s}
+.sb-arrow.open{transform:rotate(90deg)}
+.sb-advanced{display:none}.sb-advanced.show{display:block}
+.sb-ver{padding:4px 20px;font-size:10px;color:var(--text-muted)}
+.update-banner{padding:10px 16px;margin:8px 10px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--accent),#8b5cf6);color:#fff;font-size:11.5px;font-weight:600;cursor:pointer;text-align:center;transition:transform .15s,box-shadow .15s;line-height:1.4}
+.update-banner:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(167,139,250,.3)}
+.update-banner.hidden{display:none}
+
+/* Help page */
+.help-checklist{padding:28px}
+.help-checklist h3{font-size:17px;font-weight:700;margin-bottom:4px}
+.help-step{display:flex;align-items:center;gap:14px;padding:14px 16px;margin-top:10px;border-radius:var(--radius-sm);cursor:pointer;transition:all .2s;border:1px solid var(--border2)}
+.help-step:hover{background:var(--accent-bg);border-color:rgba(167,139,250,.2);transform:translateX(4px)}
+.hs-num{width:32px;height:32px;border-radius:50%;background:var(--accent-bg);color:var(--accent2);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0}
+.hs-body{flex:1;font-size:13px;line-height:1.55;color:var(--text-dim)}.hs-body b{color:var(--text);font-weight:600}
+.hs-go{color:var(--accent);font-size:16px;font-weight:700;opacity:.5;transition:opacity .2s}
+.help-step:hover .hs-go{opacity:1}
+.help-faq{padding:28px}.help-faq h3{font-size:17px;font-weight:700;margin-bottom:14px}
+.help-q{margin-bottom:6px;border:1px solid var(--border2);border-radius:var(--radius-sm);overflow:hidden}
+.help-q summary{padding:12px 16px;font-size:13.5px;font-weight:600;cursor:pointer;transition:background .15s;list-style:none}
+.help-q summary::-webkit-details-marker{display:none}
+.help-q summary::before{content:'▸ ';color:var(--accent);font-size:12px}
+.help-q[open] summary::before{content:'▾ '}
+.help-q[open] summary{background:var(--accent-bg)}
+.help-q p{padding:10px 16px 14px;font-size:13px;line-height:1.6;color:var(--text-dim)}
+.help-links{padding:28px}.help-links h3{font-size:17px;font-weight:700}
+.help-link{display:flex;align-items:center;justify-content:center;padding:16px;text-decoration:none;color:var(--text);font-weight:600;font-size:13px;border-radius:var(--radius-sm);transition:all .2s;text-align:center}
+.help-link:hover{background:var(--accent-bg);color:var(--accent2);transform:translateY(-2px)}
 
 /* ── Main ── */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
@@ -435,7 +465,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .plat-card .plat-stat.on{color:var(--green)}.plat-card .plat-stat.off{color:var(--text-muted)}
 
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
-@media(max-width:900px){.sidebar{width:60px}.sb-brand h1,.sb-brand .tagline,.ni span:not(.ic),.sb-zen,.ni .badge{display:none}.sb-brand{padding:16px 12px}.sb-brand .logo{font-size:22px}.ni{justify-content:center;padding:12px}.stats{grid-template-columns:repeat(2,1fr)}.theme-toggle span:not(.ticon){display:none}}
+@media(max-width:900px){.sidebar{width:60px}.sb-brand h1,.sb-brand .tagline,.ni span:not(.ic),.sb-zen,.ni .badge,.sb-group-label,.sb-ver,.update-banner{display:none}.sb-brand{padding:16px 12px}.sb-brand .logo{font-size:22px}.ni{justify-content:center;padding:12px}.stats{grid-template-columns:repeat(2,1fr)}.theme-toggle span:not(.ticon){display:none}.sb-advanced{display:block!important}}
 </style>
 </head>
 <body>
@@ -525,23 +555,32 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 <!-- ═══ APP ═══ -->
 <div class="sidebar">
   <div class="sb-brand"><div class="logo">🧘</div><h1>Zen Den</h1><div class="tagline">Breathe easy. It's handled.</div></div>
+  <div id="update-banner" class="update-banner hidden" onclick="window.open(this.dataset.url,'_blank')"></div>
   <nav class="sb-nav">
+    <div class="sb-group-label">Essentials</div>
     <div class="ni active" data-page="dashboard" id="nav-dashboard"><span class="ic">📊</span><span>Dashboard</span></div>
     <div class="ni" data-page="chat" id="nav-chat"><span class="ic">💬</span><span>Chat</span></div>
-    <div class="ni" data-page="digest" id="nav-digest"><span class="ic">☀️</span><span>Digest</span></div>
     <div class="ni" data-page="reports" id="nav-reports"><span class="ic">📄</span><span>Reports</span></div>
+    <div class="ni" data-page="digest" id="nav-digest"><span class="ic">☀️</span><span>Digest</span></div>
     <div class="ni" data-page="faq" id="nav-faq"><span class="ic">❓</span><span>Q&A Library</span><span class="badge" id="faq-count">48</span></div>
     <div class="ni" data-page="templates" id="nav-templates"><span class="ic">⚡</span><span>Quick Replies</span><span class="badge" id="qr-count">36</span></div>
-    <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Manage Clients</span></div>
+    <div class="sb-group-label">Manage</div>
+    <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Clients</span></div>
     <div class="ni" data-page="creatives" id="nav-creatives"><span class="ic">🎨</span><span>Creatives</span></div>
-    <div class="ni" data-page="rules" id="nav-rules"><span class="ic">🤖</span><span>Automation Rules</span></div>
-    <div class="ni" data-page="persona" id="nav-persona"><span class="ic">🎭</span><span>AI Behavior</span></div>
-    <div class="ni" data-page="sandbox" id="nav-sandbox"><span class="ic">🧪</span><span>Custom Scripts</span></div>
+    <div class="sb-group-label sb-toggle" onclick="toggleAdvanced()">Advanced <span class="sb-arrow" id="adv-arrow">▸</span></div>
+    <div class="sb-advanced" id="sb-advanced">
+      <div class="ni" data-page="rules" id="nav-rules"><span class="ic">🤖</span><span>Automation Rules</span></div>
+      <div class="ni" data-page="persona" id="nav-persona"><span class="ic">🎭</span><span>AI Behavior</span></div>
+      <div class="ni" data-page="sandbox" id="nav-sandbox"><span class="ic">🧪</span><span>Custom Scripts</span></div>
+    </div>
+    <div class="sb-group-label">System</div>
+    <div class="ni" data-page="help" id="nav-help"><span class="ic">💡</span><span>Help</span></div>
     <div class="ni" data-page="settings" id="nav-settings"><span class="ic">⚙️</span><span>Settings</span></div>
     <div class="ni" data-page="privacy" id="nav-privacy"><span class="ic">🛡️</span><span>Privacy</span></div>
     <div class="ni" data-page="audit" id="nav-audit"><span class="ic">📋</span><span>Audit Log</span></div>
   </nav>
   <div class="sb-footer"><button class="theme-toggle" onclick="toggleTheme()"><span class="ticon">🌙</span><span>Dark Mode</span></button></div>
+  <div class="sb-ver" id="sb-ver"></div>
   <div class="sb-zen">🌿 Take a breath. You're doing great.</div>
   <div class="sb-zen" style="font-size:10px;border-top:none;padding-top:0">Built with 💜 by <a href="https://github.com/KalinaLux" target="_blank" style="color:var(--accent2);text-decoration:none">Kalina Lux</a></div>
 </div>
@@ -584,6 +623,37 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
   <div class="page" id="page-persona"><div class="ph"><div><h2>🎭 AI Behavior</h2><p>Customize the AI's tone, personality, and response style</p></div></div><div class="pb" id="persona-body"></div></div>
   <div class="page" id="page-sandbox"><div class="ph" style="gap:12px"><div><h2>🧪 Custom Scripts</h2><p>Describe what you want in plain English — the AI writes the code</p></div><button class="btn btn-primary" onclick="openAddScript()">+ New Script</button></div><div class="pb" id="sandbox-body"></div></div>
   <div class="page" id="page-templates"><div class="ph" style="gap:12px"><div><h2>⚡ Quick Replies</h2><p>One-click responses — stop typing the same things over and over</p></div></div><div class="pb" id="tpl-body"></div></div>
+  <div class="page" id="page-help"><div class="ph"><div><h2>💡 Help &amp; Getting Started</h2><p>Everything you need to know — no tech jargon</p></div></div><div class="pb" id="help-body">
+    <div class="help-checklist glass">
+      <h3>Your First 5 Minutes</h3>
+      <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px">Follow these steps and you'll be saving time immediately:</p>
+      <div class="help-step" onclick="goTo('settings')"><span class="hs-num">1</span><div class="hs-body"><b>Add your AI key</b><br>Go to Settings → paste your ChatGPT or Claude API key. This lets Zen Den answer questions intelligently.</div><span class="hs-go">→</span></div>
+      <div class="help-step" onclick="goTo('chat')"><span class="hs-num">2</span><div class="hs-body"><b>Try asking a question</b><br>Go to Chat → type "Is the TrueForm campaign on?" and see the magic. It works with demo data right away.</div><span class="hs-go">→</span></div>
+      <div class="help-step" onclick="goTo('reports')"><span class="hs-num">3</span><div class="hs-body"><b>Generate a report</b><br>Go to Reports → click "Generate PDF" on any client. A professional report downloads instantly.</div><span class="hs-go">→</span></div>
+      <div class="help-step" onclick="goTo('settings')"><span class="hs-num">4</span><div class="hs-body"><b>Connect Slack (optional)</b><br>Set up the Slack bot so Zen Den auto-responds to campaign questions in your channels.</div><span class="hs-go">→</span></div>
+      <div class="help-step" onclick="goTo('settings')"><span class="hs-num">5</span><div class="hs-body"><b>Connect Google Ads (optional)</b><br>Link your MCC to pull real campaign data. Takes 10 minutes, one-time setup.</div><span class="hs-go">→</span></div>
+    </div>
+    <div class="help-faq glass" style="margin-top:20px">
+      <h3>Common Questions</h3>
+      <details class="help-q"><summary>What is the Zen Den?</summary><p>It's your personal AI assistant that handles the repetitive campaign questions, status checks, and report requests that eat up your day. It runs entirely on your computer — nothing goes to the cloud.</p></details>
+      <details class="help-q"><summary>Is my data safe?</summary><p>Yes. Everything runs locally on your machine. The AI only sees your questions, not your account data. Campaign data is fetched directly from Google/Meta/Microsoft/TikTok using your own login. See the Privacy page for the full breakdown.</p></details>
+      <details class="help-q"><summary>Do I need to be technical?</summary><p>Nope. The setup wizard walks you through everything. You'll paste a couple of keys and click "connect." If you can copy-paste, you can use this.</p></details>
+      <details class="help-q"><summary>What are Quick Replies?</summary><p>36 pre-written responses to common Slack/email messages. Instead of typing "The campaign is running, here's the status..." for the 100th time, just click and copy.</p></details>
+      <details class="help-q"><summary>What's the Q&A Library?</summary><p>48 pre-loaded answers to every question your team asks — budgets, bidding, reporting schedules, campaign types, strategy. The Chat uses this to answer instantly. You can add your own too.</p></details>
+      <details class="help-q"><summary>Can I use this without Google Ads connected?</summary><p>Absolutely. The app works great with demo data — you can try everything. Connect Google Ads when you're ready for real data.</p></details>
+      <details class="help-q"><summary>How do I get updates?</summary><p>Zen Den checks for new versions automatically. When one is available, you'll see a purple banner at the top of the sidebar. Click it to download the latest version.</p></details>
+      <details class="help-q"><summary>Something isn't working — what do I do?</summary><p>Check the Audit Log (sidebar → Audit Log) for error details. If that doesn't help, <a href="https://github.com/KalinaLux/zen-den/issues" target="_blank" style="color:var(--accent2)">open an issue on GitHub</a> and we'll help.</p></details>
+    </div>
+    <div class="help-links glass" style="margin-top:20px">
+      <h3>Resources</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <a href="https://app.heygen.com/videos/801c0e2ac4dd4f20b456c68bf661fb5a" target="_blank" class="help-link glass">🎬 Watch Video Tour</a>
+        <a href="https://github.com/KalinaLux/zen-den" target="_blank" class="help-link glass">📦 GitHub Repository</a>
+        <a href="https://github.com/KalinaLux/zen-den/issues" target="_blank" class="help-link glass">🐛 Report a Bug</a>
+        <a href="https://github.com/KalinaLux/zen-den/blob/main/CONTRIBUTING.md" target="_blank" class="help-link glass">🤝 Contributing Guide</a>
+      </div>
+    </div>
+  </div></div>
   <div class="page" id="page-audit"><div class="ph"><div><h2>📋 Audit Log</h2><p>Every query, logged for privacy and peace of mind</p></div></div><div class="pb" id="aud-body"></div></div>
 </div>
 
@@ -622,7 +692,7 @@ function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dar
 (function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
 
 // ── Nav ──
-function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,creatives:loadCreatives,rules:loadRules,persona:loadPersona,sandbox:loadSandbox}[p]||function(){})()}
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,creatives:loadCreatives,rules:loadRules,persona:loadPersona,sandbox:loadSandbox,help:function(){}}[p]||function(){})()}
 document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
 
 // ── Wizard ──
@@ -637,7 +707,7 @@ async function finishWiz(tour){setupState={completed:true,current_step:6,openai_
 async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
 
 // ── Tour ──
-const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-creatives',t:'🎨 Creative Studio',b:'Generate ad copy with AI, review it, approve it, and push to any platform. Full version history and approval workflow.',go:'creatives'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-creatives',t:'🎨 Creative Studio',b:'Generate ad copy with AI, review it, approve it, and push to any platform. Full version history and approval workflow.',go:'creatives'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-help',t:'💡 Help & Getting Started',b:'A simple checklist to get running in 5 minutes, plus answers to common questions about the tool.',go:'help'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
 let tIdx=0;
 function startTour(){tIdx=0;showT()}
 function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
@@ -1287,6 +1357,24 @@ if(page)goTo(page.id.replace('page-',''));
 toast('Language: '+{en:'English',es:'Español',fr:'Français',pt:'Português'}[lang]);
 }
 loadI18n();
+
+// ── Advanced sidebar toggle ──
+function toggleAdvanced(){const el=$('sb-advanced'),ar=$('adv-arrow');el.classList.toggle('show');ar.classList.toggle('open')}
+
+// ── Update checker ──
+async function checkForUpdate(){
+try{
+  const v=await fetch('/api/version').then(r=>r.json());
+  $('sb-ver').textContent='v'+v.version;
+  const u=await fetch('/api/update-check').then(r=>r.json());
+  if(u.update_available){
+    const banner=$('update-banner');
+    banner.textContent='🆕 Update available: v'+u.latest_version+' — click to download';
+    banner.dataset.url=u.download_url||u.release_url;
+    banner.classList.remove('hidden');
+  }
+}catch(e){}}
+checkForUpdate();
 
 checkSetup();loadDash();
 </script>

@@ -75,6 +75,7 @@ from creative_manager import (
     push_creative, generate_placeholder_copy, generate_variations,
     generate_copy_prompt, get_push_log, get_creative_stats, get_version_diff,
 )
+from updater import check_for_update, get_current_version
 import shutil
 import time as _time
 
@@ -532,6 +533,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             cid = path.split("/")[-1]
             c = get_creative(cid)
             self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/version":
+            self._json({"version": get_current_version()})
+        elif path == "/api/update-check":
+            self._json(check_for_update())
         else:
             self.send_error(404)
 
