@@ -29,6 +29,7 @@ a = Analysis(
         (os.path.join(ROOT, 'demo', 'sandbox.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'creative_manager.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'updater.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'marketing_coach.py'), 'demo'),
         (os.path.join(ROOT, 'config'), 'config'),
     ],
     hiddenimports=[
@@ -58,6 +59,7 @@ a = Analysis(
         'sandbox',
         'creative_manager',
         'updater',
+        'marketing_coach',
         'slack_bot',
         'email_watcher',
         'analytics',
@@ -117,8 +119,8 @@ app = BUNDLE(
     info_plist={
         'CFBundleName': "Zen Den",
         'CFBundleDisplayName': "Zen Den",
-        'CFBundleVersion': '2.4.0',
-        'CFBundleShortVersionString': '2.4.0',
+        'CFBundleVersion': '2.5.0',
+        'CFBundleShortVersionString': '2.5.0',
         'NSHighResolutionCapable': True,
         'LSMinimumSystemVersion': '10.15',
         'NSAppTransportSecurity': {

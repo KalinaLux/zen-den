@@ -464,6 +464,192 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .plat-card .plat-stat{font-size:11.5px}
 .plat-card .plat-stat.on{color:var(--green)}.plat-card .plat-stat.off{color:var(--text-muted)}
 
+/* ── Marketing Coach ─────────────────────────────── */
+.mc-empty{text-align:center;padding:80px 40px;max-width:520px;margin:0 auto}
+.mc-empty .mc-empty-icon{font-size:72px;margin-bottom:20px;filter:drop-shadow(0 4px 16px rgba(167,139,250,.25))}
+.mc-empty h3{font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:10px}
+.mc-empty p{font-size:14px;color:var(--text-dim);line-height:1.7;margin-bottom:28px}
+.mc-empty .btn{font-size:15px;padding:14px 32px}
+.mc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:32px}
+.mc-biz{padding:24px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.mc-biz:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.15);border-color:var(--accent)}
+.mc-biz::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;border-radius:50%;background:var(--accent);opacity:.06;transition:opacity .3s}
+.mc-biz:hover::before{opacity:.12}
+.mc-biz .mc-biz-emoji{font-size:36px;margin-bottom:12px;display:block}
+.mc-biz .mc-biz-name{font-size:17px;font-weight:700;letter-spacing:-.2px;margin-bottom:4px}
+.mc-biz .mc-biz-type{font-size:12px;color:var(--text-muted);text-transform:capitalize;margin-bottom:12px}
+.mc-biz .mc-biz-url{font-size:11.5px;color:var(--accent2);text-decoration:none;display:block;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mc-biz-details{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.mc-biz-detail{font-size:11px;padding:4px 10px;border-radius:8px;background:var(--bg-glass);border:1px solid var(--border2);color:var(--text-dim);font-weight:500}
+.mc-biz-platforms{display:flex;gap:6px;margin-bottom:14px}
+.mc-plat-dot{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:1px solid var(--border2)}
+.mc-plat-dot.google{background:var(--blue-bg);color:var(--blue)}.mc-plat-dot.meta{background:var(--accent-bg);color:var(--accent2)}.mc-plat-dot.microsoft{background:var(--sage-bg);color:var(--sage)}.mc-plat-dot.tiktok{background:var(--coral-bg);color:var(--coral)}
+.mc-biz .mc-biz-cta{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--accent2);transition:gap .2s}
+.mc-biz:hover .mc-biz-cta{gap:10px}
+.mc-section-hdr{font-size:17px;font-weight:700;letter-spacing:-.2px;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.mc-section-hdr .mc-sh-count{font-size:11px;font-weight:600;padding:3px 10px;border-radius:10px;background:var(--accent-bg);color:var(--accent2)}
+.mc-opps{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:32px}
+.mc-opp{padding:18px;transition:all .2s}
+.mc-opp:hover{transform:translateY(-1px)}
+.mc-opp .mc-opp-date{font-size:11px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.mc-opp .mc-opp-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.mc-opp .mc-opp-desc{font-size:12px;color:var(--text-dim);line-height:1.5}
+.mc-opp .mc-opp-rel{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:10px}
+.mc-opp .mc-opp-rel.high{background:var(--green-bg);color:var(--green)}.mc-opp .mc-opp-rel.medium{background:var(--yellow-bg);color:var(--yellow)}.mc-opp .mc-opp-rel.low{background:var(--bg-glass);color:var(--text-muted)}
+.mc-wiz{max-width:640px;margin:0 auto;padding:20px 0}
+.mc-wiz-top{text-align:center;margin-bottom:32px}
+.mc-wiz-top .mc-wiz-icon{font-size:52px;margin-bottom:8px;display:block}
+.mc-wiz-top h3{font-size:22px;font-weight:800;letter-spacing:-.3px;background:linear-gradient(135deg,var(--accent2),var(--peach));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mc-wiz-top p{font-size:13.5px;color:var(--text-dim);margin-top:6px;line-height:1.6}
+.mc-wiz-dots{display:flex;gap:8px;justify-content:center;margin-bottom:28px}
+.mc-wiz-dot{width:40px;height:5px;border-radius:3px;background:var(--border);transition:all .4s}
+.mc-wiz-dot.done{background:var(--green)}.mc-wiz-dot.now{background:var(--accent);box-shadow:0 0 8px var(--glow)}
+.mc-wiz-step{display:none;animation:mcFadeIn .35s ease}
+.mc-wiz-step.active{display:block}
+@keyframes mcFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.mc-wiz-card{background:var(--bg-card);backdrop-filter:var(--card-blur);-webkit-backdrop-filter:var(--card-blur);border:1px solid var(--border);border-radius:var(--radius);padding:32px;margin-bottom:16px}
+.mc-wiz-card h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.mc-wiz-card .mc-wd{font-size:13px;color:var(--text-dim);margin-bottom:20px;line-height:1.65}
+.mc-wiz-card label{display:block;font-size:11.5px;font-weight:600;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.mc-wiz-card input[type=text],.mc-wiz-card input[type=url],.mc-wiz-card input[type=number],.mc-wiz-card textarea{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:13px;padding:12px 14px;outline:none;transition:border .2s,box-shadow .2s;margin-bottom:14px;font-family:var(--font);box-sizing:border-box}
+.mc-wiz-card textarea{min-height:80px;resize:vertical;line-height:1.6}
+.mc-wiz-card input:focus,.mc-wiz-card textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.mc-wiz-card .mc-hint{font-size:11.5px;color:var(--text-muted);margin-top:-8px;margin-bottom:14px;line-height:1.45}
+.mc-wiz-btns{display:flex;gap:12px;justify-content:flex-end;margin-top:8px}
+.mc-wiz-btns .btn{min-width:100px;justify-content:center}
+.mc-pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.mc-pick{padding:16px 12px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;background:var(--bg-card);backdrop-filter:var(--card-blur);border-radius:var(--radius);position:relative}
+.mc-pick:hover{border-color:var(--border);transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.mc-pick.selected{border-color:var(--accent);background:var(--accent-bg);box-shadow:0 0 0 2px var(--glow)}
+.mc-pick .mc-pick-icon{font-size:28px;margin-bottom:8px;display:block}
+.mc-pick .mc-pick-name{font-size:13px;font-weight:600;margin-bottom:2px}
+.mc-pick .mc-pick-desc{font-size:11px;color:var(--text-dim);line-height:1.4}
+.mc-pick .mc-pick-check{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:none;align-items:center;justify-content:center;font-weight:700}
+.mc-pick.selected .mc-pick-check{display:flex}
+.mc-plat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:16px}
+.mc-plat-pick{padding:20px;text-align:center;cursor:pointer;transition:all .2s;border:2px solid transparent;background:var(--bg-card);backdrop-filter:var(--card-blur);border-radius:var(--radius);position:relative}
+.mc-plat-pick:hover{border-color:var(--border);transform:translateY(-2px)}
+.mc-plat-pick.selected{border-color:var(--accent);background:var(--accent-bg);box-shadow:0 0 0 2px var(--glow)}
+.mc-plat-pick .mc-pick-icon{font-size:32px;margin-bottom:10px;display:block}
+.mc-plat-pick .mc-pick-name{font-size:14px;font-weight:700;margin-bottom:4px}
+.mc-plat-pick .mc-pick-desc{font-size:11.5px;color:var(--text-dim);line-height:1.45}
+.mc-plat-pick .mc-pick-check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:12px;display:none;align-items:center;justify-content:center;font-weight:700}
+.mc-plat-pick.selected .mc-pick-check{display:flex}
+.mc-budget-wrap{margin-bottom:20px}
+.mc-budget-display{text-align:center;margin-bottom:12px}
+.mc-budget-display .mc-budget-val{font-size:38px;font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,var(--accent2),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.mc-budget-display .mc-budget-per{font-size:13px;color:var(--text-dim);margin-top:2px}
+.mc-budget-slider{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:var(--border);outline:none;margin-bottom:8px}
+.mc-budget-slider::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#8b5cf6);cursor:pointer;box-shadow:0 2px 8px rgba(167,139,250,.4);transition:transform .15s}
+.mc-budget-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.mc-budget-range{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted)}
+.mc-budget-context{margin-top:14px;padding:14px 16px;background:var(--accent-bg);border:1px solid rgba(167,139,250,.15);border-radius:var(--radius-sm);font-size:12.5px;color:var(--text-dim);line-height:1.55}
+.mc-analysis{padding:16px;background:var(--green-bg);border:1px solid rgba(134,239,172,.15);border-radius:var(--radius-sm);margin-bottom:16px;font-size:13px;line-height:1.6}
+.mc-analysis b{color:var(--green)}
+.mc-analysis-loading{padding:16px;text-align:center;color:var(--text-dim);font-size:13px}
+.mc-analysis-loading .mc-spinner{display:inline-block;width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px}
+.mc-skip{display:block;text-align:center;margin-top:8px;font-size:12.5px;color:var(--text-muted);cursor:pointer;transition:color .2s;background:none;border:none;font-family:var(--font)}
+.mc-skip:hover{color:var(--accent2)}
+.mc-plan-back{margin-bottom:20px}
+.mc-plan-hero{padding:32px;margin-bottom:20px;background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(134,239,172,.06));border:1px solid rgba(167,139,250,.12)}
+.mc-plan-hero .mc-plan-title{font-size:22px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.mc-plan-hero .mc-plan-subtitle{font-size:13.5px;color:var(--text-dim);line-height:1.7;max-width:600px}
+.mc-plan-section{margin-bottom:24px}
+.mc-plan-section h3{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.mc-strat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.mc-strat-card{padding:24px;transition:all .2s}
+.mc-strat-card:hover{transform:translateY(-1px)}
+.mc-strat-card .mc-strat-plat{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.mc-strat-card .mc-strat-icon{font-size:28px}
+.mc-strat-card .mc-strat-name{font-size:15px;font-weight:700}
+.mc-strat-card .mc-strat-budget{font-size:12px;color:var(--green);font-weight:600;margin-top:2px}
+.mc-strat-card .mc-strat-body{font-size:12.5px;color:var(--text-dim);line-height:1.6;margin-bottom:12px}
+.mc-strat-card .mc-strat-ideas{list-style:none;padding:0}
+.mc-strat-card .mc-strat-ideas li{padding:5px 0;font-size:12px;color:var(--text-dim);display:flex;gap:6px;align-items:flex-start}
+.mc-strat-card .mc-strat-ideas li::before{content:'→';color:var(--accent);font-weight:bold;flex-shrink:0}
+.mc-kw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;max-height:400px;overflow-y:auto;padding-right:4px}
+.mc-kw{padding:16px;transition:all .15s}
+.mc-kw:hover{transform:translateY(-1px)}
+.mc-kw .mc-kw-term{font-size:14px;font-weight:700;margin-bottom:8px;word-break:break-word}
+.mc-kw .mc-kw-meta{display:flex;gap:8px;flex-wrap:wrap;font-size:11px}
+.mc-kw .mc-kw-cpc{padding:3px 9px;border-radius:8px;background:var(--blue-bg);color:var(--blue);font-weight:600}
+.mc-kw .mc-kw-comp{padding:3px 9px;border-radius:8px;font-weight:600}
+.mc-kw .mc-kw-comp.low{background:var(--green-bg);color:var(--green)}.mc-kw .mc-kw-comp.medium{background:var(--yellow-bg);color:var(--yellow)}.mc-kw .mc-kw-comp.high{background:var(--coral-bg);color:var(--coral)}
+.mc-kw .mc-kw-rel{margin-top:8px;font-size:11px;color:var(--text-muted)}
+.mc-kw .mc-kw-stars{color:var(--yellow);letter-spacing:1px}
+.mc-budget-card{padding:28px}
+.mc-budget-visual{display:flex;height:28px;border-radius:14px;overflow:hidden;margin-bottom:16px;box-shadow:inset 0 1px 3px rgba(0,0,0,.2)}
+.mc-budget-seg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;min-width:40px;transition:all .3s}
+.mc-budget-seg.google{background:linear-gradient(135deg,#4285f4,#34a1f5)}.mc-budget-seg.meta{background:linear-gradient(135deg,var(--accent),#8b5cf6)}.mc-budget-seg.microsoft{background:linear-gradient(135deg,var(--sage),#6ab05e)}.mc-budget-seg.tiktok{background:linear-gradient(135deg,var(--coral),#f87171)}.mc-budget-seg.other{background:var(--border)}
+.mc-budget-legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.mc-budget-leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-dim)}
+.mc-budget-leg-dot{width:10px;height:10px;border-radius:3px}
+.mc-budget-recs{list-style:none;padding:0}
+.mc-budget-recs li{padding:8px 0;font-size:12.5px;color:var(--text-dim);display:flex;gap:8px;align-items:flex-start;border-bottom:1px solid var(--border2)}
+.mc-budget-recs li:last-child{border-bottom:none}
+.mc-budget-recs li::before{content:'💡';flex-shrink:0}
+.mc-wins{padding:24px}
+.mc-win{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid var(--border2);transition:opacity .3s}
+.mc-win:last-child{border-bottom:none}
+.mc-win.done{opacity:.5}
+.mc-win .mc-win-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;transition:all .2s;background:none;color:var(--text);font-family:var(--font);padding:0}
+.mc-win .mc-win-check:hover{border-color:var(--accent)}
+.mc-win .mc-win-check.checked{background:var(--green);border-color:var(--green);color:#fff}
+.mc-win .mc-win-text{font-size:13px;color:var(--text-dim);line-height:1.55}
+.mc-win.done .mc-win-text{text-decoration:line-through}
+.mc-cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.mc-cal-card{padding:18px;transition:all .15s}
+.mc-cal-card:hover{transform:translateY(-1px)}
+.mc-cal-card .mc-cal-date{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.mc-cal-card .mc-cal-date.soon{color:var(--green)}.mc-cal-card .mc-cal-date.upcoming{color:var(--accent2)}.mc-cal-card .mc-cal-date.later{color:var(--text-muted)}
+.mc-cal-card .mc-cal-name{font-size:14px;font-weight:600;margin-bottom:4px}
+.mc-cal-card .mc-cal-tip{font-size:12px;color:var(--text-dim);line-height:1.5}
+.mc-cal-card .mc-cal-rel{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:10px}
+.mc-cal-card .mc-cal-rel.high{background:var(--green-bg);color:var(--green)}.mc-cal-card .mc-cal-rel.medium{background:var(--yellow-bg);color:var(--yellow)}.mc-cal-card .mc-cal-rel.low{background:var(--bg-glass);color:var(--text-muted)}
+.mc-launch-section{padding:28px;text-align:center;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(134,239,172,.06));border:1px solid rgba(167,139,250,.1)}
+.mc-launch-section h3{font-size:17px;font-weight:700;margin-bottom:6px;justify-content:center}
+.mc-launch-section p{font-size:13px;color:var(--text-dim);margin-bottom:18px}
+.mc-launch-plats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.mc-campaign{max-width:680px;margin:0 auto}
+.mc-campaign-section{padding:24px;margin-bottom:14px}
+.mc-campaign-section h4{font-size:14px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.mc-campaign-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px}
+.mc-campaign-row:last-child{border-bottom:none}
+.mc-campaign-row .mc-cr-label{color:var(--text-muted);font-size:12px}
+.mc-campaign-row .mc-cr-val{font-weight:600}
+.mc-ad-preview{background:var(--bg-glass);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:18px;margin-bottom:12px}
+.mc-ad-preview .mc-adp-label{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.mc-ad-preview .mc-adp-headline{font-size:15px;font-weight:600;color:var(--blue);margin-bottom:6px;cursor:pointer}
+.mc-ad-preview .mc-adp-url{font-size:12px;color:var(--green);margin-bottom:4px}
+.mc-ad-preview .mc-adp-desc{font-size:13px;color:var(--text-dim);line-height:1.55}
+.mc-kw-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.mc-kw-tag{font-size:11px;padding:4px 10px;border-radius:8px;background:var(--accent-bg);color:var(--accent2);font-weight:500}
+.mc-campaign-launch{padding:24px;text-align:center}
+.mc-campaign-launch .btn{font-size:15px;padding:14px 36px}
+.mc-jargon-overlay{margin-bottom:20px}
+.mc-jargon-search{margin-bottom:18px}
+.mc-jargon-search input{width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:14px;padding:12px 16px;outline:none;font-family:var(--font);transition:border .2s;box-sizing:border-box}
+.mc-jargon-search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
+.mc-jargon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.mc-jargon-card{padding:20px;transition:all .15s}
+.mc-jargon-card:hover{transform:translateY(-1px)}
+.mc-jargon-card .mc-jt{font-size:15px;font-weight:700;color:var(--accent2);margin-bottom:2px}
+.mc-jargon-card .mc-jfull{font-size:11.5px;color:var(--text-muted);margin-bottom:8px}
+.mc-jargon-card .mc-jdef{font-size:13px;color:var(--text-dim);line-height:1.6;margin-bottom:8px}
+.mc-jargon-card .mc-jtip{font-size:12px;padding:10px 12px;background:var(--accent-bg);border-radius:var(--radius-sm);color:var(--text-dim);line-height:1.5;border:1px solid rgba(167,139,250,.1)}
+.mc-jargon-card .mc-jtip::before{content:'💡 ';font-size:11px}
+.mc-verdict{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:20px;font-size:11px;font-weight:600}
+.mc-verdict.good{background:var(--green-bg);color:var(--green)}.mc-verdict.okay{background:var(--yellow-bg);color:var(--yellow)}.mc-verdict.warning{background:var(--coral-bg);color:var(--coral)}
+.mc-generating{padding:48px 24px;text-align:center}
+.mc-generating .mc-gen-icon{font-size:48px;margin-bottom:16px;display:block;animation:mcPulse 1.5s ease-in-out infinite}
+@keyframes mcPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.7}}
+.mc-generating h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.mc-generating p{font-size:13px;color:var(--text-dim)}
+.mc-biz-actions{display:flex;gap:6px;margin-top:4px}
+.mc-biz-actions button{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--text-muted);cursor:pointer;font-family:var(--font);transition:all .15s}
+.mc-biz-actions button:hover{border-color:var(--text-dim);color:var(--text)}
+.mc-biz-actions button.del:hover{border-color:var(--coral);color:var(--coral)}
+
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--text-muted)}
 @media(max-width:900px){.sidebar{width:60px}.sb-brand h1,.sb-brand .tagline,.ni span:not(.ic),.sb-zen,.ni .badge,.sb-group-label,.sb-ver,.update-banner{display:none}.sb-brand{padding:16px 12px}.sb-brand .logo{font-size:22px}.ni{justify-content:center;padding:12px}.stats{grid-template-columns:repeat(2,1fr)}.theme-toggle span:not(.ticon){display:none}.sb-advanced{display:block!important}}
 </style>
@@ -567,6 +753,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     <div class="sb-group-label">Manage</div>
     <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Clients</span></div>
     <div class="ni" data-page="creatives" id="nav-creatives"><span class="ic">🎨</span><span>Creatives</span></div>
+    <div class="ni" data-page="coach" id="nav-coach"><span class="ic">🎓</span><span>Marketing Coach</span></div>
     <div class="sb-group-label sb-toggle" onclick="toggleAdvanced()">Advanced <span class="sb-arrow" id="adv-arrow">▸</span></div>
     <div class="sb-advanced" id="sb-advanced">
       <div class="ni" data-page="rules" id="nav-rules"><span class="ic">🤖</span><span>Automation Rules</span></div>
@@ -619,6 +806,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
   </div></div>
   <div class="page" id="page-clients"><div class="ph" style="gap:12px"><div><h2>👥 Manage Clients</h2><p>Add, edit, and organize your clients and campaigns</p></div><button class="btn btn-primary" onclick="openAddClient()">+ Add Client</button></div><div class="pb" id="clients-body"></div></div>
   <div class="page" id="page-creatives"><div class="ph" style="gap:12px"><div><h2>🎨 Creative Studio</h2><p>Generate, review, and push ad creatives across all platforms</p></div><button class="btn btn-primary" onclick="openNewCreative()">+ New Creative</button></div><div class="pb" id="creatives-body"></div></div>
+  <div class="page" id="page-coach"><div class="ph" style="gap:12px"><div><h2>🎓 Marketing Coach</h2><p>Your step-by-step guide to advertising — no jargon, no stress</p></div><div style="display:flex;gap:8px"><button class="btn btn-ghost btn-sm" onclick="showJargon()">📖 Jargon Dictionary</button><button class="btn btn-primary" onclick="openNewBusiness()">+ Add My Business</button></div></div><div class="pb" id="coach-body"></div></div>
   <div class="page" id="page-rules"><div class="ph" style="gap:12px"><div><h2>🤖 Automation Rules</h2><p>IF this happens, THEN do that — customize how Zen Den responds</p></div><button class="btn btn-primary" onclick="openAddRule()">+ New Rule</button></div><div class="pb" id="rules-body"></div></div>
   <div class="page" id="page-persona"><div class="ph"><div><h2>🎭 AI Behavior</h2><p>Customize the AI's tone, personality, and response style</p></div></div><div class="pb" id="persona-body"></div></div>
   <div class="page" id="page-sandbox"><div class="ph" style="gap:12px"><div><h2>🧪 Custom Scripts</h2><p>Describe what you want in plain English — the AI writes the code</p></div><button class="btn btn-primary" onclick="openAddScript()">+ New Script</button></div><div class="pb" id="sandbox-body"></div></div>
@@ -692,7 +880,7 @@ function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dar
 (function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
 
 // ── Nav ──
-function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,creatives:loadCreatives,rules:loadRules,persona:loadPersona,sandbox:loadSandbox,help:function(){}}[p]||function(){})()}
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,creatives:loadCreatives,rules:loadRules,persona:loadPersona,sandbox:loadSandbox,coach:loadCoach,help:function(){}}[p]||function(){})()}
 document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
 
 // ── Wizard ──
@@ -707,7 +895,7 @@ async function finishWiz(tour){setupState={completed:true,current_step:6,openai_
 async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
 
 // ── Tour ──
-const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-creatives',t:'🎨 Creative Studio',b:'Generate ad copy with AI, review it, approve it, and push to any platform. Full version history and approval workflow.',go:'creatives'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-help',t:'💡 Help & Getting Started',b:'A simple checklist to get running in 5 minutes, plus answers to common questions about the tool.',go:'help'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-coach',t:'🎓 Marketing Coach — New!',b:'Don\'t know marketing? No problem. Add your business and get a step-by-step plan, keyword suggestions, budget advice, and ad copy — all in plain English.',go:'coach'},{el:'nav-creatives',t:'🎨 Creative Studio',b:'Generate ad copy with AI, review it, approve it, and push to any platform. Full version history and approval workflow.',go:'creatives'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-help',t:'💡 Help & Getting Started',b:'A simple checklist to get running in 5 minutes, plus answers to common questions about the tool.',go:'help'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
 let tIdx=0;
 function startTour(){tIdx=0;showT()}
 function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
@@ -1377,6 +1565,705 @@ try{
 checkForUpdate();
 
 checkSetup();loadDash();
+
+// ── Marketing Coach ─────────────────────────────────
+
+let mcWizStep = 0;
+let mcWizData = {
+  name:'', type:'', website:'', description:'', location:'',
+  target_audience:'', goals:[], platforms:[], monthly_budget:500,
+  analysis: null
+};
+
+const MC_BIZ_TYPES = [
+  {id:'wedding_venue',emoji:'💒',name:'Wedding Venue'},
+  {id:'vacation_rental',emoji:'🏡',name:'Vacation Rental'},
+  {id:'restaurant',emoji:'🍽️',name:'Restaurant'},
+  {id:'ecommerce',emoji:'🛒',name:'E-commerce'},
+  {id:'real_estate',emoji:'🏠',name:'Real Estate'},
+  {id:'fitness',emoji:'💪',name:'Fitness / Gym'},
+  {id:'salon_spa',emoji:'💅',name:'Salon / Spa'},
+  {id:'photography',emoji:'📸',name:'Photography'},
+  {id:'consulting',emoji:'💼',name:'Consulting'},
+  {id:'dental',emoji:'🦷',name:'Dental / Medical'},
+  {id:'legal',emoji:'⚖️',name:'Legal Services'},
+  {id:'home_services',emoji:'🔧',name:'Home Services'},
+  {id:'education',emoji:'📚',name:'Education'},
+  {id:'pet_services',emoji:'🐾',name:'Pet Services'},
+  {id:'auto',emoji:'🚗',name:'Auto / Dealer'},
+  {id:'other',emoji:'✨',name:'Other'}
+];
+
+const MC_GOALS = [
+  {id:'more_inquiries',emoji:'📩',name:'More Inquiries',desc:'Get more people reaching out'},
+  {id:'more_bookings',emoji:'📅',name:'More Bookings',desc:'Fill your calendar'},
+  {id:'brand_awareness',emoji:'📣',name:'Brand Awareness',desc:'Get your name out there'},
+  {id:'more_sales',emoji:'💰',name:'More Sales',desc:'Drive online purchases'},
+  {id:'more_traffic',emoji:'🌐',name:'Website Traffic',desc:'Get visitors to your site'},
+  {id:'local_visibility',emoji:'📍',name:'Local Visibility',desc:'Show up when locals search'},
+  {id:'repeat_customers',emoji:'🔄',name:'Repeat Customers',desc:'Keep them coming back'},
+  {id:'event_signups',emoji:'🎟️',name:'Event Signups',desc:'Fill seats at events'}
+];
+
+const MC_PLATFORMS = [
+  {id:'google',emoji:'🔍',name:'Google Ads',desc:'Show up when people search for what you offer'},
+  {id:'meta',emoji:'📱',name:'Meta (Facebook & Instagram)',desc:'Reach people based on interests and demographics'},
+  {id:'microsoft',emoji:'💻',name:'Microsoft (Bing)',desc:'Often cheaper clicks, great for B2B and older audiences'},
+  {id:'tiktok',emoji:'🎵',name:'TikTok Ads',desc:'Short-form video ads for younger audiences'}
+];
+
+function mcBizEmoji(type) {
+  const t = MC_BIZ_TYPES.find(b => b.id === type);
+  return t ? t.emoji : '✨';
+}
+
+async function loadCoach() {
+  const el = $('coach-body');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted)"><div class="mc-spinner" style="display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite"></div> Loading...</div>';
+  try {
+    const profiles = await fetch('/api/coach/profiles').then(r => r.json());
+    if (!profiles || profiles.length === 0) {
+      el.innerHTML = `
+        <div class="mc-empty">
+          <div class="mc-empty-icon">🎓</div>
+          <h3>Welcome to Marketing Coach!</h3>
+          <p>You haven't added any businesses yet — and that's totally okay!<br><br>Tell me about your business and I'll create a personalized marketing plan for you. No experience needed, no wrong answers. <b>Let's do this!</b></p>
+          <button class="btn btn-primary" onclick="openNewBusiness()" style="margin-top:8px">🚀 Add My First Business</button>
+          <button class="mc-skip" onclick="showJargon()" style="margin-top:16px">Or browse the Jargon Dictionary first →</button>
+        </div>`;
+      return;
+    }
+    let h = '<div class="mc-section-hdr">My Businesses <span class="mc-sh-count">' + profiles.length + '</span></div>';
+    h += '<div class="mc-grid">';
+    profiles.forEach(p => {
+      const emoji = mcBizEmoji(p.business_type || p.type);
+      const platDots = (p.platforms || []).map(pl =>
+        `<div class="mc-plat-dot ${pl}" title="${pl}">${pl[0].toUpperCase()}</div>`
+      ).join('');
+      h += `<div class="mc-biz glass" onclick="viewBusinessPlan('${p.id}')">
+        <span class="mc-biz-emoji">${emoji}</span>
+        <div class="mc-biz-name">${p.name || p.business_name || 'My Business'}</div>
+        <div class="mc-biz-type">${(p.business_type || p.type || '').replace(/_/g,' ')}</div>
+        ${p.website ? `<a class="mc-biz-url" href="${p.website}" target="_blank" onclick="event.stopPropagation()">${p.website.replace(/^https?:\\/\\//,'')}</a>` : ''}
+        <div class="mc-biz-details">
+          <span class="mc-biz-detail">$${(p.monthly_budget || 0).toLocaleString()}/mo</span>
+          ${(p.goals || []).slice(0,2).map(g => `<span class="mc-biz-detail">${g.replace(/_/g,' ')}</span>`).join('')}
+        </div>
+        ${platDots ? `<div class="mc-biz-platforms">${platDots}</div>` : ''}
+        <div class="mc-biz-cta">View Plan →</div>
+        <div class="mc-biz-actions" onclick="event.stopPropagation()">
+          <button onclick="editBusiness('${p.id}')">✏️ Edit</button>
+          <button class="del" onclick="deleteBusiness('${p.id}')">🗑️</button>
+        </div>
+      </div>`;
+    });
+    h += '</div>';
+    try {
+      const firstId = profiles[0].id;
+      const opps = await fetch(`/api/coach/opportunities/${firstId}`).then(r => r.json()).catch(() => []);
+      if (opps && opps.length) {
+        h += '<div class="mc-section-hdr" style="margin-top:12px">🗓️ Upcoming Opportunities</div>';
+        h += '<div class="mc-opps">';
+        opps.slice(0, 6).forEach(o => {
+          const daysOut = Math.ceil((new Date(o.date) - new Date()) / 86400000);
+          const dateClass = daysOut <= 14 ? 'soon' : daysOut <= 30 ? 'upcoming' : 'later';
+          const relClass = (o.relevance || '').toLowerCase();
+          h += `<div class="mc-opp glass">
+            <div class="mc-opp-date ${dateClass}">${new Date(o.date).toLocaleDateString('en-US', {month:'short',day:'numeric'})} · ${daysOut}d away</div>
+            <div class="mc-opp-name">${o.name || o.event}</div>
+            <div class="mc-opp-desc">${o.tip || o.description || ''}</div>
+            ${o.relevance ? `<span class="mc-opp-rel ${relClass}">${o.relevance} relevance</span>` : ''}
+          </div>`;
+        });
+        h += '</div>';
+      }
+    } catch(e) {}
+    el.innerHTML = h;
+  } catch(e) {
+    el.innerHTML = `<div class="mc-empty"><div class="mc-empty-icon">😅</div><h3>Couldn't load profiles</h3><p>${e.message}. Try refreshing?</p></div>`;
+  }
+}
+
+function openNewBusiness() {
+  mcWizStep = 0;
+  mcWizData = {name:'',type:'',website:'',description:'',location:'',target_audience:'',goals:[],platforms:[],monthly_budget:500,analysis:null};
+  const el = $('coach-body');
+  el.innerHTML = `
+    <div class="mc-wiz">
+      <div class="mc-wiz-top">
+        <span class="mc-wiz-icon">🎓</span>
+        <h3>Let's Build Your Marketing Plan</h3>
+        <p>6 quick steps — takes about 3 minutes. No wrong answers here! 🌿</p>
+      </div>
+      <div class="mc-wiz-dots" id="mc-wiz-dots">
+        <div class="mc-wiz-dot now"></div><div class="mc-wiz-dot"></div><div class="mc-wiz-dot"></div><div class="mc-wiz-dot"></div><div class="mc-wiz-dot"></div><div class="mc-wiz-dot"></div>
+      </div>
+      <div class="mc-wiz-step active" data-mc-step="0">
+        <div class="mc-wiz-card">
+          <h3>What's your business? 🏪</h3>
+          <div class="mc-wd">We'll use this to customize everything — your plan, your keywords, your budget recommendations. Don't overthink it!</div>
+          <label>Business Name</label>
+          <input type="text" id="mc-biz-name" placeholder="e.g. Sunset Meadow Weddings" oninput="mcWizData.name=this.value">
+          <label>What kind of business?</label>
+          <div class="mc-pick-grid" id="mc-type-grid"></div>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="loadCoach()">Cancel</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcWizNext()">Next →</button>
+        </div>
+      </div>
+      <div class="mc-wiz-step" data-mc-step="1">
+        <div class="mc-wiz-card">
+          <h3>What's your website? 🌐</h3>
+          <div class="mc-wd">If you have one, we'll take a peek and pull out useful info to save you typing. Totally optional!</div>
+          <label>Website URL</label>
+          <div style="display:flex;gap:8px;margin-bottom:14px">
+            <input type="url" id="mc-website" placeholder="https://www.yourbusiness.com" style="margin-bottom:0;flex:1" oninput="mcWizData.website=this.value">
+            <button class="btn btn-primary btn-sm" onclick="analyzeWebsite()" id="mc-analyze-btn">Analyze ✨</button>
+          </div>
+          <div id="mc-analysis-result"></div>
+          <button class="mc-skip" onclick="mcWizData.website='';mcWizData.analysis=null;$('mc-website').value='';mcWizNext()">Skip — I don't have a website yet</button>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="mcWizBack()">← Back</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcWizNext()">Next →</button>
+        </div>
+      </div>
+      <div class="mc-wiz-step" data-mc-step="2">
+        <div class="mc-wiz-card">
+          <h3>Tell me a bit more 📝</h3>
+          <div class="mc-wd">This helps us write better ads and find the right audience. Just a sentence or two is perfect!</div>
+          <label>Brief Description</label>
+          <textarea id="mc-desc" placeholder="e.g. We're a romantic outdoor wedding venue in the Hudson Valley with mountain views, rustic barns, and all-inclusive packages starting at $15k" oninput="mcWizData.description=this.value"></textarea>
+          <label>Location</label>
+          <input type="text" id="mc-location" placeholder="e.g. Hudson Valley, New York" oninput="mcWizData.location=this.value">
+          <label>Who's your ideal customer?</label>
+          <input type="text" id="mc-audience" placeholder="e.g. Engaged couples in the US, ages 25-45, interested in rustic weddings" oninput="mcWizData.target_audience=this.value">
+          <div class="mc-hint">Think about who you'd love to walk through your door. Age, location, interests — anything helps!</div>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="mcWizBack()">← Back</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcWizNext()">Next →</button>
+        </div>
+      </div>
+      <div class="mc-wiz-step" data-mc-step="3">
+        <div class="mc-wiz-card">
+          <h3>What do you want to achieve? 🎯</h3>
+          <div class="mc-wd">Pick as many as you like — we'll prioritize them in your plan. You can always change these later!</div>
+          <div class="mc-pick-grid" id="mc-goal-grid" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))"></div>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="mcWizBack()">← Back</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcWizNext()">Next →</button>
+        </div>
+      </div>
+      <div class="mc-wiz-step" data-mc-step="4">
+        <div class="mc-wiz-card">
+          <h3>Where do you want to advertise? 📢</h3>
+          <div class="mc-wd">Don't worry about choosing wrong — we'll recommend the best ones for your business. Pick what interests you!</div>
+          <div class="mc-plat-grid" id="mc-plat-grid"></div>
+          <div class="mc-hint" id="mc-plat-hint"></div>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="mcWizBack()">← Back</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcWizNext()">Next →</button>
+        </div>
+      </div>
+      <div class="mc-wiz-step" data-mc-step="5">
+        <div class="mc-wiz-card">
+          <h3>What's your monthly ad budget? 💸</h3>
+          <div class="mc-wd">This is just for ads — not our tool! There's no minimum. We'll make the most of whatever you have.</div>
+          <div class="mc-budget-wrap">
+            <div class="mc-budget-display">
+              <div class="mc-budget-val" id="mc-budget-val">$500</div>
+              <div class="mc-budget-per">per month</div>
+            </div>
+            <input type="range" class="mc-budget-slider" id="mc-budget-slider" min="100" max="5000" step="50" value="500" oninput="mcUpdateBudget(this.value)">
+            <div class="mc-budget-range"><span>$100</span><span>$5,000</span></div>
+          </div>
+          <div class="mc-budget-context" id="mc-budget-context">We'll show you benchmark data after we analyze your business type.</div>
+          <button class="mc-skip" onclick="mcWizData.monthly_budget=0;mcFinishWizard()" style="margin-top:8px">I don't know yet — pick a recommendation for me</button>
+        </div>
+        <div class="mc-wiz-btns">
+          <button class="btn btn-ghost" onclick="mcWizBack()">← Back</button>
+          <div style="flex:1"></div>
+          <button class="btn btn-primary" onclick="mcFinishWizard()">Create My Plan 🚀</button>
+        </div>
+      </div>
+    </div>`;
+  mcRenderTypeGrid();
+  mcRenderGoalGrid();
+  mcRenderPlatformGrid();
+  mcWizShow(0);
+}
+
+function mcRenderTypeGrid() {
+  const grid = $('mc-type-grid');
+  if (!grid) return;
+  grid.innerHTML = MC_BIZ_TYPES.map(t =>
+    `<div class="mc-pick glass${mcWizData.type===t.id?' selected':''}" onclick="selectBizType('${t.id}')">
+      <span class="mc-pick-icon">${t.emoji}</span>
+      <div class="mc-pick-name">${t.name}</div>
+      <div class="mc-pick-check">✓</div>
+    </div>`
+  ).join('');
+}
+function mcRenderGoalGrid() {
+  const grid = $('mc-goal-grid');
+  if (!grid) return;
+  grid.innerHTML = MC_GOALS.map(g =>
+    `<div class="mc-pick glass${mcWizData.goals.includes(g.id)?' selected':''}" onclick="selectGoal('${g.id}')">
+      <span class="mc-pick-icon">${g.emoji}</span>
+      <div class="mc-pick-name">${g.name}</div>
+      <div class="mc-pick-desc">${g.desc}</div>
+      <div class="mc-pick-check">✓</div>
+    </div>`
+  ).join('');
+}
+function mcRenderPlatformGrid() {
+  const grid = $('mc-plat-grid');
+  if (!grid) return;
+  grid.innerHTML = MC_PLATFORMS.map(p =>
+    `<div class="mc-plat-pick glass${mcWizData.platforms.includes(p.id)?' selected':''}" onclick="selectPlatform('${p.id}')">
+      <span class="mc-pick-icon">${p.emoji}</span>
+      <div class="mc-pick-name">${p.name}</div>
+      <div class="mc-pick-desc">${p.desc}</div>
+      <div class="mc-pick-check">✓</div>
+    </div>`
+  ).join('');
+}
+
+function selectBizType(type) {
+  mcWizData.type = type;
+  mcRenderTypeGrid();
+  mcUpdateBudgetContext();
+}
+function selectGoal(goal) {
+  const i = mcWizData.goals.indexOf(goal);
+  if (i >= 0) mcWizData.goals.splice(i, 1); else mcWizData.goals.push(goal);
+  mcRenderGoalGrid();
+}
+function selectPlatform(platform) {
+  const i = mcWizData.platforms.indexOf(platform);
+  if (i >= 0) mcWizData.platforms.splice(i, 1); else mcWizData.platforms.push(platform);
+  mcRenderPlatformGrid();
+}
+
+function mcWizShow(step) {
+  mcWizStep = step;
+  document.querySelectorAll('.mc-wiz-step').forEach(s => s.classList.remove('active'));
+  const target = document.querySelector(`.mc-wiz-step[data-mc-step="${step}"]`);
+  if (target) target.classList.add('active');
+  const dots = document.querySelectorAll('#mc-wiz-dots .mc-wiz-dot');
+  dots.forEach((d, i) => { d.className = 'mc-wiz-dot' + (i < step ? ' done' : i === step ? ' now' : ''); });
+}
+function mcWizNext() {
+  if (mcWizStep === 0 && !mcWizData.name.trim()) { toast('Give your business a name — anything works!'); return; }
+  if (mcWizStep < 5) { mcWizStep++; mcWizShow(mcWizStep); }
+}
+function mcWizBack() {
+  if (mcWizStep > 0) { mcWizStep--; mcWizShow(mcWizStep); }
+}
+
+function mcUpdateBudget(val) {
+  mcWizData.monthly_budget = parseInt(val);
+  const display = $('mc-budget-val');
+  if (display) display.textContent = '$' + parseInt(val).toLocaleString();
+}
+function mcUpdateBudgetContext() {
+  const ctx = $('mc-budget-context');
+  if (!ctx) return;
+  const benchmarks = {
+    wedding_venue:'For wedding venues, most businesses spend $500–$2,000/month. Starting at $500 is solid!',
+    vacation_rental:'For vacation rentals, $300–$1,500/month is typical. Seasonal bumps during peak booking periods help a lot.',
+    restaurant:'For restaurants, $200–$800/month gets great local results. Start small and scale what works!',
+    ecommerce:'For e-commerce, $500–$3,000/month is common. It depends on your margins and competition.',
+    real_estate:'For real estate, $500–$2,500/month is standard. Expect to pay more for competitive metro areas.',
+    fitness:'For fitness businesses, $300–$1,000/month works well with local targeting.',
+    salon_spa:'For salons & spas, $200–$800/month with local ads brings in steady new clients.',
+    photography:'For photographers, $200–$1,000/month focusing on seasonal peaks (wedding/holiday) is smart.',
+    consulting:'For consulting, $500–$2,000/month. Quality beats quantity — target narrowly!',
+    dental:'For dental/medical, $500–$2,000/month is typical. Local search is king here.',
+    legal:'For legal services, $1,000–$4,000/month. CPCs are high but so are case values.',
+    home_services:'For home services, $300–$1,500/month. Local service ads are your best friend.',
+    education:'For education, $300–$1,500/month targeting parents or students directly.',
+    pet_services:'For pet services, $200–$800/month targeting local pet owners.',
+    auto:'For auto dealers, $1,000–$5,000/month. Inventory ads and local search dominate.'
+  };
+  ctx.textContent = benchmarks[mcWizData.type] || 'We\'ll tailor budget recommendations once we know more about your business!';
+}
+
+async function analyzeWebsite() {
+  const url = $('mc-website').value.trim();
+  if (!url) { toast('Pop in a URL first!'); return; }
+  const result = $('mc-analysis-result');
+  const btn = $('mc-analyze-btn');
+  result.innerHTML = '<div class="mc-analysis-loading"><span class="mc-spinner"></span> Peeking at your website...</div>';
+  btn.disabled = true;
+  try {
+    const data = await fetch('/api/coach/analyze-website', {
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({url})
+    }).then(r => r.json());
+    mcWizData.analysis = data;
+    mcWizData.website = url;
+    if (data.description && !mcWizData.description) mcWizData.description = data.description;
+    let html = '<div class="mc-analysis">';
+    html += '<b>✓ Got it!</b> Here\'s what we found:<br>';
+    if (data.title) html += `<b>Title:</b> ${data.title}<br>`;
+    if (data.description) html += `<b>Description:</b> ${data.description}<br>`;
+    if (data.keywords) html += `<b>Keywords:</b> ${data.keywords}`;
+    html += '</div>';
+    result.innerHTML = html;
+  } catch(e) {
+    result.innerHTML = '<div class="mc-analysis" style="background:var(--yellow-bg);border-color:rgba(252,211,77,.15)"><b style="color:var(--yellow)">Hmm</b> — couldn\'t reach that site. No worries, you can enter details manually! 🌿</div>';
+  }
+  btn.disabled = false;
+}
+
+async function mcFinishWizard() {
+  if (mcWizData.editId) {
+    const el = $('coach-body');
+    el.innerHTML = `<div class="mc-generating"><span class="mc-gen-icon">✏️</span><h3>Updating your profile...</h3><p>Hang tight!</p></div>`;
+    try {
+      await fetch(`/api/coach/profile/${mcWizData.editId}`, {
+        method:'PUT', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          business_name: mcWizData.name, business_type: mcWizData.type,
+          website: mcWizData.website, description: mcWizData.description,
+          location: mcWizData.location, target_audience: mcWizData.target_audience,
+          goals: mcWizData.goals, platforms: mcWizData.platforms,
+          monthly_budget: mcWizData.monthly_budget || 500
+        })
+      });
+      await fetch(`/api/coach/generate-plan/${mcWizData.editId}`, {method:'POST'}).catch(() => {});
+      toast('Profile updated! Regenerating your plan... 🌿');
+      viewBusinessPlan(mcWizData.editId);
+    } catch(e) {
+      toast('Error updating profile: ' + e.message);
+      loadCoach();
+    }
+    return;
+  }
+  const el = $('coach-body');
+  el.innerHTML = `<div class="mc-generating"><span class="mc-gen-icon">🧠</span><h3>Building your marketing plan...</h3><p>Analyzing your business, researching keywords, and creating a strategy just for you.<br>This usually takes about 10–15 seconds. You're going to crush it! 💜</p></div>`;
+  try {
+    const profile = await fetch('/api/coach/profiles', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        business_name: mcWizData.name, business_type: mcWizData.type,
+        website: mcWizData.website, description: mcWizData.description,
+        location: mcWizData.location, target_audience: mcWizData.target_audience,
+        goals: mcWizData.goals, platforms: mcWizData.platforms,
+        monthly_budget: mcWizData.monthly_budget || 500
+      })
+    }).then(r => r.json());
+    const id = profile.id || profile.profile_id;
+    await fetch(`/api/coach/generate-plan/${id}`, {method:'POST'}).then(r => r.json()).catch(() => ({}));
+    viewBusinessPlan(id);
+  } catch(e) {
+    el.innerHTML = `<div class="mc-empty"><div class="mc-empty-icon">😅</div><h3>Something went sideways</h3><p>${e.message}<br>Let's try again?</p><button class="btn btn-primary" onclick="openNewBusiness()">Try Again</button></div>`;
+  }
+}
+
+async function viewBusinessPlan(profileId) {
+  const el = $('coach-body');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted)"><div class="mc-spinner" style="display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite"></div> Loading your plan...</div>';
+  try {
+    const [profile, plan, keywords, budget, calendar] = await Promise.all([
+      fetch(`/api/coach/profile/${profileId}`).then(r => r.json()),
+      fetch(`/api/coach/plan/${profileId}`).then(r => r.json()).catch(() => null),
+      fetch(`/api/coach/keywords/${profileId}`).then(r => r.json()).catch(() => []),
+      fetch(`/api/coach/budget/${profileId}`).then(r => r.json()).catch(() => null),
+      fetch(`/api/coach/calendar/${profileId}`).then(r => r.json()).catch(() => [])
+    ]);
+    let h = '';
+    h += `<div class="mc-plan-back"><button class="btn btn-ghost btn-sm" onclick="loadCoach()">← Back to My Businesses</button></div>`;
+    const emoji = mcBizEmoji(profile.business_type || profile.type);
+    const bizName = profile.name || profile.business_name || 'Your Business';
+    h += `<div class="mc-plan-hero glass">
+      <div class="mc-plan-title">${emoji} Marketing Plan for ${bizName}</div>
+      <div class="mc-plan-subtitle">${plan && plan.summary ? plan.summary : 'Your personalized marketing strategy is ready. Scroll down to explore each section!'}</div>
+    </div>`;
+    if (plan && plan.platforms && plan.platforms.length) {
+      h += '<div class="mc-plan-section"><h3>🎯 Platform Strategy</h3><div class="mc-strat-grid">';
+      plan.platforms.forEach(p => {
+        const pIcon = {google:'🔍',meta:'📱',microsoft:'💻',tiktok:'🎵'}[p.platform] || '📢';
+        h += `<div class="mc-strat-card glass">
+          <div class="mc-strat-plat">
+            <span class="mc-strat-icon">${pIcon}</span>
+            <div><div class="mc-strat-name">${p.name || p.platform}</div>
+            <div class="mc-strat-budget">${p.budget_percent ? p.budget_percent + '% of budget' : ''} ${p.monthly_budget ? '· $'+p.monthly_budget+'/mo' : ''}</div></div>
+          </div>
+          <div class="mc-strat-body">${p.strategy || p.description || ''}</div>
+          ${p.campaign_ideas && p.campaign_ideas.length ? '<ul class="mc-strat-ideas">' + p.campaign_ideas.map(c => `<li>${c}</li>`).join('') + '</ul>' : ''}
+          <div style="margin-top:12px"><button class="btn btn-ghost btn-sm" onclick="openCampaignBuilder('${profileId}','${p.platform}')">Build Campaign →</button></div>
+        </div>`;
+      });
+      h += '</div></div>';
+    }
+    const kwList = Array.isArray(keywords) ? keywords : (keywords && keywords.keywords ? keywords.keywords : []);
+    if (kwList.length) {
+      h += '<div class="mc-plan-section"><h3>🔑 Suggested Keywords</h3><div class="mc-kw-grid">';
+      kwList.forEach(k => {
+        const comp = (k.competition || '').toLowerCase();
+        const rel = Math.min(k.relevance || k.relevance_score || 3, 5);
+        const stars = '★'.repeat(rel) + '☆'.repeat(5 - rel);
+        h += `<div class="mc-kw glass">
+          <div class="mc-kw-term">${k.keyword || k.term}</div>
+          <div class="mc-kw-meta">
+            ${k.estimated_cpc ? `<span class="mc-kw-cpc">$${k.estimated_cpc} CPC</span>` : ''}
+            <span class="mc-kw-comp ${comp}">${comp || 'unknown'}</span>
+          </div>
+          <div class="mc-kw-rel"><span class="mc-kw-stars">${stars}</span> relevance</div>
+        </div>`;
+      });
+      h += '</div></div>';
+    }
+    if (budget) {
+      h += '<div class="mc-plan-section"><h3>💰 Budget Breakdown</h3><div class="mc-budget-card glass">';
+      const splits = budget.splits || budget.platform_splits || [];
+      if (splits.length) {
+        h += '<div class="mc-budget-visual">';
+        splits.forEach(s => {
+          const pClass = (s.platform || '').toLowerCase();
+          h += `<div class="mc-budget-seg ${pClass}" style="width:${s.percent || s.percentage || 25}%">${s.percent || s.percentage || 25}%</div>`;
+        });
+        h += '</div><div class="mc-budget-legend">';
+        const dotColors = {google:'#4285f4',meta:'var(--accent)',microsoft:'var(--sage)',tiktok:'var(--coral)'};
+        splits.forEach(s => {
+          const p = (s.platform || '').toLowerCase();
+          h += `<div class="mc-budget-leg-item"><div class="mc-budget-leg-dot" style="background:${dotColors[p]||'var(--border)'}"></div>${s.platform} · $${s.amount || Math.round((profile.monthly_budget||500)*(s.percent||25)/100)}/mo</div>`;
+        });
+        h += '</div>';
+      }
+      const recs = budget.recommendations || budget.tips || [];
+      if (recs.length) {
+        h += '<ul class="mc-budget-recs">';
+        recs.forEach(r => { h += `<li>${typeof r === 'string' ? r : r.text || r.recommendation}</li>`; });
+        h += '</ul>';
+      }
+      h += '</div></div>';
+    }
+    const wins = plan && (plan.quick_wins || plan.immediate_actions) ? (plan.quick_wins || plan.immediate_actions) : [];
+    if (wins.length) {
+      const stored = JSON.parse(localStorage.getItem('mc-wins-' + profileId) || '[]');
+      h += '<div class="mc-plan-section"><h3>⚡ Quick Wins — Do These First!</h3><div class="mc-wins glass">';
+      wins.forEach((w, i) => {
+        const text = typeof w === 'string' ? w : (w.text || w.action || w.title);
+        const done = stored.includes(i);
+        h += `<div class="mc-win${done?' done':''}">
+          <button class="mc-win-check${done?' checked':''}" onclick="mcToggleWin('${profileId}',${i},this)">${done?'✓':''}</button>
+          <div class="mc-win-text">${text}</div>
+        </div>`;
+      });
+      h += '</div></div>';
+    }
+    const calList = Array.isArray(calendar) ? calendar : (calendar && calendar.events ? calendar.events : []);
+    if (calList.length) {
+      h += '<div class="mc-plan-section"><h3>🗓️ Marketing Calendar</h3><div class="mc-cal-grid">';
+      calList.forEach(ev => {
+        const d = new Date(ev.date);
+        const daysOut = Math.ceil((d - new Date()) / 86400000);
+        const dateClass = daysOut <= 14 ? 'soon' : daysOut <= 30 ? 'upcoming' : 'later';
+        const relClass = (ev.relevance || '').toLowerCase();
+        h += `<div class="mc-cal-card glass">
+          <div class="mc-cal-date ${dateClass}">${d.toLocaleDateString('en-US',{month:'long',day:'numeric'})} · ${daysOut > 0 ? daysOut+'d away' : 'Today!'}</div>
+          <div class="mc-cal-name">${ev.name || ev.event}</div>
+          <div class="mc-cal-tip">${ev.tip || ev.description || ''}</div>
+          ${ev.relevance ? `<span class="mc-cal-rel ${relClass}">${ev.relevance}</span>` : ''}
+        </div>`;
+      });
+      h += '</div></div>';
+    }
+    h += `<div class="mc-launch-section glass">
+      <h3>🚀 Ready to Launch a Campaign?</h3>
+      <p>Pick a platform and we'll build your first campaign step by step — keywords, ad copy, targeting, everything.</p>
+      <div class="mc-launch-plats">
+        ${(profile.platforms||['google']).map(p => {
+          const pInfo = MC_PLATFORMS.find(pl => pl.id === p) || {emoji:'📢',name:p};
+          return `<button class="btn btn-primary" onclick="openCampaignBuilder('${profileId}','${p}')">${pInfo.emoji} ${pInfo.name}</button>`;
+        }).join('')}
+      </div>
+    </div>`;
+    el.innerHTML = h;
+  } catch(e) {
+    el.innerHTML = `<div class="mc-empty"><div class="mc-empty-icon">😅</div><h3>Couldn't load the plan</h3><p>${e.message}</p><button class="btn btn-ghost" onclick="loadCoach()">← Back</button></div>`;
+  }
+}
+
+function mcToggleWin(profileId, idx, btn) {
+  const key = 'mc-wins-' + profileId;
+  const stored = JSON.parse(localStorage.getItem(key) || '[]');
+  const i = stored.indexOf(idx);
+  if (i >= 0) stored.splice(i, 1); else stored.push(idx);
+  localStorage.setItem(key, JSON.stringify(stored));
+  const row = btn.closest('.mc-win');
+  if (stored.includes(idx)) {
+    row.classList.add('done'); btn.classList.add('checked'); btn.textContent = '✓';
+  } else {
+    row.classList.remove('done'); btn.classList.remove('checked'); btn.textContent = '';
+  }
+}
+
+async function openCampaignBuilder(profileId, platform) {
+  const el = $('coach-body');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted)"><div class="mc-spinner" style="display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite"></div> Building your campaign preview...</div>';
+  try {
+    const [profile, config] = await Promise.all([
+      fetch(`/api/coach/profile/${profileId}`).then(r => r.json()),
+      fetch(`/api/coach/campaign-config/${profileId}`, {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({platform, campaign_type:'search'})
+      }).then(r => r.json()).catch(() => ({}))
+    ]);
+    const pInfo = MC_PLATFORMS.find(p => p.id === platform) || {emoji:'📢',name:platform};
+    let h = `<div class="mc-campaign">`;
+    h += `<div style="margin-bottom:20px"><button class="btn btn-ghost btn-sm" onclick="viewBusinessPlan('${profileId}')">← Back to Plan</button></div>`;
+    h += `<div class="mc-plan-hero glass">
+      <div class="mc-plan-title">${pInfo.emoji} ${pInfo.name} Campaign Builder</div>
+      <div class="mc-plan-subtitle">Here's a preview of your campaign. Review everything, generate ad copy, and when you're ready — launch it!</div>
+    </div>`;
+    h += `<div class="mc-campaign-section glass">
+      <h4>📋 Campaign Details</h4>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Campaign Name</span><span class="mc-cr-val">${config.campaign_name || (profile.business_name||profile.name) + ' - ' + platform + ' Search'}</span></div>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Type</span><span class="mc-cr-val">${config.campaign_type || 'Search'}</span></div>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Daily Budget</span><span class="mc-cr-val">$${config.daily_budget || Math.round((profile.monthly_budget||500)/30)}/day</span></div>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Bidding</span><span class="mc-cr-val">${config.bidding_strategy || 'Maximize Conversions'}</span></div>
+    </div>`;
+    const kws = config.keywords || [];
+    if (kws.length) {
+      h += `<div class="mc-campaign-section glass">
+        <h4>🔑 Keywords</h4>
+        <div class="mc-kw-list">${kws.map(k => `<span class="mc-kw-tag">${typeof k === 'string' ? k : k.keyword || k.term}</span>`).join('')}</div>
+      </div>`;
+    }
+    h += `<div class="mc-campaign-section glass">
+      <h4>🎯 Targeting</h4>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Location</span><span class="mc-cr-val">${config.location || profile.location || 'United States'}</span></div>
+      <div class="mc-campaign-row"><span class="mc-cr-label">Audience</span><span class="mc-cr-val">${config.audience || profile.target_audience || 'All searchers in your area'}</span></div>
+      ${config.demographics ? `<div class="mc-campaign-row"><span class="mc-cr-label">Demographics</span><span class="mc-cr-val">${config.demographics}</span></div>` : ''}
+    </div>`;
+    h += `<div class="mc-campaign-section glass" id="mc-adcopy-section">
+      <h4>✍️ Ad Copy</h4>
+      <div id="mc-adcopy-preview">
+        <p style="color:var(--text-dim);font-size:13px">Click the button below to generate AI-powered ad copy tailored to your business.</p>
+      </div>
+      <div style="margin-top:14px"><button class="btn btn-primary" onclick="mcGenerateAdCopy('${profileId}','${platform}')">✨ Generate AI Ad Copy</button></div>
+    </div>`;
+    h += `<div class="mc-campaign-launch glass">
+      <button class="btn btn-sage" style="font-size:16px;padding:16px 40px" onclick="mcLaunchCampaign('${platform}')">🚀 Save Campaign Config</button>
+      <p style="color:var(--text-muted);font-size:12px;margin-top:12px">You'll connect your ${pInfo.name} account in Settings to go live.</p>
+    </div>`;
+    h += '</div>';
+    el.innerHTML = h;
+  } catch(e) {
+    el.innerHTML = `<div class="mc-empty"><div class="mc-empty-icon">😅</div><h3>Something went wrong</h3><p>${e.message}</p><button class="btn btn-ghost" onclick="viewBusinessPlan('${profileId}')">← Back to Plan</button></div>`;
+  }
+}
+
+async function mcGenerateAdCopy(profileId, platform) {
+  const preview = $('mc-adcopy-preview');
+  preview.innerHTML = '<div class="mc-analysis-loading"><span class="mc-spinner"></span> Writing ad copy with AI...</div>';
+  try {
+    const data = await fetch(`/api/coach/ad-copy/${profileId}`, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({platform, campaign_type:'search'})
+    }).then(r => r.json());
+    const ads = data.ads || data.variations || [data];
+    let html = '';
+    ads.forEach((ad, i) => {
+      const headlines = ad.headlines || [ad.headline_1, ad.headline_2, ad.headline_3].filter(Boolean);
+      const descs = ad.descriptions || [ad.description_1, ad.description_2].filter(Boolean);
+      html += `<div class="mc-ad-preview">
+        <div class="mc-adp-label">Ad Variation ${i+1}</div>
+        ${headlines.map(hl => `<div class="mc-adp-headline">${hl}</div>`).join('')}
+        <div class="mc-adp-url">${ad.display_url || ad.final_url || 'yourbusiness.com'}</div>
+        ${descs.map(d => `<div class="mc-adp-desc">${d}</div>`).join('')}
+      </div>`;
+    });
+    preview.innerHTML = html;
+    toast('Ad copy generated! Review and edit as needed 🌿');
+  } catch(e) {
+    preview.innerHTML = '<div class="mc-analysis" style="background:var(--yellow-bg);border-color:rgba(252,211,77,.15)"><b style="color:var(--yellow)">Hmm</b> — couldn\'t generate ad copy right now. Try again in a moment!</div>';
+  }
+}
+function mcLaunchCampaign(platform) {
+  const pInfo = MC_PLATFORMS.find(p => p.id === platform) || {name:platform};
+  toast(`Campaign config saved! Connect your ${pInfo.name} account in Settings to go live. 🚀`);
+}
+
+async function showJargon() {
+  const el = $('coach-body');
+  el.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted)"><div class="mc-spinner" style="display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite"></div> Loading jargon dictionary...</div>';
+  try {
+    const data = await fetch('/api/coach/jargon').then(r => r.json());
+    const terms = Array.isArray(data) ? data : (data.terms || data.jargon || []);
+    window._mcJargon = terms;
+    mcRenderJargon(terms);
+  } catch(e) {
+    el.innerHTML = `<div class="mc-empty"><div class="mc-empty-icon">📖</div><h3>Couldn't load the dictionary</h3><p>${e.message}</p><button class="btn btn-ghost" onclick="loadCoach()">← Back</button></div>`;
+  }
+}
+function mcRenderJargon(terms) {
+  const el = $('coach-body');
+  let h = '<div class="mc-jargon-overlay">';
+  h += '<div style="margin-bottom:16px"><button class="btn btn-ghost btn-sm" onclick="loadCoach()">← Back to Coach</button></div>';
+  h += `<div class="mc-jargon-search"><input type="text" id="mc-jargon-q" placeholder="🔍 Search marketing terms... (e.g. CPC, impressions, ROAS)" oninput="mcFilterJargon(this.value)"></div>`;
+  h += '<div class="mc-jargon-grid" id="mc-jargon-grid">';
+  terms.forEach(t => {
+    h += `<div class="mc-jargon-card glass" data-term="${(t.term||'').toLowerCase()} ${(t.full_name||'').toLowerCase()} ${(t.definition||t.explanation||'').toLowerCase()}">
+      <div class="mc-jt">${t.term || t.acronym || t.name}</div>
+      ${t.full_name ? `<div class="mc-jfull">${t.full_name}</div>` : ''}
+      <div class="mc-jdef">${t.definition || t.explanation || t.plain_english || ''}</div>
+      ${t.tip ? `<div class="mc-jtip">${t.tip}</div>` : ''}
+    </div>`;
+  });
+  h += '</div></div>';
+  el.innerHTML = h;
+}
+function mcFilterJargon(q) {
+  const query = q.toLowerCase();
+  document.querySelectorAll('#mc-jargon-grid .mc-jargon-card').forEach(card => {
+    card.style.display = card.dataset.term.includes(query) ? '' : 'none';
+  });
+}
+
+async function editBusiness(id) {
+  try {
+    const profile = await fetch(`/api/coach/profile/${id}`).then(r => r.json());
+    mcWizStep = 0;
+    mcWizData = {
+      name: profile.business_name || profile.name || '',
+      type: profile.business_type || profile.type || '',
+      website: profile.website || '',
+      description: profile.description || '',
+      location: profile.location || '',
+      target_audience: profile.target_audience || '',
+      goals: profile.goals || [],
+      platforms: profile.platforms || [],
+      monthly_budget: profile.monthly_budget || 500,
+      analysis: null,
+      editId: id
+    };
+    openNewBusiness();
+    if ($('mc-biz-name')) $('mc-biz-name').value = mcWizData.name;
+    mcRenderTypeGrid();
+  } catch(e) { toast('Could not load profile for editing'); }
+}
+async function deleteBusiness(id) {
+  if (!confirm('Delete this business and its marketing plan? This can\'t be undone.')) return;
+  try {
+    await fetch(`/api/coach/profile/${id}`, {method:'DELETE'});
+    toast('Business removed 🌿');
+    loadCoach();
+  } catch(e) { toast('Error deleting: ' + e.message); }
+}
 </script>
 </body>
 </html>

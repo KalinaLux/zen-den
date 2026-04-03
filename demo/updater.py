@@ -13,7 +13,7 @@ from pathlib import Path
 
 log = logging.getLogger("zen.updater")
 
-CURRENT_VERSION = "2.4.0"
+CURRENT_VERSION = "2.5.0"
 GITHUB_REPO = "KalinaLux/zen-den"
 RELEASES_URL = "https://api.github.com/repos/KalinaLux/zen-den/releases/latest"
 DOWNLOAD_URL = f"https://github.com/{GITHUB_REPO}/releases/latest"

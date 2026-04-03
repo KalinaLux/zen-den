@@ -76,6 +76,16 @@ from creative_manager import (
     generate_copy_prompt, get_push_log, get_creative_stats, get_version_diff,
 )
 from updater import check_for_update, get_current_version
+from marketing_coach import (
+    load_profiles as coach_load_profiles, get_profile as coach_get_profile,
+    create_profile as coach_create_profile, update_profile as coach_update_profile,
+    delete_profile as coach_delete_profile, analyze_website,
+    generate_marketing_plan, suggest_keywords, advise_budget,
+    translate_performance, get_calendar as coach_get_calendar,
+    get_upcoming_opportunities, get_jargon_dictionary, explain_term,
+    generate_ad_copy_prompt, generate_placeholder_ad_copy, build_campaign_config,
+    BUSINESS_TYPES, GOAL_OPTIONS,
+)
 import shutil
 import time as _time
 
@@ -537,6 +547,53 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._json({"version": get_current_version()})
         elif path == "/api/update-check":
             self._json(check_for_update())
+        elif path == "/api/coach/profiles":
+            self._json(coach_load_profiles())
+        elif path == "/api/coach/types":
+            self._json(BUSINESS_TYPES)
+        elif path == "/api/coach/goals":
+            self._json(GOAL_OPTIONS)
+        elif path == "/api/coach/jargon":
+            self._json(get_jargon_dictionary())
+        elif path.startswith("/api/coach/profile/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            self._json(p if p else {"error": "Not found"}, 200 if p else 404)
+        elif path.startswith("/api/coach/plan/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                self._json(generate_marketing_plan(p))
+        elif path.startswith("/api/coach/keywords/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                self._json(suggest_keywords(p))
+        elif path.startswith("/api/coach/budget/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                self._json(advise_budget(p))
+        elif path.startswith("/api/coach/calendar/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                self._json(coach_get_calendar(p))
+        elif path.startswith("/api/coach/opportunities/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                self._json(get_upcoming_opportunities(p))
         else:
             self.send_error(404)
 
@@ -824,6 +881,54 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 self._json({"ok": True, "filename": filename, "path": str(dest)})
             except Exception as e:
                 self._json({"ok": False, "error": str(e)}, 500)
+        elif path == "/api/coach/profiles":
+            body = self._body()
+            p = coach_create_profile(body)
+            audit_log(f"Created business profile: {p.get('name', '?')}", "coach", "profile_created")
+            self._json(p)
+        elif path == "/api/coach/analyze-website":
+            body = self._body()
+            url = body.get("url", "")
+            if not url:
+                self._json({"error": "URL required"}, 400)
+            else:
+                result = analyze_website(url)
+                self._json(result)
+        elif path.startswith("/api/coach/generate-plan/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                plan = generate_marketing_plan(p)
+                p["marketing_plan"] = plan
+                coach_update_profile(pid, {"marketing_plan": plan})
+                audit_log(f"Generated marketing plan for {p.get('name', '?')}", "coach", "plan_generated")
+                self._json(plan)
+        elif path.startswith("/api/coach/ad-copy/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                body = self._body()
+                platform = body.get("platform", "google")
+                campaign_type = body.get("campaign_type", "search")
+                copy = generate_placeholder_ad_copy(p, platform)
+                prompt = generate_ad_copy_prompt(p, platform, campaign_type)
+                self._json({"ad_copy": copy, "ai_prompt": prompt})
+        elif path.startswith("/api/coach/campaign-config/"):
+            pid = path.split("/")[-1]
+            p = coach_get_profile(pid)
+            if not p:
+                self._json({"error": "Profile not found"}, 404)
+            else:
+                body = self._body()
+                platform = body.get("platform", "google")
+                campaign_type = body.get("campaign_type", "search")
+                config = build_campaign_config(p, platform, campaign_type)
+                audit_log(f"Built campaign config for {p.get('name', '?')} on {platform}", "coach", "campaign_config")
+                self._json(config)
         else:
             self.send_error(404)
 
@@ -934,6 +1039,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
             body = self._body()
             c = update_creative(body.get("id", ""), body)
             self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path.startswith("/api/coach/profile/"):
+            pid = path.split("/")[-1]
+            body = self._body()
+            p = coach_update_profile(pid, body)
+            self._json(p if p else {"error": "Not found"}, 200 if p else 404)
         else:
             self.send_error(404)
 
@@ -945,6 +1055,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             faqs = [f for f in faqs if f.get("id") != faq_id]
             save_config("faq-answers.json", faqs)
             self._json({"ok": True})
+        elif path.startswith("/api/coach/profile/"):
+            pid = path.split("/")[-1]
+            ok = coach_delete_profile(pid)
+            self._json({"ok": ok}, 200 if ok else 404)
         else:
             self.send_error(404)
 

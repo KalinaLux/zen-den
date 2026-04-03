@@ -2,7 +2,7 @@
 
 **Breathe easy. It's handled.**
 
-AI-powered marketing automation for paid search professionals.
+AI-powered marketing automation for paid search professionals **and** complete beginners.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
@@ -26,6 +26,9 @@ AI-powered marketing automation for paid search professionals.
 - 🛡️ **Privacy-first** — runs 100% locally, data never leaves your machine
 - ⏱️ **Time-saved tracker** — see how many hours the tool is saving you
 - 🌐 **Multi-language** — English, Spanish, French, Portuguese
+- 🎓 **Marketing Coach** — add your business, get a personalized marketing plan, keyword suggestions, budget advice, and AI-generated ad copy. No marketing experience needed.
+- 📖 **Jargon Dictionary** — 30 marketing terms explained in plain English
+- 🗓️ **Marketing Calendar** — seasonal opportunities matched to your business type
 - 🎨 **Beautiful dark/light UI** with calming color psychology
 
 ## Video Tour
