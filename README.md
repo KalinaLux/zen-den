@@ -33,11 +33,13 @@ AI-powered marketing automation for paid search professionals **and** complete b
 
 ## Video Tour
 
-[**Watch the 2-minute video tour**](https://app.heygen.com/videos/801c0e2ac4dd4f20b456c68bf661fb5a) — see everything Zen Den can do before you install.
+> GitHub doesn't allow embedded video players, so click the image below to watch:
 
-## Screenshots
+<a href="https://app.heygen.com/videos/801c0e2ac4dd4f20b456c68bf661fb5a">
+  <img src="https://img.shields.io/badge/%E2%96%B6%EF%B8%8F%20Watch%20the%202--minute%20Video%20Tour-HeyGen-8B5CF6?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch the Video Tour" />
+</a>
 
-> Screenshots coming soon.
+See everything Zen Den can do before you install — the dashboard, chat, reports, Marketing Coach, and more.
 
 ## Quick Start
 
