@@ -27,6 +27,7 @@ a = Analysis(
         (os.path.join(ROOT, 'demo', 'rules_engine.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'ai_persona.py'), 'demo'),
         (os.path.join(ROOT, 'demo', 'sandbox.py'), 'demo'),
+        (os.path.join(ROOT, 'demo', 'creative_manager.py'), 'demo'),
         (os.path.join(ROOT, 'config'), 'config'),
     ],
     hiddenimports=[
@@ -54,6 +55,7 @@ a = Analysis(
         'rules_engine',
         'ai_persona',
         'sandbox',
+        'creative_manager',
         'slack_bot',
         'email_watcher',
         'analytics',

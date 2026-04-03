@@ -721,6 +721,8 @@ _TIME_ESTIMATES = {
     "faq_answered": 1.5,
     "campaign_check": 1.5,
     "meeting_prep": 15,
+    "creative_push": 8,
+    "creative_generate": 5,
 }
 
 

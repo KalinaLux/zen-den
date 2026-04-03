@@ -375,6 +375,24 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
 .cm-camp-row .camp-del{margin-left:auto;cursor:pointer;opacity:.4;font-size:16px;transition:opacity .15s}.cm-camp-row .camp-del:hover{opacity:1;color:var(--coral)}
 .cm-add-camp{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .cm-add-camp input,.cm-add-camp select{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:8px 12px;outline:none;font-family:var(--font)}
+/* ── Creative Studio ── */
+.cr-card{padding:24px;margin-bottom:14px;transition:all .2s}
+.cr-card:hover{transform:translateY(-1px)}
+.cr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.cr-title{font-size:16px;font-weight:700;letter-spacing:-.2px}
+.cr-subtitle{font-size:12px;color:var(--text-dim);margin-top:2px}
+.cr-status{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase}
+.cr-status.draft{background:var(--yellow-bg);color:var(--yellow)}.cr-status.review{background:var(--blue-bg);color:var(--blue)}.cr-status.approved{background:var(--green-bg);color:var(--green)}.cr-status.live{background:var(--sage-bg);color:var(--sage)}.cr-status.archived{background:var(--bg-glass);color:var(--text-muted)}
+.cr-platform{display:inline-flex;padding:3px 10px;border-radius:8px;font-size:10px;font-weight:700;text-transform:uppercase}
+.cr-platform.google{background:var(--blue-bg);color:var(--blue)}.cr-platform.meta{background:var(--accent-bg);color:var(--accent2)}.cr-platform.microsoft{background:var(--sage-bg);color:var(--sage)}.cr-platform.tiktok{background:var(--coral-bg);color:var(--coral)}
+.cr-copy{background:var(--bg-glass);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:16px;margin-bottom:12px}
+.cr-copy .cr-label{font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.cr-copy .cr-headline{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.cr-copy .cr-hl{background:var(--accent-bg);color:var(--accent2);padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.cr-copy .cr-desc{font-size:13px;color:var(--text-dim);line-height:1.6}
+.cr-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cr-version{font-size:11px;color:var(--text-muted);display:flex;gap:12px;margin-top:8px}
+.cr-gen{padding:24px;margin-bottom:20px;background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(253,186,116,.08));border:1px solid rgba(167,139,250,.15)}
 /* ── Rules / Persona / Sandbox ── */
 .rule-card{padding:20px;margin-bottom:10px;display:flex;gap:16px;align-items:flex-start;transition:all .15s}
 .rule-card:hover{transform:translateY(-1px)}
@@ -514,6 +532,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     <div class="ni" data-page="faq" id="nav-faq"><span class="ic">❓</span><span>Q&A Library</span><span class="badge" id="faq-count">48</span></div>
     <div class="ni" data-page="templates" id="nav-templates"><span class="ic">⚡</span><span>Quick Replies</span><span class="badge" id="qr-count">36</span></div>
     <div class="ni" data-page="clients" id="nav-clients"><span class="ic">👥</span><span>Manage Clients</span></div>
+    <div class="ni" data-page="creatives" id="nav-creatives"><span class="ic">🎨</span><span>Creatives</span></div>
     <div class="ni" data-page="rules" id="nav-rules"><span class="ic">🤖</span><span>Automation Rules</span></div>
     <div class="ni" data-page="persona" id="nav-persona"><span class="ic">🎭</span><span>AI Behavior</span></div>
     <div class="ni" data-page="sandbox" id="nav-sandbox"><span class="ic">🧪</span><span>Custom Scripts</span></div>
@@ -559,6 +578,7 @@ body{font-family:var(--font);background:var(--gradient);color:var(--text);height
     </div>
   </div></div>
   <div class="page" id="page-clients"><div class="ph" style="gap:12px"><div><h2>👥 Manage Clients</h2><p>Add, edit, and organize your clients and campaigns</p></div><button class="btn btn-primary" onclick="openAddClient()">+ Add Client</button></div><div class="pb" id="clients-body"></div></div>
+  <div class="page" id="page-creatives"><div class="ph" style="gap:12px"><div><h2>🎨 Creative Studio</h2><p>Generate, review, and push ad creatives across all platforms</p></div><button class="btn btn-primary" onclick="openNewCreative()">+ New Creative</button></div><div class="pb" id="creatives-body"></div></div>
   <div class="page" id="page-rules"><div class="ph" style="gap:12px"><div><h2>🤖 Automation Rules</h2><p>IF this happens, THEN do that — customize how Zen Den responds</p></div><button class="btn btn-primary" onclick="openAddRule()">+ New Rule</button></div><div class="pb" id="rules-body"></div></div>
   <div class="page" id="page-persona"><div class="ph"><div><h2>🎭 AI Behavior</h2><p>Customize the AI's tone, personality, and response style</p></div></div><div class="pb" id="persona-body"></div></div>
   <div class="page" id="page-sandbox"><div class="ph" style="gap:12px"><div><h2>🧪 Custom Scripts</h2><p>Describe what you want in plain English — the AI writes the code</p></div><button class="btn btn-primary" onclick="openAddScript()">+ New Script</button></div><div class="pb" id="sandbox-body"></div></div>
@@ -601,7 +621,7 @@ function toggleTheme(){const h=document.documentElement,d=h.dataset.theme==='dar
 (function(){const t=localStorage.getItem('zen-theme');if(t)document.documentElement.dataset.theme=t})();
 
 // ── Nav ──
-function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,rules:loadRules,persona:loadPersona,sandbox:loadSandbox}[p]||function(){})()}
+function goTo(p){document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('active'));const nav=document.querySelector(`.ni[data-page="${p}"]`);if(nav)nav.classList.add('active');const pg=$('page-'+p);if(pg)pg.classList.add('active');({dashboard:loadDash,digest:loadDigest,reports:loadReports,faq:loadFaq,settings:loadSettings,privacy:function(){},audit:loadAudit,templates:loadTemplates,clients:loadClients,creatives:loadCreatives,rules:loadRules,persona:loadPersona,sandbox:loadSandbox}[p]||function(){})()}
 document.querySelectorAll('.ni').forEach(n=>n.addEventListener('click',()=>goTo(n.dataset.page)));
 
 // ── Wizard ──
@@ -616,7 +636,7 @@ async function finishWiz(tour){setupState={completed:true,current_step:6,openai_
 async function checkSetup(){setupState=await fetch('/api/setup').then(r=>r.json());if(setupState.completed)$('wizard').classList.add('hidden');else $('wizard').classList.remove('hidden')}
 
 // ── Tour ──
-const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
+const tourSteps=[{el:'nav-dashboard',t:'📊 Your Dashboard',b:'See every client, campaign, budget pacing, anomaly alerts, and time saved at a glance. Click "Meeting Prep" for instant client briefs.'},{el:'nav-chat',t:'💬 Chat — Your Main Tool',b:'Type questions naturally. "Is Nike on?" "Budget for TrueForm?" It checks live data AND the Q&A library.',go:'chat'},{el:'nav-reports',t:'📄 One-Click Reports',b:'Generate beautiful PDF client reports instantly. Schedule automated delivery — zero typing.',go:'reports'},{el:'nav-faq',t:'❓ Q&A Library — 48 Answers Ready!',b:'Every question your team asks, pre-answered. Hit "+ Add New Question" whenever a new one comes up.',go:'faq'},{el:'nav-templates',t:'⚡ Quick Reply Templates',b:'36 pre-written responses for Slack and email. One click to copy — stop typing the same things.',go:'templates'},{el:'nav-clients',t:'👥 Manage Clients',b:'Add, edit, and remove clients and campaigns. Connect Google, Meta, Microsoft, and TikTok ad platforms.',go:'clients'},{el:'nav-creatives',t:'🎨 Creative Studio',b:'Generate ad copy with AI, review it, approve it, and push to any platform. Full version history and approval workflow.',go:'creatives'},{el:'nav-rules',t:'🤖 Automation Rules',b:'Create IF/THEN rules for email and Slack. "If email mentions budget, auto-reply with the report." Install pre-built templates with one click.',go:'rules'},{el:'nav-persona',t:'🎭 AI Behavior',b:'Customize the AI\'s tone, personality, response length, and per-client behavior. Five tone presets from casual to formal.',go:'persona'},{el:'nav-sandbox',t:'🧪 Custom Scripts',b:'The AI writes code for you. Describe what you want in English, review the generated script, and it runs alongside your rules — safely sandboxed.',go:'sandbox'},{el:'nav-digest',t:'☀️ Morning Digest',b:'Campaign alerts, urgent messages, action items. Start your day calm.',go:'digest'},{el:'nav-settings',t:'⚙️ Slack Bot + Email Watcher',b:'Connect Slack to auto-respond in channels. Connect email to auto-draft replies. Plus API keys and Google Ads.',go:'settings'},{el:'nav-privacy',t:'🛡️ Privacy & Security',b:'Your data never leaves your machine. Show this to anyone who asks.',go:'privacy'},{el:'nav-audit',t:'📋 Audit Log',b:'Every query logged. Share with your security team to prove data is handled responsibly.',go:'audit'}];
 let tIdx=0;
 function startTour(){tIdx=0;showT()}
 function showT(){if(tIdx>=tourSteps.length){endTour();return}const s=tourSteps[tIdx],el=$(s.el),tip=$('tour-tip');if(s.go)goTo(s.go);document.querySelectorAll('.tour-hl').forEach(e=>e.classList.remove('tour-hl'));if(el)el.classList.add('tour-hl');$('tt-title').textContent=s.t;$('tt-body').textContent=s.b;tip.classList.remove('hidden');if(el){const r=el.getBoundingClientRect();tip.style.left=(r.right+16)+'px';tip.style.top=Math.max(8,r.top)+'px'}}
@@ -912,6 +932,115 @@ if(!confirm('Remove this campaign?'))return;
 await fetch('/api/campaigns/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({client_name:clientName,campaign_id:campId})});
 toast('Removed');loadClients()
 }
+
+// ── Creative Studio ──
+let crFilter='all';
+async function loadCreatives(){
+const [creatives, stats] = await Promise.all([
+  fetch('/api/creatives').then(r=>r.json()),
+  fetch('/api/creatives/stats').then(r=>r.json())
+]);
+const el=$('creatives-body');
+let h='';
+
+// Stats bar
+const bs=stats.by_status||{};
+h+=`<div class="stats" style="grid-template-columns:repeat(5,1fr);margin-bottom:16px">
+<div class="st glass v-yellow"><div class="sl">Drafts</div><div class="sv">${bs.draft||0}</div></div>
+<div class="st glass v-accent"><div class="sl">In Review</div><div class="sv">${bs.review||0}</div></div>
+<div class="st glass v-green"><div class="sl">Approved</div><div class="sv">${bs.approved||0}</div></div>
+<div class="st glass v-coral"><div class="sl">Live</div><div class="sv">${bs.live||0}</div></div>
+<div class="st glass" style=""><div class="sl">Total</div><div class="sv">${stats.total||0}</div></div></div>`;
+
+// AI Generator
+h+=`<div class="cr-gen glass"><h3 style="font-size:16px;margin-bottom:8px">✨ AI Copy Generator</h3>
+<p style="font-size:13px;color:var(--text-dim);margin-bottom:16px">Describe what you need — the AI generates headlines, descriptions, and CTAs instantly.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+<div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Platform</label>
+<select id="cg-platform" class="lang-select" style="width:100%"><option value="GOOGLE">Google Ads</option><option value="META">Meta Ads</option><option value="MICROSOFT">Microsoft Ads</option><option value="TIKTOK">TikTok Ads</option></select></div>
+<div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Ad Type</label>
+<select id="cg-type" class="lang-select" style="width:100%"><option value="responsive_search">Responsive Search Ad</option><option value="display">Display Ad</option><option value="social_post">Social Post</option><option value="video_script">Video Script</option></select></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+<div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Client</label>
+<input type="text" id="cg-client" placeholder="e.g. Solara Beauty" style="width:100%;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:10px 12px;outline:none;font-family:var(--font)"></div>
+<div><label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Tone</label>
+<select id="cg-tone" class="lang-select" style="width:100%"><option value="professional">Professional</option><option value="friendly">Friendly</option><option value="urgent">Urgent</option><option value="luxury">Luxury</option><option value="playful">Playful</option></select></div></div>
+<label style="display:block;font-size:11px;font-weight:600;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Product / Service Description</label>
+<textarea id="cg-desc" placeholder="Describe what you're advertising..." style="width:100%;min-height:60px;background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:12px;padding:10px 12px;outline:none;font-family:var(--font);resize:vertical;margin-bottom:12px"></textarea>
+<div class="btn-row"><button class="btn btn-primary" onclick="aiGenCopy()">🧠 Generate Copy</button></div>
+<div id="cg-result" style="display:none;margin-top:16px"></div></div>`;
+
+// Filter bar
+const filters=['all','draft','review','approved','live','archived'];
+h+=`<div class="ff-bar" style="margin-bottom:14px">${filters.map(f=>`<button class="ff${f===crFilter?' act':''}" onclick="crFilter='${f}';loadCreatives()">${f==='all'?'All':f.charAt(0).toUpperCase()+f.slice(1)}</button>`).join('')}</div>`;
+
+// Creative cards
+const filtered=crFilter==='all'?creatives:creatives.filter(c=>c.status===crFilter);
+if(!filtered.length){h+=`<div class="empty"><div class="ei">🎨</div><h3>No creatives${crFilter!=='all'?' with status "'+crFilter+'"':''}</h3><p>Generate some with the AI tool above!</p></div>`}
+filtered.forEach(c=>{
+const platCls=(c.platform||'GOOGLE').toLowerCase();
+h+=`<div class="cr-card glass">
+<div class="cr-top"><div>
+  <div class="cr-title">${c.campaign_name||c.campaign_id||'Untitled'}</div>
+  <div class="cr-subtitle">${c.client_name||''} · ${c.ad_type||'ad'}</div>
+</div><div style="display:flex;gap:8px;align-items:center">
+  <span class="cr-platform ${platCls}">${c.platform}</span>
+  <span class="cr-status ${c.status}">${c.status}</span>
+</div></div>`;
+
+h+=`<div class="cr-copy"><div class="cr-label">Headlines</div><div class="cr-headline">${(c.headlines||[]).map(hl=>`<span class="cr-hl">${hl}</span>`).join('')}</div>`;
+h+=`<div class="cr-label">Descriptions</div>${(c.descriptions||[]).map(d=>`<div class="cr-desc">${d}</div>`).join('')}`;
+if(c.cta)h+=`<div style="margin-top:8px"><span style="font-size:11px;font-weight:700;color:var(--text-muted)">CTA:</span> <span style="font-size:12px;color:var(--accent2);font-weight:600">${c.cta}</span></div>`;
+h+=`</div>`;
+
+h+=`<div class="cr-version"><span>v${c.version||1}</span><span>Created: ${new Date(c.created).toLocaleDateString()}</span>${c.pushed_at?`<span>Pushed: ${new Date(c.pushed_at).toLocaleDateString()}</span>`:''}${c.ai_generated?'<span>🧠 AI Generated</span>':''}</div>`;
+
+h+=`<div class="cr-actions">`;
+if(c.status==='draft'){
+  h+=`<button class="btn btn-primary btn-sm" onclick="submitCreative('${c.id}')">📤 Submit for Review</button>`;
+  h+=`<button class="btn btn-ghost btn-sm" onclick="genVariations('${c.id}')">🔄 Variations</button>`;
+}
+if(c.status==='review'){
+  h+=`<button class="btn btn-sage btn-sm" onclick="approveCreative('${c.id}')">✅ Approve</button>`;
+  h+=`<button class="btn btn-ghost btn-sm" onclick="rejectCreative('${c.id}')">↩️ Reject</button>`;
+}
+if(c.status==='approved'){
+  h+=`<button class="btn btn-primary btn-sm" onclick="pushCreative('${c.id}')">🚀 Push to ${c.platform}</button>`;
+}
+h+=`<button class="btn btn-ghost btn-sm" onclick="dupCreative('${c.id}')">📋 Duplicate</button>`;
+h+=`<button class="btn btn-ghost btn-sm" onclick="delCreative('${c.id}')">🗑</button>`;
+h+=`</div></div>`});
+
+el.innerHTML=h}
+
+async function aiGenCopy(){
+const params={platform:$('cg-platform').value,ad_type:$('cg-type').value,client_name:$('cg-client').value.trim(),product_description:$('cg-desc').value.trim(),tone:$('cg-tone').value};
+if(!params.product_description){toast('Describe what you\'re advertising');return}
+toast('Generating...');
+const copy=await fetch('/api/creatives/generate-copy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(params)}).then(r=>r.json());
+let h=`<div class="cr-copy"><div class="cr-label">Generated Headlines</div><div class="cr-headline">${(copy.headlines||[]).map(hl=>`<span class="cr-hl">${hl}</span>`).join('')}</div>`;
+h+=`<div class="cr-label">Generated Descriptions</div>${(copy.descriptions||[]).map(d=>`<div class="cr-desc">${d}</div>`).join('')}`;
+if(copy.cta)h+=`<div style="margin-top:8px"><span style="font-size:11px;font-weight:700;color:var(--text-muted)">CTA:</span> <span style="font-size:12px;color:var(--accent2);font-weight:600">${copy.cta}</span></div>`;
+h+=`</div><div class="btn-row"><button class="btn btn-primary" onclick="saveGenerated()">💾 Save as Draft</button></div>`;
+$('cg-result').innerHTML=h;$('cg-result').style.display='';
+$('cg-result')._copy=copy;
+toast('Copy generated! ✨')}
+
+async function saveGenerated(){
+const copy=$('cg-result')._copy;if(!copy)return;
+const creative={client_name:$('cg-client').value.trim()||'New Client',platform:$('cg-platform').value,ad_type:$('cg-type').value,headlines:copy.headlines||[],descriptions:copy.descriptions||[],cta:copy.cta||'Learn More',status:'draft',ai_generated:true,generation_prompt:$('cg-desc').value.trim(),campaign_name:$('cg-client').value.trim()+' | AI Generated',tags:['ai-generated']};
+await fetch('/api/creatives',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(creative)});
+$('cg-result').style.display='none';toast('Saved as draft! 🎨');loadCreatives()}
+
+async function submitCreative(id){await fetch('/api/creatives/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});toast('Submitted for review 📤');loadCreatives()}
+async function approveCreative(id){await fetch('/api/creatives/approve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});toast('Approved! ✅');loadCreatives()}
+async function rejectCreative(id){const reason=prompt('Reason for rejection:','');await fetch('/api/creatives/reject',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,reason})});toast('Sent back to draft');loadCreatives()}
+async function pushCreative(id){if(!confirm('Push this creative live? This will create/update the ad on the platform.'))return;toast('Pushing...');const r=await fetch('/api/creatives/push',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})}).then(r=>r.json());toast(r.success?'Pushed live! 🚀':'Error: '+(r.message||'failed'));loadCreatives()}
+async function dupCreative(id){await fetch('/api/creatives/duplicate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});toast('Duplicated! 📋');loadCreatives()}
+async function delCreative(id){if(!confirm('Delete this creative?'))return;await fetch('/api/creatives/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});toast('Deleted');loadCreatives()}
+async function genVariations(id){toast('Generating variations...');const v=await fetch('/api/creatives/generate-variations',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id,count:2})}).then(r=>r.json());if(v&&v.length){toast(`${v.length} variations generated!`);loadCreatives()}else{toast('Could not generate variations')}}
+
+function openNewCreative(){goTo('creatives');setTimeout(()=>{const gen=$('cg-desc');if(gen)gen.focus()},100)}
 
 // ── Automation Rules ──
 async function loadRules(){

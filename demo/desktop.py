@@ -68,6 +68,13 @@ from sandbox import (
     run_all_scripts, get_script_templates, generate_script_prompt,
     generate_placeholder_script,
 )
+from creative_manager import (
+    load_creatives, get_creative, list_creatives, create_creative,
+    update_creative, delete_creative as delete_creative_fn, duplicate_creative,
+    submit_for_review, approve_creative, reject_creative, rollback_creative,
+    push_creative, generate_placeholder_copy, generate_variations,
+    generate_copy_prompt, get_push_log, get_creative_stats, get_version_diff,
+)
 import shutil
 import time as _time
 
@@ -509,6 +516,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._json(load_scripts())
         elif path == "/api/scripts/templates":
             self._json(get_script_templates())
+        elif path == "/api/creatives":
+            qs = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+            self._json(list_creatives(
+                client_name=qs.get("client", [None])[0],
+                campaign_id=qs.get("campaign_id", [None])[0],
+                status=qs.get("status", [None])[0],
+                platform=qs.get("platform", [None])[0]))
+        elif path == "/api/creatives/stats":
+            self._json(get_creative_stats())
+        elif path == "/api/creatives/push-log":
+            qs = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+            self._json(get_push_log(client_name=qs.get("client", [None])[0]))
+        elif path.startswith("/api/creatives/") and not path.endswith("/"):
+            cid = path.split("/")[-1]
+            c = get_creative(cid)
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
         else:
             self.send_error(404)
 
@@ -723,6 +746,47 @@ class Handler(http.server.BaseHTTPRequestHandler):
             prompt = generate_script_prompt(body.get("request", ""))
             placeholder = generate_placeholder_script(body.get("request", ""))
             self._json({"prompt": prompt, "generated_code": placeholder})
+        elif path == "/api/creatives":
+            body = self._body()
+            c = create_creative(body)
+            self._json(c)
+        elif path == "/api/creatives/generate-copy":
+            body = self._body()
+            copy = generate_placeholder_copy(body)
+            self._json(copy)
+        elif path == "/api/creatives/generate-variations":
+            body = self._body()
+            variations = generate_variations(body.get("id", ""), body.get("count", 3))
+            self._json(variations)
+        elif path == "/api/creatives/duplicate":
+            body = self._body()
+            c = duplicate_creative(body.get("id", ""))
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/creatives/submit":
+            body = self._body()
+            c = submit_for_review(body.get("id", ""))
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/creatives/approve":
+            body = self._body()
+            c = approve_creative(body.get("id", ""), body.get("approved_by", "user"))
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/creatives/reject":
+            body = self._body()
+            c = reject_creative(body.get("id", ""), body.get("reason", ""))
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/creatives/push":
+            body = self._body()
+            result = push_creative(body.get("id", ""))
+            record_action(DATA_DIR, "creative_push")
+            self._json(result)
+        elif path == "/api/creatives/rollback":
+            body = self._body()
+            c = rollback_creative(body.get("id", ""), body.get("version", 1))
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
+        elif path == "/api/creatives/delete":
+            body = self._body()
+            ok = delete_creative_fn(body.get("id", ""))
+            self._json({"ok": ok})
         else:
             self.send_error(404)
 
@@ -829,6 +893,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             body = self._body()
             s = update_script(body.get("id", ""), body)
             self._json(s if s else {"ok": False}, 200 if s else 404)
+        elif path == "/api/creatives":
+            body = self._body()
+            c = update_creative(body.get("id", ""), body)
+            self._json(c if c else {"error": "Not found"}, 200 if c else 404)
         else:
             self.send_error(404)
 
