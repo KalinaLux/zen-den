@@ -56,11 +56,20 @@ The Zen Den window will appear — you're ready to go.
 
 Pre-built installers are available on the [Releases](https://github.com/KalinaLux/zen-den/releases) page.
 
-**macOS:** Download the `.dmg`, drag **Zen Den** to Applications, double-click to launch.
+**macOS:** Download the `.dmg`, drag **Zen Den** to Applications.
+
+> **First time opening?** macOS will show a warning saying it "cannot verify" the app. This is normal for all open-source apps — it just means we haven't paid Apple $99/year for a certificate. Here's how to open it:
+>
+> 1. **Right-click** (or Control+click) on Zen Den in your Applications folder
+> 2. Click **"Open"** from the menu
+> 3. A dialog appears — click **"Open"** again
+> 4. Done! It launches. You only need to do this **once**.
+>
+> **Alternative:** Go to **System Settings → Privacy & Security**, scroll down, and click **"Open Anyway"** next to the Zen Den message.
+>
+> **Terminal shortcut:** `xattr -cr "/Applications/Zen Den.app"` then double-click normally.
 
 **Windows:** Download the `.zip`, extract, and run `Zen Den.exe`.
-
-Both are built automatically via GitHub Actions on every tagged release.
 
 ## Requirements
 
