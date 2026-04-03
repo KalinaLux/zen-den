@@ -28,6 +28,10 @@ AI-powered marketing automation for paid search professionals.
 - 🌐 **Multi-language** — English, Spanish, French, Portuguese
 - 🎨 **Beautiful dark/light UI** with calming color psychology
 
+## Video Tour
+
+[**Watch the 2-minute video tour**](https://app.heygen.com/videos/801c0e2ac4dd4f20b456c68bf661fb5a) — see everything Zen Den can do before you install.
+
 ## Screenshots
 
 > Screenshots coming soon.
